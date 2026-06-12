@@ -1,0 +1,301 @@
+{
+  "swings": [
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4503.85,
+      "index": 5,
+      "timestamp": "2026-06-12T16:50:07.830258+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4495.22,
+      "index": 13,
+      "timestamp": "2026-06-12T16:50:07.830560+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4492.34,
+      "index": 14,
+      "timestamp": "2026-06-12T16:50:07.830632+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4494.19,
+      "index": 15,
+      "timestamp": "2026-06-12T16:50:07.830697+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4494.44,
+      "index": 16,
+      "timestamp": "2026-06-12T16:50:07.830762+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4493.15,
+      "index": 17,
+      "timestamp": "2026-06-12T16:50:07.830826+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4506.92,
+      "index": 26,
+      "timestamp": "2026-06-12T16:50:07.831055+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4501.87,
+      "index": 28,
+      "timestamp": "2026-06-12T16:50:07.831144+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4504.02,
+      "index": 30,
+      "timestamp": "2026-06-12T16:50:07.831330+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4505.71,
+      "index": 32,
+      "timestamp": "2026-06-12T16:50:07.831439+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4507.96,
+      "index": 33,
+      "timestamp": "2026-06-12T16:50:07.831510+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4506.61,
+      "index": 34,
+      "timestamp": "2026-06-12T16:50:07.831577+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4509.82,
+      "index": 35,
+      "timestamp": "2026-06-12T16:50:07.831646+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4500.22,
+      "index": 39,
+      "timestamp": "2026-06-12T16:50:07.831774+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4498.49,
+      "index": 40,
+      "timestamp": "2026-06-12T16:50:07.831844+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4498.24,
+      "index": 41,
+      "timestamp": "2026-06-12T16:50:07.831914+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4499.46,
+      "index": 42,
+      "timestamp": "2026-06-12T16:50:07.831985+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4497.09,
+      "index": 43,
+      "timestamp": "2026-06-12T16:50:07.832061+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4512.17,
+      "index": 55,
+      "timestamp": "2026-06-12T16:50:07.832361+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4516.8,
+      "index": 56,
+      "timestamp": "2026-06-12T16:50:07.832430+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4515.23,
+      "index": 58,
+      "timestamp": "2026-06-12T16:50:07.832515+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4515.91,
+      "index": 59,
+      "timestamp": "2026-06-12T16:50:07.832580+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4516.34,
+      "index": 60,
+      "timestamp": "2026-06-12T16:50:07.832653+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4516.8,
+      "index": 61,
+      "timestamp": "2026-06-12T16:50:07.832721+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4515.33,
+      "index": 62,
+      "timestamp": "2026-06-12T16:50:07.832788+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4508.62,
+      "index": 64,
+      "timestamp": "2026-06-12T16:50:07.832876+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4503.49,
+      "index": 75,
+      "timestamp": "2026-06-12T16:50:07.833153+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4508.38,
+      "index": 77,
+      "timestamp": "2026-06-12T16:50:07.833251+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4502.69,
+      "index": 77,
+      "timestamp": "2026-06-12T16:50:07.833303+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4502.22,
+      "index": 78,
+      "timestamp": "2026-06-12T16:50:07.833373+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4502.7,
+      "index": 79,
+      "timestamp": "2026-06-12T16:50:07.833443+00:00",
+      "broken": true
+    },
+    {
+      "tf": "H1",
+      "type": "LL",
+      "price": 4501.63,
+      "index": 81,
+      "timestamp": "2026-06-12T16:50:07.833535+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "LH",
+      "price": 4507.6,
+      "index": 83,
+      "timestamp": "2026-06-12T16:50:07.833625+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HH",
+      "price": 4508.44,
+      "index": 84,
+      "timestamp": "2026-06-12T16:50:07.833699+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4501.76,
+      "index": 88,
+      "timestamp": "2026-06-12T16:50:07.833826+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4501.96,
+      "index": 89,
+      "timestamp": "2026-06-12T16:50:07.833900+00:00",
+      "broken": false
+    },
+    {
+      "tf": "H1",
+      "type": "HL",
+      "price": 4503.03,
+      "index": 90,
+      "timestamp": "2026-06-12T16:50:07.833973+00:00",
+      "broken": false
+    }
+  ],
+  "updated": "2026-06-12T16:50:07.836698+00:00"
+}

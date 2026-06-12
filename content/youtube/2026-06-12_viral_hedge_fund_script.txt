@@ -1,0 +1,136 @@
+TITLE: Maine phone se hedge fund banaya — zero cost mein 🤯
+
+═══════════════════════════════════════════
+VIDEO 1: VIRAL HOOK
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:30) ━━━
+
+[VISUAL: Screen recording of terminal/PM2 running]
+
+Bhai, aapko lagta hai hedge fund banane ke liye
+crores chahiye? Lakhon? Nahi.
+
+Maine apna trading system banaya hai — 
+poore ka poora hedge fund — 
+bas apne phone se. Zero cost.
+
+Aur yeh theoretical nahi hai. Yeh live chal raha hai.
+12 processes, real-time analysis, aur telegram alerts.
+
+━━━ STORY (0:30 - 2:00) ━━━
+
+[VISUAL: Phone showing UserLAnd + VSCode setup]
+
+6 months pehle maine start kiya.
+Python seekha. SMC patterns seekhe.
+Fir banaya — OMNI BRAIN.
+
+Yeh system 24/7 monitor karta hai:
+• 11 currency pairs ka correlation
+• Treasury yield curves
+• Fear & Greed sentiment
+• 7 SMC pattern types
+• Real-time divergence detection
+
+Aur sab kuch ek phone mein.
+
+━━━ DEMO (2:00 - 8:00) ━━━
+
+[VISUAL: Live system demo]
+
+Abhi dikhata hu kaise kaam karta hai:
+
+1. TwelveData se live price aata hai
+2. 14-step pipeline analyze karti hai
+3. Confidence score calculate hota hai
+4. Agar score threshold cross kare — EXECUTE signal
+5. Telegram pe turant alert aata hai
+
+[SHOW: Terminal with pipeline output]
+
+Aur haan — TP/SL bhi automatically calculate hota hai.
+Kelly Criterion se position size.
+Circuit breaker se risk control.
+
+[SHOW: Paper trading dashboard]
+
+Paper trading results:
+$10,000 starting balance
+72.2% win rate
+$+847.50 P&L in first week
+Score: 85/100
+
+━━━ RESULTS (8:00 - 10:00) ━━━
+
+[VISUAL: Weekly performance card]
+
+Week 1 results:
+• 72.2% win rate
+• 8.5% ROI
+• Best trade: XAUUSD +$848
+
+Aur system self-healing hai.
+PM2 restart karta hai automatically.
+Git auto-commit hota hai.
+Daily report bhi aati hai Telegram pe.
+
+━━━ CTA (10:00 - 11:00) ━━━
+
+[VISUAL: Telegram channel QR code]
+
+Agar aapko bhi chahiye live signals:
+Telegram channel join karein — link in description.
+
+Free channel mein WAIT signals aate hain.
+VIP channel mein EXECUTE signals with full analysis.
+
+System build karna seekhna hai?
+Python + SMC + Automation — main sikha dunga.
+
+Like karein, share karein, subscribe karein.
+Agli video mein seekhenge — SMC patterns in Python. 🚀
+
+━━━ B-ROLL SHOT LIST ━━━
+1. Phone showing UserLAnd terminal
+2. Close-up of PM2 status (12/12 online)
+3. Scrolling through trade signals
+4. Telegram notification popping up
+5. Paper trading P&L graph
+6. Code editor with pipeline orchestration
+7. Split screen: phone + chart
+
+━━━ THUMBNAIL TEXT ━━━
+Main text: "PHONE SE HEDGE FUND 🤯"
+Sub text: "Zero Cost | Python | SMC"
+Emoji overlay: 📱💰🚀
+
+━━━ DESCRIPTION ━━━
+Maine apne phone par ek complete trading system banaya hai — OMNI BRAIN V2. Yeh system real-time market analysis karta hai, SMC patterns detect karta hai, aur Telegram pe alerts bhejta hai. Sab kuch free, sab kuch Python mein.
+
+Topics covered:
+• Phone par trading system kaise banayein
+• SMC pattern recognition in Python
+• Real-time market analysis
+• Paper trading strategy
+• Telegram bot integration
+• Risk management with Kelly Criterion
+
+Technology stack: Python, TwelveData, PM2, Telegram API, SMC patterns
+
+Keywords: trading system, python trading, smc trading, forex automation, phone trading, hedge fund, algorithmic trading
+
+━━━ TAGS (50 TAGS) ━━━
+trading system, python trading bot, forex trading python, smc trading strategy,
+order block trading, smart money concept, forex automation, algorithmic trading,
+trading bot python, machine learning trading, forex signals, xauusd analysis,
+trading on phone, android trading, termux trading, python automation,
+quantitative trading, hedge fund, retail trader, forex trader, day trading,
+swing trading, price action, technical analysis, market structure,
+liquidity sweep, fair value gap, order block, market maker model,
+forex trading india, forex hindi, trading for beginners, passive income,
+trading bot free, open source trading, python projects, coding trading,
+algorithmic trading strategy, trading system, omni brain, trading signals,
+telegram trading, smc strategy, institutional trading, forex market,
+currency trading, commodity trading, risk management, trading psychology,
+financial freedom, trading lifestyle

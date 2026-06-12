@@ -1,0 +1,17 @@
+{
+  "order": {
+    "symbol": "XAUUSD",
+    "direction": "LONG",
+    "entry_price": 2350.0,
+    "initial_price": 2350.0,
+    "current_bid": 2349.9,
+    "current_ask": 2350.1,
+    "placed_price": 2350.0,
+    "status": "SEEKING",
+    "attempts": 1,
+    "max_attempts": 64,
+    "interval_ms": 200,
+    "timestamp": "2026-06-11T15:40:08.095108+00:00"
+  },
+  "updated": "2026-06-11T15:40:08.100007+00:00"
+}

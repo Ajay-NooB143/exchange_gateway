@@ -1,0 +1,26 @@
+─────────────────────────────────────
+EDUCATIONAL REEL #4: MTF confirmation kyun zaroori?
+─────────────────────────────────────
+HOOK (0-3 sec):
+"Ek timeframe pe signal mila — kya kaafi hai? NAHI! ⚠️"
+
+VISUAL (3-8 sec):
+Show multi-timeframe grid with arrows, conflict highlighted
+
+EXPLANATION (8-25 sec):
+Multi-Timeframe Confirmation ka matlab hai:
+✅ M15 pe signal mila → H1 ka bias dekho
+✅ H1 pe signal mila → H4 ka structure dekho
+✅ H4 pe signal mila → D1 ka trend dekho
+Agar sab timeframes same direction mein ho — CONFIRMED!
+Agar conflict hai — BLOCKED! Wait karo.
+
+EXAMPLE (25-30 sec):
+"XAUUSD — M15 Bullish, H1 Bullish, H4 Bullish, D1 Bullish = CONFIRMED EXECUTE!"
+
+CTA (30-35 sec):
+"MTF confirmation seekho! Link in bio!"
+
+HASHTAGS:
+#MTF #multitimeframe #forextrader #trading #analysis #forex
+─────────────────────────────────────

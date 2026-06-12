@@ -1,0 +1,25 @@
+Circuit Breaker — kab trading band karna chahiye? Emotional trading aur revenge trading se apne account ko bachayein. OMNI BRAIN V2 ka auto-halt system automatically detect karta hai jab aapko rukna chahiye — aur system band kar deta hai. No emotional decisions. Pure automation.
+
+Most traders blow their accounts because they can't stop after losses. Circuit breaker makes stopping automatic and mandatory.
+
+00:00 - Hook: Revenge trading spiral
+00:45 - Emotional trading cycle (4 steps to blown account)
+02:30 - What is a circuit breaker?
+04:00 - Live demo: Circuit breaker triggering
+06:00 - Manual vs Auto circuit breaker comparison
+07:30 - Additional safety features (max lot size, session control)
+08:30 - 2 year backtest comparison
+09:30 - CTA + Telegram channel
+
+OMNI BRAIN circuit breaker features:
+• Daily loss limit (auto-halt at 5%)
+• Max consecutive losses (3 in a row → cooldown)
+• Drawdown limit (emergency stop at 8%)
+• Volatility circuit (abnormal movement → pause)
+• Emergency kill switch (/stop on Telegram)
+• Daily performance reports
+
+Keywords: circuit breaker, trading halt, auto trading stop, risk management, revenge trading, emotional trading, drawdown, daily loss limit, trading psychology, omni brain v2, algorithmic trading, python trading, forex trading india, smc trading
+
+FREE Telegram: [link]
+VIP Telegram: [link]

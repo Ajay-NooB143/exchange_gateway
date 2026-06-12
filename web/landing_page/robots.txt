@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://omnibrain.io/sitemap.xml

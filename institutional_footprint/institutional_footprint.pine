@@ -1,0 +1,459 @@
+// ============================================================================
+// INSTITUTIONAL FOOTPRINT TRACKING ENGINE v1.0
+// ============================================================================
+// Pine Script v6 Strategy
+// 
+// Architecture:
+//   Frontend:  Pine Script v6 (this file) - Institutional detection
+//   Bridge:    Node.js webhook (port 3000) - Low-latency routing
+//   Backend:   Python CVD engine - Volume validation + execution
+//
+// Detection Modules:
+//   1. Institutional Order Blocks (IOB) - Bank accumulation/distribution zones
+//   2. Liquidity Sweeps - Stop hunts / false breakouts
+//   3. Break of Structure (BOS) - Trend shift confirmation
+//   4. Fair Value Gaps (FVG) - Institutional imbalance zones
+//   5. CVD Divergence - Absorption detection (sent to Python)
+//
+// Risk: 1% per trade, 3% daily max, 3-trade daily limit
+// ============================================================================
+
+//@version=6
+strategy("Institutional Footprint Tracker", 
+     overlay=true, 
+     max_boxes_count=500,
+     max_lines_count=500,
+     max_labels_count=500,
+     default_qty_type=strategy.percent_of_equity,
+     default_qty_value=1,
+     initial_capital=100000,
+     commission_type=strategy.commission.cash_per_order,
+     commission_value=0.50,
+     slippage=2,
+     calc_on_every_tick=false,
+     process_orders_on_close=false)
+
+// ============================================================================
+// INPUTS
+// ============================================================================
+
+// IOB Detection
+i_volLookback      = input.int(20, "Volume Lookback", minval=10, maxval=100, group="IOB")
+i_volPercentile    = input.int(90, "Volume Percentile Threshold", minval=70, maxval=99, group="IOB")
+i_bosMinMoveATR    = input.float(0.5, "BOS Min Move (ATR mult)", minval=0.2, maxval=2.0, step=0.1, group="IOB")
+i_iobMaxAge        = input.int(50, "IOB Max Age (bars)", minval=10, maxval=200, group="IOB")
+
+// Liquidity Sweep
+i_sweepMinWick     = input.float(0.3, "Sweep Min Wick (ATR mult)", minval=0.1, maxval=1.0, step=0.05, group="Sweep")
+i_sweepMaxBars      = input.int(3, "Sweep Confirmation Bars", minval=1, maxval=5, group="Sweep")
+i_equalHlTolerance = input.float(0.5, "Equal H/L Tolerance (ATR mult)", minval=0.1, maxval=2.0, step=0.1, group="Sweep")
+
+// FVG
+i_fvgMinGap         = input.float(0.2, "FVG Min Gap (ATR mult)", minval=0.05, maxval=1.0, step=0.05, group="FVG")
+
+// Risk Management
+i_slBufferATR       = input.float(0.3, "SL Buffer (ATR mult)", minval=0.1, maxval=1.0, step=0.1, group="Risk")
+i_tpRR              = input.float(2.0, "TP Risk:Reward", minval=1.0, maxval=5.0, step=0.5, group="Risk")
+i_maxDailyTrades    = input.int(3, "Max Daily Trades", minval=1, maxval=10, group="Risk")
+i_maxDailyLoss      = input.float(3.0, "Max Daily Loss %", minval=1.0, maxval=10.0, step=0.5, group="Risk")
+
+// Session Filter
+i_useSessionFilter  = input.bool(true, "Use Session Filter", group="Session")
+i_sessionStart      = input.int(13, "Session Start (GMT hour)", minval=0, maxval=23, group="Session")
+i_sessionEnd        = input.int(16, "Session End (GMT hour)", minval=0, maxval=23, group="Session")
+
+// Webhook
+i_webhookSecret     = input.string("YOUR_SECRET_HERE", "Webhook Secret", group="Webhook")
+
+// ============================================================================
+// GLOBAL STATE
+// ============================================================================
+
+var int dailyTrades = 0
+var float dailyPnL = 0.0
+var bool killSwitch = false
+var float dayStartEquity = strategy.equity
+
+// Reset daily counters at session start
+if hour == 0 and minute == 0
+    dailyTrades := 0
+    dailyPnL := 0.0
+    dayStartEquity := strategy.equity
+    killSwitch := false
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+// ATR for adaptive thresholds
+atr14 = ta.atr(14)
+
+// Volume percentile (rolling)
+volPercentile(float src, int len) =>
+    float vol = volume
+    int count = 0
+    float sum = 0.0
+    for i = 1 to len
+        if volume[i] < vol
+            count += 1
+    (count / len) * 100
+
+// Check if session is active
+isSessionActive() =>
+    if not i_useSessionFilter
+        true
+    else
+        int gmtHour = hour  // Adjust if your chart isn't UTC
+        gmtHour >= i_sessionStart and gmtHour < i_sessionEnd
+
+// ============================================================================
+// MODULE 1: INSTITUTIONAL ORDER BLOCKS (IOB)
+// ============================================================================
+
+// Detect high-volume candles that cause BOS
+isHighVol = volume >= ta.highest(volume, i_volLookback) * (i_volPercentile / 100)
+
+// Swing high/low for BOS detection
+swingHigh = ta.pivothigh(high, 5, 5)
+swingLow = ta.pivotlow(low, 5, 5)
+
+// BOS detection
+var float lastSwingHigh = na
+var float lastSwingLow = na
+var int bosDirection = 0  // 1 = bullish BOS, -1 = bearish BOS
+
+if not na(swingHigh)
+    lastSwingHigh := swingHigh
+if not na(swingLow)
+    lastSwingLow := swingLow
+
+// Bullish BOS: close breaks above last swing high with momentum
+bullishBOS = close > lastSwingHigh and close[1] <= lastSwingHigh and 
+             (close - lastSwingHigh) > atr14 * i_bosMinMoveATR
+
+// Bearish BOS: close breaks below last swing low with momentum  
+bearishBOS = close < lastSwingLow and close[1] >= lastSwingLow and 
+             (lastSwingLow - close) > atr14 * i_bosMinMoveATR
+
+bosDirection := bullishBOS ? 1 : bearishBOS ? -1 : bosDirection
+
+// IOB: High volume candle that causes BOS
+bullishIOB = isHighVol[1] and bullishBOS
+bearishIOB = isHighVol[1] and bearishBOS
+
+// Store IOB levels
+var float bullIOBZone = na
+var float bullIOBHigh = na
+var int bullIOBBar = na
+var float bearIOBZone = na
+var float bearIOBLow = na
+var int bearIOBBar = na
+
+if bullishIOB
+    bullIOBZone := open[1]  // Open of the high-volume candle
+    bullIOBHigh := high[1]
+    bullIOBBar := bar_index - 1
+    box.new(bar_index - 1, high[1], bar_index + 20, open[1], 
+            bgcolor=color.new(color.green, 80), 
+            border_color=color.green, 
+            border_width=1)
+
+if bearishIOB
+    bearIOBZone := open[1]
+    bearIOBLow := low[1]
+    bearIOBBar := bar_index - 1
+    box.new(bar_index - 1, open[1], bar_index + 20, low[1], 
+            bgcolor=color.new(color.red, 80), 
+            border_color=color.red, 
+            border_width=1)
+
+// ============================================================================
+// MODULE 2: LIQUIDITY SWEEPS (STOP HUNTS)
+// ============================================================================
+
+// Detect equal highs/lows (retail liquidity pools)
+var float[] eqHighs = array.new_float(0)
+var float[] eqLows = array.new_float(0)
+var int[] eqHighBars = array.new_int(0)
+var int[] eqLowBars = array.new_int(0)
+
+// Find potential liquidity levels (simplified: use swing points)
+if not na(swingHigh)
+    // Check if this swing is near any existing swing (equal highs)
+    bool isEqHigh = false
+    if array.size(eqHighs) > 0
+        for i = 0 to array.size(eqHighs) - 1
+            if math.abs(swingHigh - array.get(eqHighs, i)) < atr14 * i_equalHlTolerance
+                isEqHigh := true
+                break
+    if not isEqHigh
+        array.push(eqHighs, swingHigh)
+        array.push(eqHighBars, bar_index - 5)
+
+if not na(swingLow)
+    bool isEqLow = false
+    if array.size(eqLows) > 0
+        for i = 0 to array.size(eqLows) - 1
+            if math.abs(swingLow - array.get(eqLows, i)) < atr14 * i_equalHlTolerance
+                isEqLow := true
+                break
+    if not isEqLow
+        array.push(eqLows, swingLow)
+        array.push(eqLowBars, bar_index - 5)
+
+// Sweep detection
+var bool sweepDetected = false
+var int sweepDirection = 0
+var float sweepExtreme = na
+var float sweepReturn = na
+
+sweepDetected := false
+
+// Check for sweep above old highs
+if array.size(eqHighs) > 0
+    for i = 0 to array.size(eqHighs) - 1
+        float level = array.get(eqHighs, i)
+        int levelBar = array.get(eqHighBars, i)
+        
+        // Spike above level but close back inside
+        if high > level and close < level and (high - level) > atr14 * i_sweepMinWick
+            if bar_index - levelBar > 5  // Level must be old enough
+                sweepDetected := true
+                sweepDirection := -1  // Bearish sweep (took buy-side liquidity)
+                sweepExtreme := high
+                sweepReturn := close
+                // Clean up old level
+                array.remove(eqHighs, i)
+                array.remove(eqHighBars, i)
+                break
+
+// Check for sweep below old lows
+if array.size(eqLows) > 0 and not sweepDetected
+    for i = 0 to array.size(eqLows) - 1
+        float level = array.get(eqLows, i)
+        int levelBar = array.get(eqLowBars, i)
+        
+        if low < level and close > level and (level - low) > atr14 * i_sweepMinWick
+            if bar_index - levelBar > 5
+                sweepDetected := true
+                sweepDirection := 1   // Bullish sweep (took sell-side liquidity)
+                sweepExtreme := low
+                sweepReturn := close
+                array.remove(eqLows, i)
+                array.remove(eqLowBars, i)
+                break
+
+// Mark sweeps on chart
+if sweepDetected
+    if sweepDirection == -1
+        label.new(bar_index, high, "SWEEP", 
+                  color=color.red, textcolor=color.white, 
+                  style=label.style_label_down, size=size.small)
+    else
+        label.new(bar_index, low, "SWEEP", 
+                  color=color.green, textcolor=color.white, 
+                  style=label.style_label_up, size=size.small)
+
+// ============================================================================
+// MODULE 3: FAIR VALUE GAPS (FVG) - Institutional Imbalance
+// ============================================================================
+
+// Bullish FVG: gap between candle 1 high and candle 3 low
+bullFVG = low > high[2] and (low - high[2]) > atr14 * i_fvgMinGap
+// Bearish FVG: gap between candle 1 low and candle 3 high  
+bearFVG = high < low[2] and (low[2] - high) > atr14 * i_fvgMinGap
+
+var float bullFVGTop = na
+var float bullFVGBottom = na
+var float bearFVGTop = na
+var float bearFVGBottom = na
+
+if bullFVG
+    bullFVGTop := low
+    bullFVGBottom := high[2]
+    box.new(bar_index - 1, low, bar_index + 10, high[2], 
+            bgcolor=color.new(color.teal, 85), 
+            border_color=color.teal)
+
+if bearFVG
+    bearFVGTop := low[2]
+    bearFVGBottom := high
+    box.new(bar_index - 1, low[2], bar_index + 10, high, 
+            bgcolor=color.new(color.purple, 85), 
+            border_color=color.purple)
+
+// ============================================================================
+// MODULE 4: IOB MITIGATION + SWEEP RETURN SIGNALS
+// ============================================================================
+
+// Bullish signal: Price returns to bullish IOB zone OR bullish sweep
+bullishMitigation = not na(bullIOBZone) and 
+                    low <= bullIOBZone and close > bullIOBZone and
+                    bar_index - bullIOBBar < i_iobMaxAge
+
+// Bearish signal: Price returns to bearish IOB zone OR bearish sweep
+bearishMitigation = not na(bearIOBZone) and 
+                    high >= bearIOBZone and close < bearIOBZone and
+                    bar_index - bearIOBBar < i_iobMaxAge
+
+// Combined signals
+longSignal = bullishMitigation or (sweepDetected and sweepDirection == 1)
+shortSignal = bearishMitigation or (sweepDetected and sweepDirection == -1)
+
+// ============================================================================
+// MODULE 5: CVD DIVERGENCE (Calculated here, validated in Python)
+// ============================================================================
+
+// Approximate CVD using bar delta (close vs open)
+barDelta = close > open ? volume : close < open ? -volume : 0
+cvd = ta.sma(barDelta, 1)
+
+// Bullish CVD divergence: price makes lower low but CVD makes higher low
+priceLowerLow = low < ta.lowest(low, 10)[1]
+cvdHigherLow = cvd > ta.lowest(cvd, 10)[1]
+bullCVDdiv = priceLowerLow and cvdHigherLow
+
+// Bearish CVD divergence
+priceHigherHigh = high > ta.highest(high, 10)[1]
+cvdLowerHigh = cvd < ta.highest(cvd, 10)[1]
+bearCVDdiv = priceHigherHigh and cvdLowerHigh
+
+// ============================================================================
+// RISK CALCULATIONS
+// ============================================================================
+
+// Position sizing
+equity = strategy.equity
+riskAmount = equity * 0.01  // 1% risk
+
+// Stop loss calculation
+longSL = sweepDetected and sweepDirection == 1 ? 
+         sweepExtreme - atr14 * i_slBufferATR :
+         bullishMitigation ? 
+         bullIOBLow - atr14 * i_slBufferATR :
+         close - atr14 * 2
+
+shortSL = sweepDetected and sweepDirection == -1 ?
+          sweepExtreme + atr14 * i_slBufferATR :
+          bearishMitigation ?
+          bearIOBHigh + atr14 * i_slBufferATR :
+          close + atr14 * 2
+
+// Take profit
+longTP = close + (close - longSL) * i_tpRR
+shortTP = close - (shortSL - close) * i_tpRR
+
+// ============================================================================
+// ENTRY LOGIC
+// ============================================================================
+
+// Pre-flight checks
+canTrade = not killSwitch and 
+           dailyTrades < i_maxDailyTrades and 
+           dailyPnL > -(equity * i_maxDailyLoss / 100) and
+           isSessionActive()
+
+// Long entry
+if longSignal and canTrade and strategy.position_size == 0
+    strategy.entry("Long", strategy.long)
+    strategy.exit("Long Exit", "Long", stop=longSL, limit=longTP)
+    dailyTrades += 1
+    
+    // Send webhook
+    payload = '{"signal":"long","entry":' + str.tostring(close) + 
+              ',"sl":' + str.tostring(longSL) + 
+              ',"tp":' + str.tostring(longTP) + 
+              ',"sl_pips":' + str.tostring((close - longSL) / 0.1) + 
+              ',"tp_pips":' + str.tostring((longTP - close) / 0.1) +
+              ',"type":' + (sweepDetected ? '"sweep_return"' : '"iob_mitigation"') +
+              ',"cvd_divergent":' + str.tostring(bullCVDdiv) +
+              ',"regime":"' + (close > ta.sma(close, 50) ? "bullish" : "bearish") + '"' +
+              ',"atr":' + str.tostring(atr14) +
+              ',"volume_pct":' + str.tostring(volPercentile(volume, i_volLookback)) +
+              ',"session":"' + (isSessionActive() ? "active" : "inactive") + '"' +
+              ',"risk_pct":1.0' +
+              ',"timestamp":"' + str.format_time(timestamp, "yyyy-MM-dd'T'HH:mm:ss", "UTC") + '"' +
+              ',"secret":"' + i_webhookSecret + '"}'
+    
+    alert(payload, alert.freq_once_per_bar_close)
+
+// Short entry
+if shortSignal and canTrade and strategy.position_size == 0
+    strategy.entry("Short", strategy.short)
+    strategy.exit("Short Exit", "Short", stop=shortSL, limit=shortTP)
+    dailyTrades += 1
+    
+    payload = '{"signal":"short","entry":' + str.tostring(close) + 
+              ',"sl":' + str.tostring(shortSL) + 
+              ',"tp":' + str.tostring(shortTP) + 
+              ',"sl_pips":' + str.tostring((shortSL - close) / 0.1) + 
+              ',"tp_pips":' + str.tostring((close - shortTP) / 0.1) +
+              ',"type":' + (sweepDetected ? '"sweep_return"' : '"iob_mitigation"') +
+              ',"cvd_divergent":' + str.tostring(bearCVDdiv) +
+              ',"regime":"' + (close > ta.sma(close, 50) ? "bullish" : "bearish") + '"' +
+              ',"atr":' + str.tostring(atr14) +
+              ',"volume_pct":' + str.tostring(volPercentile(volume, i_volLookback)) +
+              ',"session":"' + (isSessionActive() ? "active" : "inactive") + '"' +
+              ',"risk_pct":1.0' +
+              ',"timestamp":"' + str.format_time(timestamp, "yyyy-MM-dd'T'HH:mm:ss", "UTC") + '"' +
+              ',"secret":"' + i_webhookSecret + '"}'
+    
+    alert(payload, alert.freq_once_per_bar_close)
+
+// ============================================================================
+// DASHBOARD
+// ============================================================================
+
+var table dashboard = table.new(position.top_right, 2, 12, 
+                                bgcolor=color.new(color.black, 20), 
+                                border_width=1, 
+                                border_color=color.gray)
+
+if barstate.islast
+    table.cell(dashboard, 0, 0, "INSTITUTIONAL FOOTPRINT", 
+               text_color=color.white, text_size=size.normal, bgcolor=color.new(color.blue, 50))
+    table.cell(dashboard, 1, 0, "ENGINE v1.0", 
+               text_color=color.white, text_size=size.normal, bgcolor=color.new(color.blue, 50))
+    
+    table.cell(dashboard, 0, 1, "Bullish IOB", text_color=color.gray)
+    table.cell(dashboard, 1, 1, not na(bullIOBZone) ? str.tostring(bullIOBZone, "#.##") : "---", 
+               text_color=color.green)
+    
+    table.cell(dashboard, 0, 2, "Bearish IOB", text_color=color.gray)
+    table.cell(dashboard, 1, 2, not na(bearIOBZone) ? str.tostring(bearIOBZone, "#.##") : "---", 
+               text_color=color.red)
+    
+    table.cell(dashboard, 0, 3, "CVD", text_color=color.gray)
+    table.cell(dashboard, 1, 3, str.tostring(cvd, "#.##"), 
+               text_color=cvd > 0 ? color.green : color.red)
+    
+    table.cell(dashboard, 0, 4, "Regime", text_color=color.gray)
+    table.cell(dashboard, 1, 4, close > ta.sma(close, 50) ? "BULLISH" : "BEARISH", 
+               text_color=close > ta.sma(close, 50) ? color.green : color.red)
+    
+    table.cell(dashboard, 0, 5, "Volume Pct", text_color=color.gray)
+    table.cell(dashboard, 1, 5, str.tostring(volPercentile(volume, i_volLookback), "#.#") + "%", 
+               text_color=volPercentile(volume, i_volLookback) > i_volPercentile ? color.yellow : color.gray)
+    
+    table.cell(dashboard, 0, 6, "Session", text_color=color.gray)
+    table.cell(dashboard, 1, 6, isSessionActive() ? "ACTIVE" : "INACTIVE", 
+               text_color=isSessionActive() ? color.green : color.red)
+    
+    table.cell(dashboard, 0, 7, "Daily Trades", text_color=color.gray)
+    table.cell(dashboard, 1, 7, str.tostring(dailyTrades) + "/" + str.tostring(i_maxDailyTrades), 
+               text_color=dailyTrades >= i_maxDailyTrades ? color.red : color.green)
+    
+    table.cell(dashboard, 0, 8, "Daily P&L", text_color=color.gray)
+    table.cell(dashboard, 1, 8, str.tostring(dailyPnL, "#.##"), 
+               text_color=dailyPnL >= 0 ? color.green : color.red)
+    
+    table.cell(dashboard, 0, 9, "Kill Switch", text_color=color.gray)
+    table.cell(dashboard, 1, 9, killSwitch ? "ACTIVE" : "OFF", 
+               text_color=killSwitch ? color.red : color.green)
+    
+    table.cell(dashboard, 0, 10, "Position", text_color=color.gray)
+    table.cell(dashboard, 1, 10, strategy.position_size > 0 ? "LONG" : strategy.position_size < 0 ? "SHORT" : "FLAT", 
+               text_color=strategy.position_size > 0 ? color.green : strategy.position_size < 0 ? color.red : color.gray)
+    
+    table.cell(dashboard, 0, 11, "Equity", text_color=color.gray)
+    table.cell(dashboard, 1, 11, "$" + str.tostring(equity, "#,##.#"), text_color=color.white)

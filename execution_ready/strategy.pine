@@ -1,0 +1,225 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// EXECUTION-READY XAUUSD SCALPER — Pine Script v6
+// Slippage Modeling + Pre-Flight Checks + Kill Switch
+// ══════════════════════════════════════════════════════════════════════════════
+//@version=6
+strategy("Execution-Ready XAUUSD", 
+     overlay                = true,
+     default_qty_type       = strategy.fixed,
+     default_qty_value      = 0,
+     initial_capital        = 10000,
+     commission_type        = strategy.commission.percent,
+     commission_value       = 0.02,
+     slippage               = 0,
+     calc_on_every_tick     = false,
+     process_orders_on_close = false,
+     pyramiding             = 0)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// INPUTS
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Kill Switch ---
+KILL_SWITCH    = input.bool(false, "EMERGENCY HALT", group="KILL SWITCH", tooltip="Immediately cancels all orders and blocks new entries.")
+
+// --- Slippage ---
+AtrSlippageLen = input.int(14,   "ATR Period for Slippage",     group="Execution")
+SlippageMult   = input.float(0.3,"Slippage ATR Multiplier", step=0.05, group="Execution", tooltip="Slippage buffer = ATR × this value. Higher = more conservative backtest.")
+BaseSpread     = input.float(1.5,"Base Spread (points)", step=0.1, group="Execution", tooltip="Typical XAUUSD spread from your broker.")
+
+// --- Pre-Flight ---
+MaxSpread      = input.float(4.0,"Max Allowed Spread (points)", step=0.5, group="Pre-Flight", tooltip="Trade rejected if spread exceeds this.")
+AtrNormLow     = input.float(0.5,"ATR Normal Range Low", step=0.1,  group="Pre-Flight", tooltip="ATR below this = dead market, no trade.")
+AtrNormHigh    = input.float(3.0,"ATR Normal Range High", step=0.5, group="Pre-Flight", tooltip="ATR above this = chaos, no trade.")
+NewsBlockMins  = input.int(15,   "News Block (minutes before/after)", group="Pre-Flight", tooltip="Minutes before high-impact hour to pause.")
+// Known high-impact hours (GMT) — adjust for your broker
+NewsHour1      = input.int(8,    "News Hour 1 (GMT) — e.g. NFP/CPI", group="Pre-Flight")
+NewsHour2      = input.int(13,   "News Hour 2 (GMT) — e.g. FOMC",    group="Pre-Flight")
+
+// --- Risk ---
+RiskPct        = input.float(1.0, "Risk % per Trade", step=0.1,  group="Risk")
+AtrSlMult      = input.float(1.5, "Stop Loss ATR Multiple", step=0.1, group="Risk")
+AtrLen         = input.int(14,    "ATR Period", group="Risk")
+
+// --- Session ---
+SessionStart   = input.int(13, "Session Start (GMT)", group="Session")
+SessionEnd     = input.int(16, "Session End (GMT)",   group="Session")
+GmtOffset      = input.int(0,  "GMT Offset",         group="Session")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 1 — BROKER-AWARE SLIPPAGE MODELING
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Dynamic spread estimation: base spread widens with volatility
+f_calcEffectiveSpread(float atrVal, float base, float mult) =>
+    float volatilityComponent = atrVal * mult
+    float effectiveSpread     = base + volatilityComponent
+    effectiveSpread
+
+float atrSlip      = ta.atr(AtrSlippageLen)
+float effectiveSpr = f_calcEffectiveSpread(atrSlip, BaseSpread, SlippageMult)
+
+// This value is used in strategy.exit() to account for spread cost
+float spreadBuffer = effectiveSpr * syminfo.mintick
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 2 — PRE-FLIGHT ENVIRONMENT HARDENING
+// ══════════════════════════════════════════════════════════════════════════════
+
+f_preFlightCheck(float currentSpread, float atrVal, int currentHour, int newsH1, int newsH2, int blockMins, float atrLow, float atrHigh, float maxSpr) =>
+    bool result = true
+    string reason = ""
+
+    // A) Spread check
+    if currentSpread > maxSpr
+        result := false
+        reason := reason + "SPREAD "
+
+    // B) ATR volatility check — too low (dead) or too high (chaos)
+    if atrVal < atrLow
+        result := false
+        reason := reason + "ATR_LOW "
+    if atrVal > atrHigh
+        result := false
+        reason := reason + "ATR_HIGH "
+
+    // C) News window check — pause before/after high-impact hours
+    bool nearNewsH1 = math.abs(currentHour - newsH1) <= 1 or (currentHour >= 23 and newsH1 == 0)
+    bool nearNewsH2 = math.abs(currentHour - newsH2) <= 1 or (currentHour >= 23 and newsH2 == 0)
+    bool inNewsBlock = nearNewsH1 or nearNewsH2
+
+    if inNewsBlock
+        result := false
+        reason := reason + "NEWS "
+
+    [result, reason]
+
+float currentAtr    = ta.atr(AtrLen)
+int   gmtHour       = hour(time, "GMT" + str.tostring(GmtOffset))
+bool  inSession     = gmtHour >= SessionStart and gmtHour < SessionEnd
+
+[preflightOK, preflightReason] = f_preFlightCheck(effectiveSpr, currentAtr, gmtHour, NewsHour1, NewsHour2, NewsBlockMins, AtrNormLow, AtrNormHigh, MaxSpread)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 3 — SAFETY KILL SWITCH
+// ══════════════════════════════════════════════════════════════════════════════
+
+bool killActive = KILL_SWITCH
+
+// If kill switch is on: cancel everything, no new entries
+if killActive
+    strategy.cancel_all()
+    strategy.close_all(comment="KILL SWITCH")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TRADE LOGIC (Simplified — replace with your institutional structure)
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Position Sizing ---
+f_calcQty(float equity, float riskFrac, float slDist, float entryPx) =>
+    float riskAmt  = equity * riskFrac
+    float rawUnits = math.floor(riskAmt / slDist)
+    float maxAlloc = math.floor((equity * 0.20) / entryPx)
+    int   qty      = int(math.min(rawUnits, maxAlloc))
+    qty >= 1 ? qty : 0
+
+float stopDist = currentAtr * AtrSlMult
+
+int qty = 0
+if not killActive and preflightOK
+    qty := f_calcQty(strategy.equity, RiskPct / 100.0, stopDist, close)
+
+// --- Break-Even State ---
+var float entryPrice     = na
+var float activeStopLoss = na
+var bool  beTriggered    = false
+
+// --- Signal Placeholder (replace with your MSS+FVG logic) ---
+// These are example signals — swap in your institutional structure
+bool exampleLong  = ta.crossover(ta.ema(close, 21), ta.ema(close, 50))
+bool exampleShort = ta.crossunder(ta.ema(close, 21), ta.ema(close, 50))
+
+bool safeLong  = exampleLong  and inSession and preflightOK and not killActive and barstate.isconfirmed and qty > 0
+bool safeShort = exampleShort and inSession and preflightOK and not killActive and barstate.isconfirmed and qty > 0
+
+// --- Entries ---
+if safeLong and strategy.position_size == 0
+    entryPrice     := close
+    activeStopLoss := close - stopDist
+    beTriggered    := false
+    strategy.entry("LONG", strategy.long, qty=qty, comment="EXEC L")
+
+if safeShort and strategy.position_size == 0
+    entryPrice     := close
+    activeStopLoss := close + stopDist
+    beTriggered    := false
+    strategy.entry("SHORT", strategy.short, qty=qty, comment="EXEC S")
+
+// --- Exits with Spread Buffer ---
+if strategy.position_size > 0 and not na(entryPrice)
+    float reward = close - entryPrice
+    float risk   = entryPrice - activeStopLoss
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice + (currentAtr * 0.1)
+        beTriggered    := true
+    strategy.exit("LONG EXIT", "LONG", stop=activeStopLoss - spreadBuffer)
+
+if strategy.position_size < 0 and not na(entryPrice)
+    float reward = entryPrice - close
+    float risk   = activeStopLoss - entryPrice
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice - (currentAtr * 0.1)
+        beTriggered    := true
+    strategy.exit("SHORT EXIT", "SHORT", stop=activeStopLoss + spreadBuffer)
+
+if strategy.position_size == 0
+    entryPrice     := na
+    activeStopLoss := na
+    beTriggered    := false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════════════════════════════════════
+
+var table dash = table.new(position.top_right, 2, 7, bgcolor=color.new(color.black, 15), border_width=1)
+if barstate.islastconfirmedhistory
+    table.cell(dash, 0, 0, "EXECUTION STATUS", text_color=color.white, text_size=size.tiny)
+    table.merge_cells(dash, 0, 0, 1, 0)
+
+    // Kill Switch
+    table.cell(dash, 0, 1, "KILL SWITCH",  text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 1, killActive ? "ACTIVE" : "OFF", text_color=killActive ? color.red : color.lime, text_size=size.tiny)
+
+    // Pre-Flight
+    table.cell(dash, 0, 2, "PRE-FLIGHT",   text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 2, preflightOK ? "PASS ✓" : "FAIL ✗", text_color=preflightOK ? color.lime : color.red, text_size=size.tiny)
+
+    // Spread
+    table.cell(dash, 0, 3, "EFFECTIVE SPREAD", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 3, str.tostring(effectiveSpr, "#.##") + " pts", text_color=effectiveSpr <= MaxSpread ? color.lime : color.red, text_size=size.tiny)
+
+    // ATR
+    table.cell(dash, 0, 4, "ATR",           text_color=color.gray, text_size=size.tiny)
+    string atrStatus = currentAtr < AtrNormLow ? "DEAD" : currentAtr > AtrNormHigh ? "CHAOS" : "NORMAL"
+    color  atrColor  = currentAtr < AtrNormLow ? color.orange : currentAtr > AtrNormHigh ? color.red : color.lime
+    table.cell(dash, 1, 4, str.tostring(currentAtr, "#.##") + " " + atrStatus, text_color=atrColor, text_size=size.tiny)
+
+    // Session
+    table.cell(dash, 0, 5, "SESSION",       text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 5, inSession ? "ACTIVE" : "CLOSED", text_color=inSession ? color.lime : color.gray, text_size=size.tiny)
+
+    // Fail Reason
+    table.cell(dash, 0, 6, "FAIL REASON",   text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 6, preflightOK ? "—" : preflightReason, text_color=color.orange, text_size=size.tiny)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// WEBHOOK ALERT — JSON PAYLOAD
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Generate JSON payload for webhook on confirmed entry
+string longPayload  = '{"symbol":"' + syminfo.ticker + '","side":"Long","entry_price":' + str.tostring(close) + ',"stop_loss":' + str.tostring(close - stopDist) + ',"position_size":' + str.tostring(qty) + ',"timestamp":"' + str.tostring(time) + '"}'
+
+string shortPayload = '{"symbol":"' + syminfo.ticker + '","side":"Short","entry_price":' + str.tostring(close) + ',"stop_loss":' + str.tostring(close + stopDist) + ',"position_size":' + str.tostring(qty) + ',"timestamp":"' + str.tostring(time) + '"}'
+
+alertcondition(safeLong,  "Long Entry",  longPayload)
+alertcondition(safeShort, "Short Entry", shortPayload)

@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "CORRELATION MATRIX 🔗"
+Sub Text: "Gold ↔ Dollar | 9 Assets"
+Visual: Heatmap with arrows connecting assets
+Emoji: 🔗📊📉
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "KYA GOLD & DOLLAR CONNECTED HAI?"
+Sub Text: "9 Asset Correlation Explained"
+Visual: Gold icon on left, Dollar on right, connection line
+Emoji: 🤯🔗💵
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "YEH 9 ASSETS EK DOOSRE KO AFFECT KARTE HAIN"
+Sub Text: "Full Correlation Breakdown"
+Visual: 9 icons arranged in circle with connection lines
+Emoji: 🔗📈📉

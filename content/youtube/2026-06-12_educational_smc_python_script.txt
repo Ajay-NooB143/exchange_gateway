@@ -1,0 +1,115 @@
+TITLE: SMC trading system kaise banate hain Python mein? 🐍📊
+
+============================================================
+VIDEO 2: EDUCATIONAL
+============================================================
+
+===== HOOK (0:00 - 0:30) =====
+
+Smart Money Concepts suna hai?
+Order Block, FVG, Liquidity Sweep.
+
+Aaj main sikhaunga - kaise yeh sab detect karein
+Python code se. No BS. Pure code.
+
+===== PART 1: UNDERSTANDING SMC (0:30 - 2:00) =====
+
+SMC ka matlab hai - Institutional trading.
+Bade players kaise market move karte hain.
+
+Key concepts:
+1. Order Block - jahan institution ne buy/sell kiya
+2. FVG - Fair Value Gap, imbalance zone
+3. Liquidity Sweep - stop loss hunt
+4. Mitigation - jab price wapas aaye order block pe
+
+In sab ko Python mein detect karna seekhenge.
+
+===== PART 2: CODING THE DETECTOR (2:00 - 6:00) =====
+
+[CODE WALKTHROUGH]
+
+Step 1: Candle structure analysis
+Step 2: Pattern detection logic
+Step 3: Score calculation
+Step 4: Multi-timeframe confirmation
+
+Main code snippets:
+
+```python
+# Order Block detection
+def detect_order_blocks(candles):
+    for i in range(2, len(candles)):
+        candle = candles[i]
+        prev = candles[i-1]
+        # Bullish OB: red candle followed by green
+        if prev.close < prev.open and candle.close > candle.open:
+            if prev.low < candle.low:  # sweep + bounce
+                order_blocks.append((
+                    'BULLISH_OB', prev.low, ...
+                ))
+```
+
+===== PART 3: MULTI-TF SYSTEM (6:00 - 8:00) =====
+
+Ek timeframe kaafi nahi hai.
+M15, H1, H4, D1 - sab pe check karo.
+
+MTF Confirmation ensures:
+- Higher timeframe trend direction
+- Entry on lower timeframe execution
+- Better risk-reward ratio
+
+===== PART 4: LIVE DEPLOYMENT (8:00 - 10:00) =====
+
+Phone pe deploy kaise karein:
+1. UserLAnd install karein
+2. Python dependencies
+3. PM2 process manager
+4. TwelveData API key
+5. Telegram bot setup
+
+Pura system 5 minute mein live!
+
+===== CTA (10:00 - 11:00) =====
+
+Code repo link description mein hai.
+FREE Telegram channel join karein.
+
+Python seekhni hai? Main sikha dunga.
+Like + Subscribe + Share.
+
+===== B-ROLL SHOT LIST =====
+1. VS Code/Python code side by side with chart
+2. Animated SMC patterns on chart
+3. Code execution showing detected patterns
+4. Terminal showing live signals
+5. Before/after: manual vs automated analysis
+6. Phone deployment walkthrough
+
+===== THUMBNAIL TEXT =====
+"PYTHON + SMC = ROCKET"
+"SMC Trading Bot Kaise Banayein"
+Code + Chart + Robot emoji
+
+===== DESCRIPTION =====
+SMC (Smart Money Concepts) trading system kaise banayein Python mein.
+Order Block, FVG, Liquidity Sweep detection algorithms.
+Complete guide from code to deployment.
+
+Topics:
+- Order Block detection algorithm
+- Fair Value Gap identification
+- Liquidity sweep detection
+- Multi-timeframe confirmation
+- Deployment on Android phone
+
+Source code: [link]
+
+===== TAGS =====
+smc trading, python trading bot, order block, fair value gap,
+smart money, trading algorithm, python for trading,
+algorithmic trading, forex python, trading bot tutorial,
+smc strategy, market structure, liquidity sweep,
+python indicators, trading code, automated trading,
+quantitative analysis, trading script, python trading system

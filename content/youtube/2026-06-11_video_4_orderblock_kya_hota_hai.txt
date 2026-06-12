@@ -1,0 +1,212 @@
+TITLE: OrderBlock kya hota hai? 5 minute mein samjho 🧱📉
+
+═══════════════════════════════════════════
+VIDEO 4: ORDER BLOCK EXPLAINED
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:30) ━━━
+
+[VISUAL: Chart with Order Blocks highlighted in green/red]
+
+Bhai, aapne suna hoga — Order Block, Order Block.
+Lekin koi nahi batata — yeh hai kya chiz?
+
+Aaj main 5 minute mein samjha dunga.
+Order Block kya hai, kaise detect hota hai,
+aur OMNI BRAIN kaise automatically isko scan karta hai.
+
+End tak dekho — life easy ho jayegi.
+
+━━━ WHAT IS ORDER BLOCK (0:30 - 2:00) ━━━
+
+[VISUAL: Animated explanation with candlesticks]
+
+Sabse simple definition:
+Order Block wo candle hai jahan institutions ne
+apna bada order place kiya.
+
+Socho — agar koi bank $10 million ka buy karega,
+toh ek candle mein nahi kar sakta.
+Price zyada move ho jayega.
+
+Toh kya karte hain?
+Market ko manipulate karte hain.
+Pehle price neeche le jaate hain (sweep liquidity),
+phir wahan se apna order bharte hain.
+
+Wo candle jo price ko wapas upar le aayi —
+wo hai BULLISH Order Block.
+
+Iske opposite:
+Jab price upar le jaake, sell order bhare —
+wo hai BEARISH Order Block.
+
+[VISUAL: Bullish vs Bearish OB side by side]
+
+Bullish OB characteristics:
+• Large bearish candle (red)
+• Uske baad immediate bullish candle (green)
+• Low of OB support zone ban jaata hai
+
+Bearish OB characteristics:
+• Large bullish candle (green)
+• Uske baad bearish candle (red)
+• High of OB resistance ban jaata hai
+
+━━━ WHY ORDER BLOCKS WORK (2:00 - 3:30) ━━━
+
+[VISUAL: Chart showing price bouncing off OBs]
+
+Yeh theoretical nahi hai —
+Yeh institutional grade concept hai.
+
+Bade players (Banks, Hedge Funds, Market Makers)
+yehi use karte hain.
+
+Retail trader randomly entry le leta hai.
+Institutional trader Order Block ka wait karta hai.
+
+Fark samjho:
+• Retail: "Lagta hai upar jayega — lelo entry"
+• Institutional: "OB bana hai, mitigation hui,
+   ab price bounce karega — lelo entry"
+
+OMNI BRAIN automatically detect karta hai:
+1. Candle structure analyze karega
+2. OB zone calculate karega
+3. Mitigation check karega
+4. Confirmation mile toh signal dega
+
+[SHOW: OMNI BRAIN detecting OB in real-time]
+
+━━━ 3 TYPES OF ORDER BLOCKS (3:30 - 6:00) ━━━
+
+[VISUAL: Three types illustrated]
+
+TYPE 1: TRENDING OB
+Trend ke direction mein banta hai.
+Uptrend mein — bullish OB.
+Downtrend mein — bearish OB.
+Highest probability.
+
+TYPE 2: REVERSAL OB
+Market structure break hota hai, phir OB banta hai.
+Trend change ka signal.
+Zyada patience chahiye.
+
+TYPE 3: INDUCEMENT OB
+Liquidity sweep ke baad banta hai.
+Fake breakout hota hai, phir price ulta chala jaata hai.
+Yeh sabse advanced hai.
+
+[SHOW: Each type with live chart examples]
+
+OMNI BRAIN teeno types detect karta hai.
+Aur confidence score assign karta hai:
+• 80+ Trending OB — HIGH confidence
+• 60-80 Reversal OB — MEDIUM confidence
+• 40-60 Inducement OB — CAUTION
+
+━━━ LIVE DETECTION DEMO (6:00 - 8:00) ━━━
+
+[VISUAL: Terminal showing detection output]
+
+Abhi dikhata hu — OMNI BRAIN ka Order Block detector.
+
+```
+Detected Order Blocks on XAUUSD H1:
+─────────────────────────────────────
+1. BULLISH_OB @ 2345.67
+   Type: Trending
+   Strength: Strong (85/100)
+   Status: Active — waiting for mitigation
+
+2. BEARISH_OB @ 2378.90
+   Type: Reversal
+   Strength: Medium (65/100)
+   Status: Mitigated — ready for entry
+```
+
+Dekha kaise clean output aata hai?
+Aapko chart dekhne ki zaroorat nahi.
+System bata dega — kahan OB hai, kya type hai,
+aur kab entry lena hai.
+
+[SHOW: Chart with OBs marked vs system detection]
+
+Aur haan — multi-timeframe bhi check karta hai.
+M15, H1, H4, D1 sab pe.
+
+━━━ RISK MANAGEMENT WITH OB (8:00 - 9:00) ━━━
+
+[VISUAL: TP/SL placement diagram]
+
+OB trading mein SL placement easy ho jaata hai:
+
+Bullish OB:
+• SL: OB ke thoda neeche
+• TP1: Next FVG zone
+• TP2: Next liquidity zone
+• TP3: Structure high
+
+Bearish OB:
+• SL: OB ke thoda upar
+• TP1: Next FVG zone
+• TP2: Next liquidity zone
+• TP3: Structure low
+
+Aur OMNI BRAIN auto-calculate karta hai.
+Kelly Criterion se position size.
+Circuit breaker se daily loss limit.
+
+━━━ CTA (9:00 - 10:00) ━━━
+
+[VISUAL: Telegram channel with OB signals]
+
+Order Block — itna simple concept hai,
+lekin 90% traders ignore karte hain.
+
+OMNI BRAIN har candle check karta hai,
+har OB detect karta hai,
+aur aapko ready signal deta hai.
+
+FREE Telegram channel join karein:
+WAIT signals — free mein analysis.
+EXECUTE signals — VIP channel mein.
+
+Code seekhni hai?
+Python + SMC automation main sikha dunga.
+
+Like karein. Subscribe karein. Share karein.
+Agli video: MERA TRADING SETUP TOUR. 📱
+
+━━━ B-ROLL SHOT LIST ━━━
+1. Animated Order Block formation on chart
+2. Bullish vs Bearish OB comparison
+3. OMNI BRAIN terminal showing OB detection
+4. Chart with multiple OBs overlaid
+5. TP/SL placement on OB zones
+6. Split screen: chart + detection output
+7. Telegram notification of OB signal
+8. Code snippet of OB detection algorithm
+
+━━━ THUMBNAIL TEXT ━━━
+Main text: "ORDER BLOCK KYA HAI? 🤯"
+Sub text: "5 Min Mein Samjho | Full Guide"
+Emoji overlay: 🧱📉📈
+
+━━━ DESCRIPTION ━━━
+Order Block kya hota hai? 5 minute mein samjho — complete guide in Hinglish. Order Block concept explained with live chart examples. See how OMNI BRAIN V2 automatically detects Order Blocks in real-time across multiple timeframes.
+
+Topics covered:
+• Order Block definition in simple Hindi
+• Bullish vs Bearish Order Blocks
+• 3 types: Trending, Reversal, Inducement
+• How institutions use Order Blocks
+• OMNI BRAIN's automatic OB detection
+• TP/SL placement using Order Blocks
+• Multi-timeframe OB analysis
+
+Keywords: order block trading, order block strategy, smc order block, forex order block, order block kya hota hai, smart money concept, institutional trading, order block detection, omni brain, python trading
+
+Technology: Python, TwelveData, Order Block Algorithm, SMC Patterns

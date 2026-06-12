@@ -1,0 +1,226 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// REAL MONEY SNIPER — XAUUSD Scalper (1-Minute)
+// Prioritizes capital preservation. Lookahead-bias free.
+// ══════════════════════════════════════════════════════════════════════════════
+//@version=6
+strategy("Real Money Sniper — XAUUSD", 
+     overlay              = true, 
+     default_qty_type     = strategy.fixed,
+     default_qty_value    = 0,
+     initial_capital      = 10000,
+     commission_type      = strategy.commission.percent,
+     commission_value     = 0.02,
+     slippage             = 2,
+     calc_on_every_tick   = false,
+     max_bars_back        = 5000,
+     process_orders_on_close = false)
+
+// ─── GLOBAL INPUTS ──────────────────────────────────────────────────────────
+var int    GMT_OFFSET      = input.int(0, "GMT Offset (hours)", group="Guardrails")
+int        TRADE_START_HOUR = input.int(13, "Session Start (GMT)", minval=0, maxval=23, group="Guardrails")
+int        TRADE_END_HOUR   = input.int(16, "Session End (GMT)", minval=0, maxval=23, group="Guardrails")
+bool       ENABLE_LONGS     = input.bool(true, "Allow Longs", group="Guardrails")
+bool       ENABLE_SHORTS    = input.bool(true, "Allow Shorts", group="Guardrails")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 1 — VOLUME CONFLUENCE (Volume-Weighted RSI)
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Inputs ---
+volRsiLen   = input.int(14, "VRSI Length",           group="Volume Confluence")
+volMaLen    = input.int(20, "Volume MA Length",       group="Volume Confluence")
+volThresh   = input.float(1.5, "Volume Threshold (x)", step=0.1, group="Volume Confluence")
+
+// --- Core Calculation ---
+f_volumeWeightedRSI(float src, int rsiLen, int volLen) =>
+    float rawRsi = ta.rsi(src, rsiLen)
+    float volSma = ta.sma(volume, volLen)
+    float volRatio = nz(volSma) > 0 ? volume / volSma : 0.0
+
+    // Scale RSI by volume intensity; dampen when volume is weak
+    // Normalized to 1.0 at average volume, capped at 3.0x
+    float clampedRatio = math.min(volRatio, 3.0)
+    float weightedRsi  = rawRsi * (clampedRatio / 3.0)
+    [weightedRsi, volRatio]
+
+[vwrsi, volRatio] = f_volumeWeightedRSI(close, volRsiLen, volMaLen)
+
+// --- Breakout Confirmation ---
+bool volumeConfirmed = volRatio >= volThresh
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 2 — MULTI-AGENT CONFLUENCE
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ── AGENT A: Trend Analyst (200 EMA on 5-minute) ───────────────────────────
+// request.security uses barmerge.lookahead_off to prevent future data leakage
+ema200_5m = request.security(syminfo.tickerid, "5", ta.ema(close, 200), barmerge.gaps_off, barmerge.lookahead_off)
+
+bool trendBull = close > ema200_5m
+bool trendBear = close < ema200_5m
+
+// ── AGENT B: Momentum — Liquidity Sweep Detector ───────────────────────────
+// Detects: price breaks recent high/low, then immediately reverses
+// This is a classic institutional stop-hunt pattern
+
+int swingLen = input.int(10, "Swing Lookback", group="Multi-Agent", minval=3, maxval=50)
+
+// Swing highs/lows on the 1-minute chart
+float swingHigh = ta.highest(high, swingLen * 2 + 1)
+float swingLow  = ta.lowest(low,   swingLen * 2 + 1)
+
+// Recent high/low (lookback window for the sweep)
+float recentHigh = ta.highest(high[1], swingLen)
+float recentLow  = ta.lowest(low[1],   swingLen)
+
+// Liquidity sweep: price wicks above recent level then closes back inside
+bool sweepHigh = high > recentHigh and close < recentHigh   // swept highs, closed below
+bool sweepLow  = low  < recentLow  and close > recentLow   // swept lows, closed above
+
+// Agent B output
+bool momentumLong  = sweepLow   // swept lows → bullish reversal signal
+bool momentumShort = sweepHigh  // swept highs → bearish reversal signal
+
+// ── ENTRY GATE: Both agents must agree ──────────────────────────────────────
+bool agentA_long  = trendBull and ENABLE_LONGS
+bool agentA_short = trendBear and ENABLE_SHORTS
+
+bool entryLong  = agentA_long  and momentumLong  and volumeConfirmed
+bool entryShort = agentA_short and momentumShort and volumeConfirmed
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 3 — SURVIVAL RISK ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Inputs ---
+riskPct     = input.float(1.0, "Risk % per Trade", step=0.1, group="Risk Engine") / 100.0
+atrLen      = input.int(14, "ATR Length", group="Risk Engine")
+atrSlMult   = input.float(1.5, "SL ATR Multiplier", step=0.1, group="Risk Engine")
+
+// --- ATR Calculation ---
+atrVal = ta.atr(atrLen)
+float stopDistance = atrVal * atrSlMult
+
+// --- Position Size Function ---
+// Returns whole units only. Hard-caps at 20% of equity.
+f_calcPositionSize(float equity, float riskFraction, float slDist, float entryPrice) =>
+    float riskCapital = equity * riskFraction
+    float units       = math.floor(riskCapital / slDist)
+    float maxAlloc    = math.floor((equity * 0.20) / entryPrice)
+    int safeUnits     = int(math.min(units, maxAlloc))
+    // Minimum 1 unit guard — never trade if we can't afford at least 1
+    safeUnits >= 1 ? safeUnits : 0
+
+// --- Break-Even Logic ---
+// Track entry price; move SL to BE when 1:1 RR is hit
+var float entryPrice     = na
+var float activeStopLoss = na
+var bool  beTriggered    = false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 4 — PROFESSIONAL GUARDRAILS
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Session Filter (GMT) ---
+// Convert bar time to GMT hour
+int gmtHour = hour(time, "GMT" + str.tostring(GMT_OFFSET))
+bool inSession = gmtHour >= TRADE_START_HOUR and gmtHour < TRADE_END_HOUR
+
+// --- Barstate Confirmation Gate ---
+// Prevents repainting by only acting on confirmed (closed) bars
+bool confirmed = barstate.isconfirmed
+
+// --- Final Entry Conditions ---
+bool safeEntryLong  = entryLong  and inSession and confirmed
+bool safeEntryShort = entryShort and inSession and confirmed
+
+// --- Error Handling ---
+bool validATR = not na(atrVal) and atrVal > 0
+bool validVolume = not na(volume) and volume > 0
+bool systemReady = validATR and validVolume
+
+// ══════════════════════════════════════════════════════════════════════════════
+// EXECUTION ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+int qty = 0
+if systemReady and confirmed
+    qty := f_calcPositionSize(strategy.equity, riskPct, stopDistance, close)
+
+// --- Entry ---
+if safeEntryLong and strategy.position_size == 0 and qty > 0
+    entryPrice     := close
+    activeStopLoss := close - stopDistance
+    beTriggered    := false
+    strategy.entry("Long", strategy.long, qty=qty, comment="SNIPER L")
+
+if safeEntryShort and strategy.position_size == 0 and qty > 0
+    entryPrice     := close
+    activeStopLoss := close + stopDistance
+    beTriggered    := false
+    strategy.entry("Short", strategy.short, qty=qty, comment="SNIPER S")
+
+// --- Break-Even + Exit Management ---
+if strategy.position_size > 0 and not na(entryPrice)
+    float reward = close - entryPrice
+    float risk   = entryPrice - activeStopLoss
+
+    // Move to break-even at 1:1 RR
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice + (atrVal * 0.1)  // small buffer above BE
+        beTriggered    := true
+
+    strategy.exit("Long BE/TP", "Long", 
+         stop = activeStopLoss,
+         trail_price  = entryPrice + (atrVal * 1.5),
+         trail_offset = int(atrVal * 0.5 / syminfo.mintick))
+
+if strategy.position_size < 0 and not na(entryPrice)
+    float reward = entryPrice - close
+    float risk   = activeStopLoss - entryPrice
+
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice - (atrVal * 0.1)
+        beTriggered    := true
+
+    strategy.exit("Short BE/TP", "Short",
+         stop = activeStopLoss,
+         trail_price  = entryPrice - (atrVal * 1.5),
+         trail_offset = int(atrVal * 0.5 / syminfo.mintick))
+
+// --- Reset state on flat ---
+if strategy.position_size == 0
+    entryPrice     := na
+    activeStopLoss := na
+    beTriggered    := false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VISUALIZATION
+// ══════════════════════════════════════════════════════════════════════════════
+
+// 5-min EMA on 1-min chart
+plot(ema200_5m, "EMA 200 (5m)", color=color.new(color.orange, 30), linewidth=2)
+
+// Session highlight
+bgcolor(inSession ? color.new(color.blue, 92) : na, title="Trading Session")
+
+// Entry signals
+plotshape(safeEntryLong  and strategy.position_size == 0, "Long",  shape.triangleup,   location.belowbar, color.new(color.lime, 0),  size=size.small)
+plotshape(safeEntryShort and strategy.position_size == 0, "Short", shape.triangledown, location.abovebar, color.new(color.red, 0),   size=size.small)
+
+// Break-even marker
+plotshape(beTriggered and not beTriggered[1], "BE Hit", shape.diamond, location.abovebar, color.new(color.aqua, 0), size=size.tiny)
+
+// Status panel
+var table statusTable = table.new(position.top_right, 2, 5, bgcolor=color.new(color.black, 20), border_width=1)
+if barstate.islastconfirmedhistory
+    table.cell(statusTable, 0, 0, "AGENT A", text_color=color.white, text_size=size.small)
+    table.cell(statusTable, 1, 0, trendBull ? "BULL ✓" : trendBear ? "BEAR ✓" : "FLAT —", text_color=trendBull ? color.lime : trendBear ? color.red : color.gray, text_size=size.small)
+    table.cell(statusTable, 0, 1, "AGENT B", text_color=color.white, text_size=size.small)
+    table.cell(statusTable, 1, 1, momentumLong ? "SWEEP↑" : momentumShort ? "SWEEP↓" : "WAITING", text_color=momentumLong ? color.lime : momentumShort ? color.red : color.gray, text_size=size.small)
+    table.cell(statusTable, 0, 2, "VOLUME", text_color=color.white, text_size=size.small)
+    table.cell(statusTable, 1, 2, volumeConfirmed ? str.tostring(volRatio, "#.##") + "x ✓" : str.tostring(volRatio, "#.##") + "x ✗", text_color=volumeConfirmed ? color.lime : color.red, text_size=size.small)
+    table.cell(statusTable, 0, 3, "SESSION", text_color=color.white, text_size=size.small)
+    table.cell(statusTable, 1, 3, inSession ? "ACTIVE" : "CLOSED", text_color=inSession ? color.lime : color.gray, text_size=size.small)
+    table.cell(statusTable, 0, 4, "RISK", text_color=color.white, text_size=size.small)
+    table.cell(statusTable, 1, 4, systemReady ? str.tostring(stopDistance, "#.##") + " pts" : "N/A", text_color=color.yellow, text_size=size.small)

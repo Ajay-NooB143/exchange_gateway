@@ -1,0 +1,14 @@
+# Secrets
+.env
+.env.encrypted
+.secrets.key
+
+# Logs
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

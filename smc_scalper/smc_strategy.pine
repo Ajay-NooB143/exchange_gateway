@@ -1,0 +1,399 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// SMC SCALPER — Smart Money Concepts + Momentum Filter
+// XAUUSD / Gold — M1/M5 Timeframes
+// Pine Script v6 — Lookahead-Bias Free
+// ══════════════════════════════════════════════════════════════════════════════
+//@version=6
+strategy("SMC Scalper — Institutional", 
+     overlay                = true,
+     default_qty_type       = strategy.fixed,
+     default_qty_value      = 0,
+     initial_capital        = 10000,
+     commission_type        = strategy.commission.percent,
+     commission_value       = 0.02,
+     slippage               = 2,
+     calc_on_every_tick     = false,
+     process_orders_on_close = false,
+     pyramiding             = 0,
+     max_bars_back          = 5000)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// INPUTS
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Risk Management ---
+RiskPct        = input.float(1.0,   "Risk % per Trade",          step=0.1,   group="Risk",       tooltip="Max loss per trade as % of equity")
+AtrSlMult      = input.float(1.5,   "SL ATR Multiplier",         step=0.1,   group="Risk",       tooltip="Stop Loss = ATR × this value")
+AtrLen         = input.int(14,      "ATR Period",                             group="Risk")
+TpRrr          = input.float(2.0,   "Take Profit RRR",           step=0.5,   group="Risk",       tooltip="Risk-to-Reward ratio for TP")
+UseDynamicTp   = input.bool(false,  "Use Dynamic TP (Opposing OB)",           group="Risk",       tooltip="Target opposing Order Block instead of fixed RRR")
+
+// --- Spread Filter ---
+MaxSpread      = input.float(3.0,   "Max Spread (pips)",          step=0.5,   group="Execution",  tooltip="Reject trade if spread exceeds this")
+PipSize        = input.float(0.1,   "Pip Size (XAUUSD = 0.1)",   step=0.01,  group="Execution",  tooltip="0.1 for XAUUSD, 0.0001 for FX")
+
+// --- Structure Detection ---
+ObLookback     = input.int(20,      "Order Block Lookback",       minval=5,   maxval=100,        group="Structure")
+FvgMinSize     = input.float(0.0,   "Min FVG Size (points)",      step=0.1,   group="Structure",  tooltip="Ignore FVGs smaller than this")
+MssConfirmBars = input.int(1,       "MSS Confirm Bars",           minval=1,   maxval=5,          group="Structure",  tooltip="Bars to confirm MSS/CHoCH")
+SwingLen       = input.int(5,       "Swing Point Length",          minval=2,   maxval=20,         group="Structure")
+
+// --- Session ---
+SessionStart   = input.int(13,      "Session Start (GMT)",        minval=0,   maxval=23,         group="Session")
+SessionEnd     = input.int(16,      "Session End (GMT)",          minval=0,   maxval=23,         group="Session")
+GmtOffset      = input.int(0,       "GMT Offset",                               group="Session")
+
+// --- Bias ---
+EnableLongs    = input.bool(true,   "Allow Longs",                               group="Bias")
+EnableShorts   = input.bool(true,   "Allow Shorts",                              group="Bias")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 1: ORDER BLOCK DETECTION
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Bullish OB: Last bearish candle before a strong bullish move
+// Bearish OB: Last bullish candle before a strong bearish move
+
+var float bullishObTop = na
+var float bullishObBot = na
+var float bearishObTop = na
+var float bearishObBot = na
+var bool  bullishObValid = false
+var bool  bearishObValid = false
+
+// Detect strong moves ( displacement )
+float moveThreshold = ta.atr(AtrLen) * 1.5
+bool strongBullMove = (close - open) > moveThreshold
+bool strongBearMove = (open - close) > moveThreshold
+
+// Track last bearish/bullish candle before displacement
+var float lastBearCandleHigh = na
+var float lastBearCandleLow  = na
+var float lastBullCandleHigh = na
+var float lastBullCandleLow  = na
+
+if strongBullMove
+    // The candle before this one was likely the bullish OB
+    lastBearCandleHigh := high[1]
+    lastBearCandleLow  := low[1]
+    bullishObTop := lastBearCandleHigh
+    bullishObBot := lastBearCandleLow
+    bullishObValid := true
+
+if strongBearMove
+    lastBullCandleHigh := high[1]
+    lastBullCandleLow  := low[1]
+    bearishObTop := lastBullCandleHigh
+    bearishObBot := lastBullCandleLow
+    bearishObValid := true
+
+// Invalidate OBs when price closes beyond them
+if bullishObValid and close < bullishObBot
+    bullishObValid := false
+
+if bearishObValid and close > bearishObTop
+    bearishObValid := false
+
+// Price is inside bullish OB (mitigation zone)
+bool inBullishOb = bullishObValid and low <= bullishObTop and close >= bullishObBot
+// Price is inside bearish OB
+bool inBearishOb = bearishObValid and high >= bearishObBot and close <= bearishObTop
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 2: FAIR VALUE GAP DETECTION
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Bullish FVG: candle[0].low > candle[2].high (gap up)
+// Bearish FVG: candle[0].high < candle[2].low (gap down)
+
+float fvgBullTop = low
+float fvgBullBot = high[2]
+float fvgBearTop = low[2]
+float fvgBearBot = high
+
+bool fvgBullish = fvgBullTop > fvgBullBot and (fvgBullTop - fvgBullBot) >= FvgMinSize
+bool fvgBearish = fvgBearBot < fvgBearTop and (fvgBearTop - fvgBearBot) >= FvgMinSize
+
+// Track active FVGs for mitigation
+var float activeBullFvgTop = na
+var float activeBullFvgBot = na
+var float activeBearFvgTop = na
+var float activeBearFvgBot = na
+var bool  bullFvgActive = false
+var bool  bearFvgActive = false
+
+if fvgBullish
+    activeBullFvgTop := fvgBullTop
+    activeBullFvgBot := fvgBullBot
+    bullFvgActive := true
+
+if fvgBearish
+    activeBearFvgTop := fvgBearTop
+    activeBearFvgBot := fvgBearBot
+    bearFvgActive := true
+
+// FVG mitigation: price returns to fill the gap
+bool bullFvgMitigated = bullFvgActive and low <= activeBullFvgTop and close >= activeBullFvgBot
+bool bearFvgMitigated = bearFvgActive and high >= activeBearFvgBot and close <= activeBearFvgTop
+
+// Invalidate filled FVGs
+if bullFvgMitigated
+    bullFvgActive := false
+if bearFvgMitigated
+    bearFvgActive := false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 3: MARKET STRUCTURE SHIFT (MSS / CHoCH)
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Swing highs and lows
+float swingHigh = ta.pivothigh(high, SwingLen, SwingLen)
+float swingLow  = ta.pivotlow(low,   SwingLen, SwingLen)
+
+var float lastSwingHigh = na
+var float lastSwingLow  = na
+var int   lastSwingHighBar = na
+var int   lastSwingLowBar  = na
+
+if not na(swingHigh)
+    lastSwingHigh := swingHigh
+    lastSwingHighBar := bar_index - SwingLen
+
+if not na(swingLow)
+    lastSwingLow := swingLow
+    lastSwingLowBar := bar_index - SwingLen
+
+// MSS / CHoCH Detection
+// Bullish MSS: price breaks above last swing high after sweeping a swing low
+// Bearish MSS: price breaks below last swing low after sweeping a swing high
+
+var bool prevSweptLow  = false
+var bool prevSweptHigh = false
+
+// Detect sweep of swing low (buy-side liquidity taken)
+bool sweptLow = not na(lastSwingLow) and low < lastSwingLow and close > lastSwingLow
+if sweptLow
+    prevSweptLow := true
+    prevSweptHigh := false
+
+// Detect sweep of swing high (sell-side liquidity taken)
+bool sweptHigh = not na(lastSwingHigh) and high > lastSwingHigh and close < lastSwingHigh
+if sweptHigh
+    prevSweptHigh := true
+    prevSweptLow := false
+
+// MSS Bullish: swept low THEN break above swing high
+bool mssBullish = prevSweptLow and not na(lastSwingHigh) and close > lastSwingHigh
+// MSS Bearish: swept high THEN break below swing low
+bool mssBearish = prevSweptHigh and not na(lastSwingLow) and close < lastSwingLow
+
+// Confirmation: wait N bars after MSS signal
+var int mssBullCount = 0
+var int mssBearCount = 0
+
+if mssBullish
+    mssBullCount := MssConfirmBars
+if mssBearish
+    mssBearCount := MssConfirmBars
+
+if mssBullCount > 0
+    mssBullCount -= 1
+if mssBearCount > 0
+    mssBearCount -= 1
+
+bool mssBullConfirmed = mssBullCount == 0 and mssBullish
+bool mssBearConfirmed = mssBearCount == 0 and mssBearish
+
+// Reset sweep state if opposite sweep occurs
+if mssBullConfirmed
+    prevSweptLow := false
+if mssBearConfirmed
+    prevSweptHigh := false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 4: MOMENTUM FILTER
+// ══════════════════════════════════════════════════════════════════════════════
+
+// RSI momentum confirmation
+float rsi = ta.rsi(close, 14)
+bool momentumBull = rsi > 40 and rsi < 70  // not overbought, showing strength
+bool momentumBear = rsi < 60 and rsi > 30  // not oversold, showing weakness
+
+// Volume confirmation
+float volSma = ta.sma(volume, 20)
+bool volumeConfirm = volume >= volSma * 1.0  // at least average volume
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 5: SESSION + SPREAD + PRE-FLIGHT
+// ══════════════════════════════════════════════════════════════════════════════
+
+int   gmtHour   = hour(time, "GMT" + str.tostring(GmtOffset))
+bool  inSession = gmtHour >= SessionStart and gmtHour < SessionEnd
+bool  confirmed = barstate.isconfirmed
+
+// Spread estimation
+float atr        = ta.atr(AtrLen)
+float spreadEst  = atr * 0.1  // approximate spread as fraction of ATR
+float spreadPips = spreadEst / PipSize
+bool  spreadOK   = spreadPips <= MaxSpread
+
+// Error guards
+bool validAtr  = not na(atr) and atr > 0
+bool validVol  = not na(volume) and volume > 0
+bool systemOK  = validAtr and validVol and confirmed
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 6: RISK ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+float stopDist = atr * AtrSlMult
+float tpDist   = stopDist * TpRrr
+
+f_calcQty(float eq, float riskFrac, float sl, float px) =>
+    float riskAmt  = eq * riskFrac
+    float rawUnits = math.floor(riskAmt / sl)
+    float maxAlloc = math.floor((eq * 0.20) / px)
+    int   qty      = int(math.min(rawUnits, maxAlloc))
+    qty >= 1 ? qty : 0
+
+int qty = 0
+if systemOK
+    qty := f_calcQty(strategy.equity, RiskPct / 100.0, stopDist, close)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 7: ENTRY LOGIC — CONFLUENCE GATE
+// ══════════════════════════════════════════════════════════════════════════════
+
+// LONG: OB/FVG mitigation + MSS bullish + Momentum + Spread OK
+bool entryLong  = (inBullishOb or bullFvgMitigated) 
+                  and mssBullConfirmed 
+                  and momentumBull 
+                  and volumeConfirm
+                  and spreadOK 
+                  and inSession 
+                  and systemOK 
+                  and EnableLongs 
+                  and qty > 0
+
+// SHORT: OB/FVG mitigation + MSS bearish + Momentum + Spread OK
+bool entryShort = (inBearishOb or bearFvgMitigated) 
+                  and mssBearConfirmed 
+                  and momentumBear 
+                  and volumeConfirm
+                  and spreadOK 
+                  and inSession 
+                  and systemOK 
+                  and EnableShorts 
+                  and qty > 0
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 8: EXECUTION
+// ══════════════════════════════════════════════════════════════════════════════
+
+var float entryPx     = na
+var float activeSL    = na
+var float activeTP    = na
+var bool  beTriggered = false
+
+// Long entry
+if entryLong and strategy.position_size == 0
+    entryPx     := close
+    activeSL    := close - stopDist
+    activeTP    := close + tpDist
+    beTriggered := false
+    strategy.entry("LONG", strategy.long, qty=qty, 
+         comment="SMC L | SL:" + str.tostring(stopDist, "#.#") + " | TP:" + str.tostring(tpDist, "#.#"))
+
+// Short entry
+if entryShort and strategy.position_size == 0
+    entryPx     := close
+    activeSL    := close + stopDist
+    activeTP    := close - tpDist
+    beTriggered := false
+    strategy.entry("SHORT", strategy.short, qty=qty,
+         comment="SMC S | SL:" + str.tostring(stopDist, "#.#") + " TP:" + str.tostring(tpDist, "#.#"))
+
+// Exit management
+if strategy.position_size > 0 and not na(entryPx)
+    // Break-even at 1:1 RR
+    if not beTriggered and close >= entryPx + stopDist
+        activeSL    := entryPx + (atr * 0.1)
+        beTriggered := true
+    strategy.exit("L EXIT", "LONG", stop=activeSL, limit=activeTP)
+
+if strategy.position_size < 0 and not na(entryPx)
+    if not beTriggered and close <= entryPx - stopDist
+        activeSL    := entryPx - (atr * 0.1)
+        beTriggered := true
+    strategy.exit("S EXIT", "SHORT", stop=activeSL, limit=activeTP)
+
+// Reset on flat
+if strategy.position_size == 0
+    entryPx     := na
+    activeSL    := na
+    activeTP    := na
+    beTriggered := false
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VISUALIZATION
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Session background
+bgcolor(inSession ? color.new(color.blue, 93) : na, title="Session Active")
+
+// Order Blocks
+var box[] obBoxes = array.new_box(0)
+if array.size(obBoxes) >= 10
+    box.delete(array.shift(obBoxes))
+if bullishObValid and confirmed
+    array.push(obBoxes, box.new(bar_index - 1, bullishObBot, bar_index + 5, bullishObTop, 
+         bgcolor=color.new(color.lime, 85), border_color=color.new(color.lime, 60)))
+if bearishObValid and confirmed
+    array.push(obBoxes, box.new(bar_index - 1, bearishObTop, bar_index + 5, bearishObBot, 
+         bgcolor=color.new(color.red, 85), border_color=color.new(color.red, 60)))
+
+// FVG boxes
+var box[] fvgBoxes = array.new_box(0)
+if array.size(fvgBoxes) >= 5
+    box.delete(array.shift(fvgBoxes))
+if fvgBullish and confirmed
+    array.push(fvgBoxes, box.new(bar_index - 2, fvgBullBot, bar_index, fvgBullTop, 
+         bgcolor=color.new(color.aqua, 88), border_color=color.new(color.aqua, 60)))
+if fvgBearish and confirmed
+    array.push(fvgBoxes, box.new(bar_index - 2, fvgBearTop, bar_index, fvgBearBot, 
+         bgcolor=color.new(color.orange, 88), border_color=color.new(color.orange, 60)))
+
+// Entry signals
+plotshape(entryLong  and strategy.position_size == 0, "SMC Long",  shape.labelup,   location.belowbar, color.lime, text="SMC L", textcolor=color.white, size=size.small)
+plotshape(entryShort and strategy.position_size == 0, "SMC Short", shape.labeldown, location.abovebar, color.red,  text="SMC S", textcolor=color.white, size=size.small)
+
+// MSS markers
+plotshape(mssBullConfirmed, "MSS Bull", shape.diamond, location.belowbar, color.new(color.lime, 20), size=size.tiny)
+plotshape(mssBearConfirmed, "MSS Bear", shape.diamond, location.abovebar, color.new(color.red, 20), size=size.tiny)
+
+// Break-even marker
+plotshape(beTriggered and not beTriggered[1], "BE Hit", shape.xcross, location.abovebar, color.new(color.aqua, 0), size=size.tiny)
+
+// Dashboard
+var table dash = table.new(position.top_right, 2, 7, bgcolor=color.new(color.black, 15), border_width=1)
+if barstate.islastconfirmedhistory
+    table.cell(dash, 0, 0, "SMC SCALPER", text_color=color.white, text_size=size.tiny)
+    table.merge_cells(dash, 0, 0, 1, 0)
+
+    table.cell(dash, 0, 1, "SESSION", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 1, inSession ? "ACTIVE" : "CLOSED", text_color=inSession ? color.lime : color.gray, text_size=size.tiny)
+
+    table.cell(dash, 0, 2, "SPREAD", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 2, str.tostring(spreadPips, "#.#") + "p", text_color=spreadOK ? color.lime : color.red, text_size=size.tiny)
+
+    table.cell(dash, 0, 3, "BULL OB", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 3, bullishObValid ? "ACTIVE" : "NONE", text_color=bullishObValid ? color.lime : color.gray, text_size=size.tiny)
+
+    table.cell(dash, 0, 4, "BEAR OB", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 4, bearishObValid ? "ACTIVE" : "NONE", text_color=bearishObValid ? color.red : color.gray, text_size=size.tiny)
+
+    table.cell(dash, 0, 5, "MSS", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 5, mssBullConfirmed ? "BULL" : mssBearConfirmed ? "BEAR" : "WAITING", text_color=mssBullConfirmed ? color.lime : mssBearConfirmed ? color.red : color.gray, text_size=size.tiny)
+
+    table.cell(dash, 0, 6, "RSI", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 6, str.tostring(rsi, "#.#"), text_color=rsi > 50 ? color.lime : color.red, text_size=size.tiny)

@@ -1,0 +1,28 @@
+{
+  "exchanges": {
+    "binance": {
+      "api_key": "",
+      "api_secret": "",
+      "testnet": false,
+      "ip_whitelist": [],
+      "rate_limits": {
+        "requests_per_minute": 1200,
+        "order_weight": 1,
+        "query_weight": 1,
+        "market_data_weight": 2
+      }
+    },
+    "bybit": {
+      "api_key": "",
+      "api_secret": "",
+      "testnet": false,
+      "ip_whitelist": [],
+      "rate_limits": {
+        "requests_per_minute": 120,
+        "order_weight": 1,
+        "query_weight": 1,
+        "market_data_weight": 1
+      }
+    }
+  }
+}

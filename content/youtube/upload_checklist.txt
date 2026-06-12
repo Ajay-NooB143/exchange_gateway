@@ -1,0 +1,146 @@
+══════════════════════════════════════════════
+OMNI BRAIN V2 — YouTube Upload Checklist
+══════════════════════════════════════════════
+Date: 2026-06-11
+Series: 10 Videos (Viral → Educational → Results → Build)
+
+══════════════════════════════════════════════
+PRE-UPLOAD CHECKS
+══════════════════════════════════════════════
+
+☐ Title optimized (60 chars max)
+☐ Thumbnail uploaded (1280×720, high contrast)
+☐ Description written (with timestamps)
+☐ Tags added (50 relevant tags)
+☐ End screen set (20s duration)
+☐ Cards added (link to playlist)
+☐ Pinned comment posted (Telegram link + questions)
+☐ Shared on Instagram Stories (with poll sticker)
+☐ Shared in Telegram channel (with preview)
+☐ Community post created (poll: "Which video next?")
+
+══════════════════════════════════════════════
+VIDEO-SPECIFIC NOTES
+══════════════════════════════════════════════
+
+Video 1: "Phone se hedge fund banaya" 🤯
+  ☐ Title: Maine phone se hedge fund banaya — zero cost mein 🤯
+  ☐ Hook: 0-30s — maximize retention
+  ☐ CTA: Telegram (free channel)
+  ☐ End screen: Link to Video 2
+
+Video 2: "SMC trading system Python" 🐍
+  ☐ Title: SMC trading system kaise banate hain Python mein?
+  ☐ Description: Add GitHub source code link
+  ☐ Cards: Link to Video 1 (watch first)
+  ☐ End screen: Link to Video 3
+
+Video 3: "72% win rate results" 📊
+  ☐ Title: 72% win rate — weekly results 📊 ($+848)
+  ☐ Description: Update with actual week number
+  ☐ End screen: Link to Video 4
+
+Video 4: "OrderBlock kya hota hai?" 🧱
+  ☐ Title: OrderBlock kya hota hai? 5 minute mein samjho 🧱📉
+  ☐ Description: Link to OB code snippet
+  ☐ Thumbnail: Chart + Code split
+  ☐ End screen: Link to Video 5
+
+Video 5: "Trading setup tour" 📱
+  ☐ Title: Mera Trading Setup Tour — Phone + VPS + AI 📱💻🤖
+  ☐ Description: Mention all 12 processes
+  ☐ Thumbnail: Phone showing terminal
+  ☐ Pinned comment: "Konsa component setup karna chahenge?"
+
+Video 6: "Kelly Criterion lot size" 📐
+  ☐ Title: Kelly Criterion — Kitna lot size lena chahiye? 📐💰
+  ☐ Description: Add position size calculator link
+  ☐ Cards: Link to risk management video (if exists)
+  ☐ End screen: Link to Video 7
+
+Video 7: "9 assets correlation" 🔗
+  ☐ Title: 9 Assets Ka Correlation — Kaise ek doosre ko affect karta hai? 🔗📊
+  ☐ Description: Add correlation matrix screenshot
+  ☐ Cards: Link to pairs trading guide
+  ☐ End screen: Link to Video 8
+
+Video 8: "Circuit breaker" ⚡
+  ☐ Title: Circuit Breaker — Kab trading band karna chahiye? ⚡🛑
+  ☐ Description: Add circuit breaker settings guide
+  ☐ Pinned comment: "Kitni baar circuit breaker trigger hua?"
+  ☐ End screen: Link to Video 9
+
+Video 9: "News events automation" 📰
+  ☐ Title: News Events — Kaise automate karein? 📰🤖
+  ☐ Description: Add economic calendar link
+  ☐ Cards: Link to NFP trading guide
+  ☐ End screen: Link to Video 10
+
+Video 10: "Complete build" 🏗️
+  ☐ Title: OMNI BRAIN V2 — Complete Build From Scratch 🏗️🤖
+  ☐ Description: Link to ALL previous videos in series
+  ☐ Thumbnail: "Scratch Se Live Tak"
+  ☐ Pinned comment: "Series complete! Next series? Comment karo!"
+  ☐ Community post: "Kaisi lagi series? Vote for next topic!"
+  ☐ End screen: Link to full playlist
+
+══════════════════════════════════════════════
+PLAYLIST SETUP
+══════════════════════════════════════════════
+
+☐ Create playlist: "OMNI BRAIN V2 — Complete Trading System"
+☐ Order: 1→2→3→4→5→6→7→8→9→10
+☐ Playlist description: Hinglish
+☐ Set as series playlist (sequential)
+☐ Featured video on channel page
+
+══════════════════════════════════════════════
+POST-UPLOAD ENGAGEMENT
+══════════════════════════════════════════════
+
+☐ Reply to top 10 comments in first 24h
+☐ Pin best comment as second pinned
+☐ Instagram Reel from each video (15s clip)
+☐ Telegram: Share thumbnail + link + 3-line summary
+☐ Community post: "Which concept was most helpful?"
+☐ Monitor retention analytics after 48h
+☐ A/B test thumbnails (if impressions < 50K in 24h)
+
+══════════════════════════════════════════════
+ENGAGEMENT METRICS TARGETS
+══════════════════════════════════════════════
+
+┌──────────────────┬──────────┬──────────┐
+│ Metric           │ Target   │ Stretch  │
+├──────────────────┼──────────┼──────────┤
+│ Retention (0:30) │ > 70%    │ > 80%    │
+│ Retention (full) │ > 25%    │ > 35%    │
+│ CTR (thumbnail)  │ > 10%    │ > 15%    │
+│ Like ratio       │ > 90%    │ > 95%    │
+│ Comments         │ > 50     │ > 100    │
+│ Shares           │ > 20     │ > 50     │
+└──────────────────┴──────────┴──────────┘
+
+══════════════════════════════════════════════
+CONTENT CALENDAR
+══════════════════════════════════════════════
+
+┌────────┬──────────┬─────────────────────────────┐
+│ Day    │ Video    │ Topic                       │
+├────────┼──────────┼─────────────────────────────┤
+│ Mon    │ Video 1  │ Phone se hedge fund banaya  │
+│ Tue    │ Video 2  │ SMC trading system Python   │
+│ Wed    │ Video 3  │ 72% win rate results        │
+│ Thu    │ Video 4  │ OrderBlock kya hota hai     │
+│ Fri    │ Video 5  │ Trading setup tour          │
+│ Sat    │ Video 6  │ Kelly Criterion lot size    │
+│ Sun    │ REST     │ —                           │
+│ Mon    │ Video 7  │ 9 assets correlation        │
+│ Tue    │ Video 8  │ Circuit breaker             │
+│ Wed    │ Video 9  │ News events automation      │
+│ Thu    │ Video 10 │ Complete build              │
+└────────┴──────────┴─────────────────────────────┘
+
+══════════════════════════════════════════════
+CHECKLIST LAST UPDATED: 2026-06-11
+══════════════════════════════════════════════

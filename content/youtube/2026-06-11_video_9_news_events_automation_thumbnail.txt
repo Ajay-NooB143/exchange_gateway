@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "NEWS TRADING 📰"
+Sub Text: "Before NFP / FOMC"
+Visual: News headline overlay on chart with red/green candles
+Emoji: 📰🤖⏸️
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "AAJ NEWS HAI — KYA KAROGE?"
+Sub Text: "Auto-Pause System Inside"
+Visual: Calendar with NFP date circled in red
+Emoji: 📅⚠️🤖
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "NEWS AUTOMATION 🤖"
+Sub Text: "30 Min Before = Auto Halt"
+Visual: Split — news anchor on left, OMNI BRAIN terminal on right
+Emoji: 📰⏸️✅

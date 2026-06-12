@@ -1,0 +1,16 @@
+{
+  "name": "omni-core-v2",
+  "version": "2.0.0",
+  "description": "OMNI BRAIN V2 Dashboard (CDN build, zero-step)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'CDN build: open index.html directly'",
+    "build": "echo 'No build needed: CDN-only'"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.8.0",
+    "lucide-react": "^0.300.0"
+  }
+}

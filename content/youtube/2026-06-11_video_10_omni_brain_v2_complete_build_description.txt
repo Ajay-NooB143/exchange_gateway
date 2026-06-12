@@ -1,0 +1,36 @@
+OMNI BRAIN V2 — Complete Build From Scratch. Is video mein main step-by-step dikhaunga ki kaise apne phone par ek poora algorithmic trading system banayein. UserLAnd se lekar PM2 deployment tak — sab kuch.
+
+Yeh series ka finale video hai. Agar aapne 9 videos dekhi hain, toh ab ek sath poora system banana seekhenge. Agar aap naye hain, toh bhi chinta mat karo — sab kuch scratch se samjhaunga.
+
+00:00 - Hook + entire series recap
+00:45 - Prerequisites (what you need)
+01:30 - Step 1: UserLAnd + Linux setup
+02:30 - Step 2: Git clone + pip install
+04:00 - Step 3: Configuration (.env file)
+05:30 - Step 4: Core code modules explained
+07:30 - Step 5: PM2 process manager setup
+08:30 - Step 6: Live system test
+09:30 - Full series recap
+10:00 - CTA + Telegram channel
+
+Complete source code: [link]
+FREE Telegram: [link]
+VIP Telegram: [link]
+
+Technology stack: Python, TwelveData API, PM2, Telegram Bot API, SMC Patterns, Order Block Detection, FVG, Kelly Criterion, Circuit Breaker, Fear & Greed Index, Correlation Matrix
+
+Watch the full series:
+1. Phone se hedge fund banaya
+2. SMC trading system Python mein
+3. 72% win rate results
+4. OrderBlock kya hota hai?
+5. Trading setup tour
+6. Kelly Criterion lot size
+7. 9 assets correlation
+8. Circuit breaker
+9. News events automation
+10. Complete build (finale)
+
+Keywords: omni brain v2, complete build, trading system from scratch, algorithmic trading tutorial, python trading bot, forex automation, smc trading, order block, kelly criterion, circuit breaker, news automation, trading system build, free trading system, phone trading system, omni brain series finale
+
+Hashtags: #OMNIBRAIN #TradingSystem #AlgorithmicTrading #PythonTrading #ForexBot #SMCTrading #OrderBlock #FinancialFreedom

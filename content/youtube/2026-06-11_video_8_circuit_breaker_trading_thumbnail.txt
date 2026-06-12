@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "CIRCUIT BREAKER ⚡"
+Sub Text: "Kab Trading Band Karein?"
+Visual: Circuit breaker switch in OFF position, red background
+Emoji: ⚡🛑🔴
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "AUTO-HALT ⏸️"
+Sub Text: "OMNI BRAIN Safety System"
+Visual: Trading screen frozen with STOP sign overlay
+Emoji: 🛑🤖⚡
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "REVENGE TRADING KO KAISE ROKE?"
+Sub Text: "Circuit Breaker Inside"
+Visual: Graph showing emotional spiral then flat line (halt)
+Emoji: 😤➡️🛑➡️😌

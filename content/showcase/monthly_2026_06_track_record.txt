@@ -1,0 +1,27 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  📊 MONTHLY TRACK RECORD                        ┃
+┃  June 2026                               ┃
+┃  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃
+┃  Total Trades    : 10                      ┃
+┃  Winners         : 4    (40.0%)               ┃
+┃  Losers          : 6    (60.0%)               ┃
+┃                                                ┃
+┃  Total P&L       : $-50.00                  ┃
+┃  ROI             : -0.50%                    ┃
+┃  Sharpe Ratio    : -2.76                      ┃
+┃  Max Drawdown    : 1.50%                     ┃
+┃                                                ┃
+┃  ❌ PAIR0   BULLISH  $-50.00          ┃
+┃  ❌ PAIR1   BULLISH  $-40.00          ┃
+┃  ❌ PAIR2   BULLISH  $-30.00          ┃
+┃  ❌ PAIR3   BULLISH  $-20.00          ┃
+┃  ❌ PAIR4   BULLISH  $-10.00          ┃
+┃  ❌ PAIR5   BULLISH  $+0.00          ┃
+┃  ✅ PAIR6   BULLISH  $+10.00          ┃
+┃  ✅ PAIR7   BULLISH  $+20.00          ┃
+┃  ✅ PAIR8   BULLISH  $+30.00          ┃
+┃  ✅ PAIR9   BULLISH  $+40.00          ┃
+┃                                                ┃
+┃  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃
+
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛

@@ -1,0 +1,21 @@
+Mera poora trading setup tour — OMNI BRAIN V2. Phone par chal raha hai, zero cost mein. UserLAnd, Python, TwelveData, PM2, Telegram — sab kuch dikhata hoon exactly kaise kaam karta hai.
+
+Agar aap bina kisi investment ke apna trading system banana chahte ho, toh yeh video dekho. Main har component dikhaunga — kaise install karein, kaise configure karein, aur kaise saath mein kaam karta hai.
+
+00:00 - Hook: Phone par trading system?
+00:40 - UserLAnd + Linux installation
+02:30 - TwelveData API key setup
+04:00 - PM2 process manager (12 processes running)
+05:30 - Telegram bot alerts
+06:30 - Web dashboard features
+07:30 - Full live system walkthrough
+09:00 - Phone vs Laptop comparison
+10:00 - CTA + Telegram channel
+
+This setup runs 24/7 on a phone with zero recurring cost. Perfect for Indian traders who want algorithmic trading without expensive infrastructure.
+
+FREE Telegram: [link]
+VIP Telegram: [link]
+Source Code: [link]
+
+Keywords: trading setup tour, phone trading setup, algorithmic trading setup, python trading bot, forex automation, smc trading, omni brain v2, trading system, userland trading, termux trading, twelvedata, pm2, telegram bot, trading setup india

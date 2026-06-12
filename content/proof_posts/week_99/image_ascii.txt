@@ -1,0 +1,29 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  🧠 OMNI BRAIN V2 — Weekly Results           ┃
+┃                                                ┃
+┃  Week 99 — Test                        ┃
+┃  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃
+┃  Total Signals    : 47                    ┃
+┃  EXECUTE          : 34   (72%) 🟢███████░░░ ┃
+┃  Winners          : 34   (72%)              ┃
+┃                                                ┃
+┃  Paper P&L                                        ┃
+┃  Starting         : $10,000.00                ┃
+┃  Current          : $10,847.00                ┃
+┃  Return           : +8.47%                      ┃
+┃                                                ┃
+┃  By Asset                                         ┃
+┃  XAUUSD  ███████░░░ 78%             ┃
+┃  EURUSD  ██████░░░░ 65%             ┃
+┃  GBPUSD  ███████░░░ 71%             ┃
+┃  SP500   █████░░░░░ 54%             ┃
+┃                                                ┃
+┃  Best Signal                                      ┃
+┃  XAUUSD  H1   Score: 90 /100         ┃
+┃  Entry: 2000 → TP2: 2025          ┃
+┃  +$312 profit                          ┃
+┃                                                ┃
+┃  Built on Android 📱                           ┃
+┃  @forextrader_9                                     ┃
+┃  t.me/omnibrainsignals_free                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛

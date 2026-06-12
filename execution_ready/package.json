@@ -1,0 +1,13 @@
+{
+  "name": "tradingview-webhook-bridge",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TradingView webhook bridge for broker execution",
+  "main": "webhook_bridge.mjs",
+  "scripts": {
+    "start": "node webhook_bridge.mjs",
+    "test": "node test_bridge.mjs"
+  },
+  "keywords": ["tradingview", "webhook", "broker", "execution"],
+  "license": "MIT"
+}

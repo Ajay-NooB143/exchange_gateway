@@ -1,0 +1,502 @@
+{
+  "generated_at": "2026-06-10T22:29:30.110348+00:00",
+  "days": [
+    {
+      "date": "2026-06-10",
+      "day_name": "Wednesday",
+      "day_number": 1,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "XAUUSD Signal Recap",
+          "asset": "XAUUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "day_name": "Thursday",
+      "day_number": 2,
+      "events": [
+        {
+          "type": "educational",
+          "title": "FVG \u2014 Fair Value Gap explain",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "day_name": "Friday",
+      "day_number": 3,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "GBPUSD Signal Recap",
+          "asset": "GBPUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13",
+      "day_name": "Saturday",
+      "day_number": 4,
+      "events": [
+        {
+          "type": "educational",
+          "title": "MTF confirmation kyun zaroori?",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14",
+      "day_name": "Sunday",
+      "day_number": 5,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "XAUUSD Signal Recap",
+          "asset": "XAUUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "day_name": "Monday",
+      "day_number": 6,
+      "events": [
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "day_name": "Tuesday",
+      "day_number": 7,
+      "events": [
+        {
+          "type": "weekly_results",
+          "title": "Weekly Performance Results",
+          "time": "18:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "day_name": "Wednesday",
+      "day_number": 8,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "SP500 Signal Recap",
+          "asset": "SP500",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-18",
+      "day_name": "Thursday",
+      "day_number": 9,
+      "events": [
+        {
+          "type": "educational",
+          "title": "MTF confirmation kyun zaroori?",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-19",
+      "day_name": "Friday",
+      "day_number": 10,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "EURUSD Signal Recap",
+          "asset": "EURUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-20",
+      "day_name": "Saturday",
+      "day_number": 11,
+      "events": [
+        {
+          "type": "educational",
+          "title": "OrderBlock kya hota hai?",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-21",
+      "day_name": "Sunday",
+      "day_number": 12,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "SP500 Signal Recap",
+          "asset": "SP500",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-22",
+      "day_name": "Monday",
+      "day_number": 13,
+      "events": [
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "day_name": "Tuesday",
+      "day_number": 14,
+      "events": [
+        {
+          "type": "weekly_results",
+          "title": "Weekly Performance Results",
+          "time": "18:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "day_name": "Wednesday",
+      "day_number": 15,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "GBPUSD Signal Recap",
+          "asset": "GBPUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "day_name": "Thursday",
+      "day_number": 16,
+      "events": [
+        {
+          "type": "educational",
+          "title": "OrderBlock kya hota hai?",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "day_name": "Friday",
+      "day_number": 17,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "XAUUSD Signal Recap",
+          "asset": "XAUUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-27",
+      "day_name": "Saturday",
+      "day_number": 18,
+      "events": [
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-28",
+      "day_name": "Sunday",
+      "day_number": 19,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "GBPUSD Signal Recap",
+          "asset": "GBPUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-29",
+      "day_name": "Monday",
+      "day_number": 20,
+      "events": [
+        {
+          "type": "educational",
+          "title": "Confidence scoring \u2014 0 se 100",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "day_name": "Tuesday",
+      "day_number": 21,
+      "events": [
+        {
+          "type": "weekly_results",
+          "title": "Weekly Performance Results",
+          "time": "18:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "day_name": "Wednesday",
+      "day_number": 22,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "EURUSD Signal Recap",
+          "asset": "EURUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "day_name": "Thursday",
+      "day_number": 23,
+      "events": [
+        {
+          "type": "educational",
+          "title": "Liquidity Sweep kaise pehchane?",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "day_name": "Friday",
+      "day_number": 24,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "SP500 Signal Recap",
+          "asset": "SP500",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-04",
+      "day_name": "Saturday",
+      "day_number": 25,
+      "events": [
+        {
+          "type": "educational",
+          "title": "Confidence scoring \u2014 0 se 100",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "day_name": "Sunday",
+      "day_number": 26,
+      "events": [
+        {
+          "type": "signal_recap",
+          "title": "EURUSD Signal Recap",
+          "asset": "EURUSD",
+          "time": "10:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "day_name": "Monday",
+      "day_number": 27,
+      "events": [
+        {
+          "type": "educational",
+          "title": "FVG \u2014 Fair Value Gap explain",
+          "time": "14:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "day_name": "Tuesday",
+      "day_number": 28,
+      "events": [
+        {
+          "type": "weekly_results",
+          "title": "Weekly Performance Results",
+          "time": "18:00 UTC"
+        },
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "day_name": "Wednesday",
+      "day_number": 29,
+      "events": [
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "day_name": "Thursday",
+      "day_number": 30,
+      "events": [
+        {
+          "type": "story",
+          "title": "Daily Live Score Card",
+          "time": "09:00 UTC"
+        }
+      ]
+    }
+  ]
+}

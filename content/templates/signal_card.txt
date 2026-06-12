@@ -1,0 +1,8 @@
+┌─────────────────────────────────┐
+│ 🚀 {symbol} {direction} SIGNAL        │
+│ Score: {score}/100               │
+│ {bar} {decision}     │
+│ Entry: {entry}                │
+│ TP: {tp} | SL: {sl}            │
+│ @forextrader_9                 │
+└─────────────────────────────────┘

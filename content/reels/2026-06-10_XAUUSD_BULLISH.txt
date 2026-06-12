@@ -1,0 +1,38 @@
+─────────────────────────────────────
+REEL SCRIPT: XAUUSD BULLISH SIGNAL
+─────────────────────────────────────
+HOOK (0-3 sec):
+"XAUUSD ne diya EXECUTE signal! 🔥
+Score: 85/100 — kya hoga aage?"
+
+VISUAL (3-8 sec):
+Show terminal with signal details
+Highlight score bar filling up: ████████░░
+Show MTF grid all green
+
+BREAKDOWN (8-20 sec):
+"Dekho kaise bana yeh signal:
+✅ OrderBlock confirm hua
+✅ FVG zone mila
+✅ Liquidity sweep fire hua
+✅ VWAP ke upar price
+✅ London/NY session active
+Total score: 85/100 🎯"
+
+ENTRY SETUP (20-30 sec):
+"Entry: 2350.5
+SL: 2343.2 (73 pips)
+TP1: 2357.8 | TP2: 2372.4000000000005
+RR: 1:2 — risk sirf 1.0%"
+
+CTA (30-35 sec):
+"Aisa system chahiye?
+Link in bio 👆
+Follow karo daily signals ke liye!"
+
+HASHTAGS:
+#forextrader #XAUUSD #SmartMoney
+#forexsignals #trading #forex
+#liquidity #orderblock #SMC
+#forexhindi #tradinghindi
+─────────────────────────────────────

@@ -1,0 +1,195 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// REGIME-LOGGING STRATEGY — Pine Script v6
+// Logs market regime per trade for post-analysis
+// ══════════════════════════════════════════════════════════════════════════════
+//@version=6
+strategy("Institutional Sniper — Regime Logged", 
+     overlay                = true,
+     default_qty_type       = strategy.fixed,
+     default_qty_value      = 0,
+     initial_capital        = 10000,
+     commission_type        = strategy.commission.percent,
+     commission_value       = 0.02,
+     slippage               = 2,
+     calc_on_every_tick     = false,
+     process_orders_on_close = false,
+     pyramiding             = 0)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// INPUTS
+// ══════════════════════════════════════════════════════════════════════════════
+
+RiskPct       = input.float(1.0,  "Risk % per Trade",     step=0.1,  group="Risk")
+AtrSlMult     = input.float(1.5,  "SL ATR Multiple",      step=0.1,  group="Risk")
+AtrLen        = input.int(14,     "ATR Period",            group="Risk")
+SweepLookback = input.int(10,     "Sweep Lookback",       group="Structure")
+SessionStart  = input.int(13,     "Session Start (GMT)",   group="Session")
+SessionEnd    = input.int(16,     "Session End (GMT)",     group="Session")
+GmtOffset     = input.int(0,      "GMT Offset",           group="Session")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE: REGIME DETECTION
+// ══════════════════════════════════════════════════════════════════════════════
+
+int   regimeLookback = input.int(100, "Regime Lookback", group="Regime")
+float atrPctile = 0.0
+float currentAtr = ta.atr(AtrLen)
+
+for i = 0 to regimeLookback - 1
+    if currentAtr > ta.atr(AtrLen)[i]
+        atrPctile += 1.0
+atrPctile := atrPctile / regimeLookback
+
+// Regime classification
+string regime = atrPctile > 0.7 ? "TRENDING" : atrPctile < 0.3 ? "RANGING" : "TRANSITIONING"
+
+// Trend strength (additional metric)
+float emaFast = ta.ema(close, 21)
+float emaSlow = ta.ema(close, 50)
+float trendStrength = (emaFast - emaSlow) / close * 100
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE: MARKET STRUCTURE (Simplified — replace with your full logic)
+// ══════════════════════════════════════════════════════════════════════════════
+
+float recentHigh = ta.highest(high[1], SweepLookback)
+float recentLow  = ta.lowest(low[1],   SweepLookback)
+
+bool sweepHigh = high > recentHigh and close < recentHigh
+bool sweepLow  = low  < recentLow  and close > recentLow
+
+float swH = ta.pivothigh(high, 5, 5)
+float swL = ta.pivotlow(low, 5, 5)
+var float lastSwH = na
+var float lastSwL = na
+if not na(swH)
+    lastSwH := swH
+if not na(swL)
+    lastSwL := swL
+
+bool mssBull = sweepLow  and not na(lastSwH) and close > lastSwH
+bool mssBear = sweepHigh and not na(lastSwL) and close < lastSwL
+
+bool fvgBull = low > high[2]
+bool fvgBear = high < low[2]
+
+bool structLong  = mssBull and fvgBull
+bool structShort = mssBear and fvgBear
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE: VOLUME FILTER
+// ══════════════════════════════════════════════════════════════════════════════
+
+float volSma = ta.sma(volume, 20)
+bool volumeOK = volume >= volSma * 1.5
+
+float rawRsi = ta.rsi(close, 14)
+float volRatio = volSma > 0 ? volume / volSma : 0
+float vwrsi = rawRsi * math.min(volRatio, 3.0) / 3.0
+
+bool volLong  = vwrsi < 30 and volumeOK
+bool volShort = vwrsi > 70 and volumeOK
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE: SESSION + PRE-FLIGHT
+// ══════════════════════════════════════════════════════════════════════════════
+
+int   gmtHour   = hour(time, "GMT" + str.tostring(GmtOffset))
+bool  inSession = gmtHour >= SessionStart and gmtHour < SessionEnd
+bool  confirmed = barstate.isconfirmed
+bool  validAtr  = not na(currentAtr) and currentAtr > 0
+bool  systemOK  = validAtr and confirmed
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE: RISK ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+float stopDist = currentAtr * AtrSlMult
+
+f_calcQty(float eq, float risk, float sl, float px) =>
+    float riskAmt  = eq * risk
+    float rawUnits = math.floor(riskAmt / sl)
+    float maxAlloc = math.floor((eq * 0.20) / px)
+    int   qty      = int(math.min(rawUnits, maxAlloc))
+    qty >= 1 ? qty : 0
+
+int qty = 0
+if systemOK
+    qty := f_calcQty(strategy.equity, RiskPct / 100.0, stopDist, close)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TRADE LOGIC
+// ══════════════════════════════════════════════════════════════════════════════
+
+bool entryLong  = structLong  and volLong  and inSession and systemOK and qty > 0
+bool entryShort = structShort and volShort and inSession and systemOK and qty > 0
+
+var float entryPx     = na
+var float activeSL    = na
+var bool  beTriggered = false
+var string tradeRegime = na
+
+if entryLong and strategy.position_size == 0
+    entryPx     := close
+    activeSL    := close - stopDist
+    beTriggered := false
+    tradeRegime := regime
+    strategy.entry("LONG", strategy.long, qty=qty, 
+         comment="REGIME:" + regime + " | ATR%:" + str.tostring(atrPctile * 100, "#.#"))
+
+if entryShort and strategy.position_size == 0
+    entryPx     := close
+    activeSL    := close + stopDist
+    beTriggered := false
+    tradeRegime := regime
+    strategy.entry("SHORT", strategy.short, qty=qty,
+         comment="REGIME:" + regime + " | ATR%:" + str.tostring(atrPctile * 100, "#.#"))
+
+// Break-even
+if strategy.position_size > 0 and not na(entryPx)
+    float reward = close - entryPx
+    float risk   = entryPx - activeSL
+    if not beTriggered and reward >= risk and risk > 0
+        activeSL    := entryPx + (currentAtr * 0.1)
+        beTriggered := true
+    strategy.exit("L EXIT", "LONG", stop=activeSL)
+
+if strategy.position_size < 0 and not na(entryPx)
+    float reward = entryPx - close
+    float risk   = activeSL - entryPx
+    if not beTriggered and reward >= risk and risk > 0
+        activeSL    := entryPx - (currentAtr * 0.1)
+        beTriggered := true
+    strategy.exit("S EXIT", "SHORT", stop=activeSL)
+
+if strategy.position_size == 0
+    entryPx     := na
+    activeSL    := na
+    beTriggered := false
+    tradeRegime := na
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VISUALIZATION
+// ══════════════════════════════════════════════════════════════════════════════
+
+bgcolor(inSession ? color.new(color.blue, 93) : na)
+
+plotshape(entryLong  and strategy.position_size == 0, "Long",  shape.labelup,   location.belowbar, color.lime, text="L", textcolor=color.white, size=size.small)
+plotshape(entryShort and strategy.position_size == 0, "Short", shape.labeldown, location.abovebar, color.red,  text="S", textcolor=color.white, size=size.small)
+
+// Regime color background
+color regimeBg = regime == "TRENDING" ? color.new(color.lime, 95) : regime == "RANGING" ? color.new(color.orange, 95) : color.new(color.gray, 95)
+bgcolor(regimeBg, title="Regime Background")
+
+// Dashboard
+var table dash = table.new(position.top_right, 2, 4, bgcolor=color.new(color.black, 15), border_width=1)
+if barstate.islastconfirmedhistory
+    color rc = regime == "TRENDING" ? color.lime : regime == "RANGING" ? color.orange : color.gray
+    table.cell(dash, 0, 0, "REGIME", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 0, regime, text_color=rc, text_size=size.tiny)
+    table.cell(dash, 0, 1, "ATR %ile", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 1, str.tostring(atrPctile * 100, "#.#") + "%", text_color=rc, text_size=size.tiny)
+    table.cell(dash, 0, 2, "TREND STR", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 2, str.tostring(trendStrength, "#.##") + "%", text_color=trendStrength > 0 ? color.lime : color.red, text_size=size.tiny)
+    table.cell(dash, 0, 3, "VOL RATIO", text_color=color.gray, text_size=size.tiny)
+    table.cell(dash, 1, 3, str.tostring(volRatio, "#.##") + "x", text_color=volumeOK ? color.lime : color.gray, text_size=size.tiny)

@@ -1,0 +1,81 @@
+═══════════════════════════════════════════
+  OMNI BRAIN V2 — INSTAGRAM WEEK 1 SCHEDULE
+═══════════════════════════════════════════
+
+Theme: "Building a hedge fund on my phone — LIVE"
+
+--- DAY 1: HOOK REEL ---
+🎬 "Maine phone se hedge fund banaya — zero cost"
+- Show PM2 terminal with 14 processes
+- Quick cuts of Telegram alerts popping
+- Text overlay: "258 tests passing"
+- CTA: Link in bio → Telegram
+- Hashtags: #forex #trading #python #passiveincome
+- Post time: 11:00 AM IST
+
+--- DAY 2: BEHIND THE SCENES ---
+📸 Carousel post — "My Trading Setup"
+- Slide 1: Phone with UserLAnd terminal
+- Slide 2: VS Code with pipeline code
+- Slide 3: PM2 status screen
+- Slide 4: Telegram alert screenshot
+- Slide 5: "Sab free. Sab open source."
+- Caption: Explain each slide in Hinglish
+- CTA: "FREE Telegram join karo"
+- Post time: 6:00 PM IST
+
+--- DAY 3: EDUCATIONAL ---
+🎬 Reel — "Order Block kya hota hai? 60 seconds"
+- Animation: Chart showing OB zone
+- Text: "Jahan institution ne buy/sell kiya"
+- Point to screen with finger
+- CTA: "Full tutorial YouTube pe"
+- Post time: 2:00 PM IST
+
+--- DAY 4: RESULTS ---
+📊 Carousel — "Week 1 Paper Trading Results"
+- Slide 1: Win rate stat big number
+- Slide 2: Best trade breakdown
+- Slide 3: P&L chart (ASCII-style)
+- Slide 4: "Aur yeh sab automatic"
+- Caption: Real numbers, no exaggeration
+- CTA: Link in bio
+- Post time: 8:00 PM IST
+
+--- DAY 5: TECH DEEP DIVE ---
+🎬 Reel — "12 processes — ek phone mein"
+- Quick cuts: pm2 list scrolling
+- Zoom in on each process name
+- Text: "Scanner, Pipeline, Telegram, Monitor..."
+- Background: Lo-fi beats
+- CTA: "Code kaise likha? YouTube pe video"
+- Post time: 12:00 PM IST
+
+--- DAY 6: COMMUNITY ---
+📸 Photo — "Kitne log join kar rahe hain?"
+- Screenshot of Telegram member count
+- Text overlay: "FREE signals — har din aate hain"
+- Call out: "Aap bhi aao"
+- Stories: Q&A — "Poocho kuch bhi"
+- Post time: 7:00 PM IST
+
+--- DAY 7: WEEKLY WRAP ---
+🎬 Reel — "Week 1 — kya seekha?"
+- Highlights from each day
+- Behind the scenes: recording setup
+- P&L recap
+- Next week preview: "Crypto aane wala hai"
+- CTA: "Subscribe YouTube, Join Telegram"
+- Post time: 10:00 AM IST
+
+--- DAILY STORIES TEMPLATE ---
+• Morning (8 AM): Signal of the day
+• Afternoon (2 PM): Behind the code
+• Evening (8 PM): Results snapshot
+• Night (11 PM): "Kal kya aane wala hai"
+
+--- HASHTAG POOL ---
+Primary: #OMNIBRAIN #ForexSignals #TradingSystem
+Secondary: #SMC #PythonTrading #ForexIndia #AlgorithmicTrading
+Niche: #PhoneTrading #FreeSignals #SmartMoney
+Weekly: #Week1 #LaunchWeek #TradingJourney

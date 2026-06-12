@@ -1,0 +1,24 @@
+─────────────────────────────────────
+EDUCATIONAL REEL #1: OrderBlock kya hota hai?
+─────────────────────────────────────
+HOOK (0-3 sec):
+"OrderBlock kya hota hai jo itna powerful hai? 🤯"
+
+VISUAL (3-8 sec):
+Show chart with highlighted order block zone
+
+EXPLANATION (8-25 sec):
+OrderBlock wo zone hai jahan institutions ne bada order lagaya. Jab price us zone pe wapas aata hai, woh react karta hai. Hamara system automatically detect karta hai:
+✅ Bullish OB — price ke neeche, support banega
+✅ Bearish OB — price ke upar, resistance banega
+✅ OB + FVG + Sweep = High probability setup
+
+EXAMPLE (25-30 sec):
+"XAUUSD H1 — Last week ka Bullish OB 2340 pe tha, price wapas aaya aur 2370 tak gaya!"
+
+CTA (30-35 sec):
+"Aisa system chahiye? Link in bio! Follow for daily signals!"
+
+HASHTAGS:
+#orderblock #forextrader #SMC #smartmoney #XAUUSD #forex #trading
+─────────────────────────────────────

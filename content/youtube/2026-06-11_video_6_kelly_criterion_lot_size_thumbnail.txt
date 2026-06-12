@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "KELLY CRITERION 📐"
+Sub Text: "Kitna Lot Size? Auto-Calculate"
+Visual: Calculator + Chart + Money icons
+Emoji: 📐💰⚡
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "LOT SIZE KYA HO?"
+Sub Text: "Kelly Criterion Explained"
+Visual: Trading screen with lot size highlighted
+Emoji: 🤔📊💵
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "KITNA RISK LENA HAI?"
+Sub Text: "Formula + Example Inside"
+Visual: Risk meter from low to high, pointer at optimal
+Emoji: 📐🛡️✅

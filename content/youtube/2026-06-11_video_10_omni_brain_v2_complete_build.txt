@@ -1,0 +1,402 @@
+TITLE: OMNI BRAIN V2 — Complete Build From Scratch 🏗️🤖
+
+═══════════════════════════════════════════
+VIDEO 10: COMPLETE BUILD
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:45) ━━━
+
+[VISUAL: Fast montage — phone → terminal → PM2 → signals]
+
+Bhai, 9 videos mein maine aapko dikhaya:
+Order Block, FVG, Kelly Criterion, Correlation,
+Circuit Breaker, News Automation — sab kuch.
+
+Aaj ka video — MASTERPIECE.
+OMNI BRAIN V2 ka complete build.
+Scratch se lekar live system tak.
+10 minutes. Zero bullshit.
+
+Agar main bana sakta hoon — aap bhi bana sakte ho.
+Chaliye shuru karte hain.
+
+━━━ STEP 0: PREREQUISITES (0:45 - 1:30) ━━━
+
+[VISUAL: Phone showing installed apps]
+
+Aapko kya chahiye:
+
+1. ANDROID PHONE ─────────────
+   Koi bhi phone. Android 10+.
+   ₹10,000 ka phone bhi chalega.
+
+2. USERLAND APP ──────────────
+   Play Store se free install.
+   Ubuntu distribution.
+
+3. PYTHON 3 ──────────────────
+   UserLAnd ke through install hoga.
+
+4. TWELVEDATA API KEY ────────
+   Free sign up: 800 calls/day.
+   Bas email chahiye.
+
+5. TELEGRAM BOT TOKEN ────────
+   BotFather se free mein banao.
+   2 minute ka kaam.
+
+[SHOW: Each prerequisite briefly]
+
+Bas itna hai. Sab free. Sab aapke phone mein.
+
+━━━ STEP 1: SETUP USERLAND (1:30 - 2:30) ━━━
+
+[VISUAL: Screen recording of UserLAnd setup]
+
+```
+Step 1: Install UserLAnd from Play Store
+Step 2: Open → Select Ubuntu
+Step 3: Create username/password
+Step 4: Wait for installation (2-3 min)
+Step 5: Terminal open hoga — Linux ready!
+
+apt update && apt upgrade -y
+apt install python3 python3-pip git -y
+python3 --version
+> Python 3.10.x
+```
+
+Dekha? 5 minute mein Linux server phone mein.
+
+━━━ STEP 2: CLONE + INSTALL (2:30 - 4:00) ━━━
+
+[VISUAL: Terminal commands]
+
+```
+git clone https://github.com/your-repo/omni-brain-v2.git
+cd omni-brain-v2
+
+pip install -r requirements.txt
+```
+
+Requirements:
+
+```python
+requests          # API calls
+pandas            # Data analysis
+numpy             # Math operations
+python-telegram-bot  # Telegram
+schedule          # Cron jobs
+python-dotenv     # Environment vars
+```
+
+[SHOW: Installation running]
+
+```
+Installing packages...
+✅ requests
+✅ pandas
+✅ numpy
+✅ python-telegram-bot
+✅ schedule
+✅ python-dotenv
+```
+
+All packages installed. Abhi configure karte hain.
+
+━━━ STEP 3: CONFIGURATION (4:00 - 5:30) ━━━
+
+[VISUAL: .env file setup]
+
+Create .env file with your keys:
+
+```
+# .env — OMNI BRAIN CONFIG
+
+TWELVEDATA_KEY=your_api_key_here
+TELEGRAM_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+
+# Assets to monitor
+SYMBOLS=XAUUSD,EURUSD,GBPUSD,USDJPY,SP500,BTCUSD
+
+# Risk parameters
+MAX_RISK_PERCENT=2.5
+DAILY_LOSS_LIMIT=5.0
+MAX_CONSECUTIVE_LOSSES=3
+
+# Timeframes
+TIMEFRAMES=15min,1h,4h,1day
+```
+
+[SHOW: Each parameter explained]
+
+Bas itna configuration.
+OMNI BRAIN automatically sab read karega.
+
+━━━ STEP 4: CORE MODULES (5:30 - 7:30) ━━━
+
+[VISUAL: Code walkthrough — each module]
+
+OMNI BRAIN ke core modules:
+
+MODULE 1: DATA POLLER ──────────
+```python
+# data_poller.py
+import requests, os
+
+def fetch_data(symbol, interval='15min'):
+    url = "https://api.twelvedata.com/time_series"
+    params = {
+        "symbol": symbol,
+        "interval": interval,
+        "apikey": os.getenv("TWELVEDATA_KEY"),
+        "outputsize": 100
+    }
+    return requests.get(url, params=params).json()
+```
+
+MODULE 2: ORDER BLOCK DETECTOR ──
+```python
+# order_block.py
+def detect_order_blocks(candles):
+    obs = []
+    for i in range(2, len(candles)):
+        prev, curr = candles[i-1], candles[i]
+        if prev.close < prev.open and curr.close > curr.open:
+            if prev.low < curr.low:  # sweep
+                obs.append({
+                    'type': 'BULLISH_OB',
+                    'zone': (prev.low, prev.high),
+                    'strength': calculate_strength(prev, curr)
+                })
+    return obs
+```
+
+MODULE 3: SIGNAL GENERATOR ─────
+```python
+# signal_gen.py
+def generate_signal(ob, fvg, divergence, trend):
+    score = 0
+    if ob: score += 30
+    if fvg: score += 20
+    if divergence: score += 25
+    if trend: score += 25
+    
+    if score >= 75:
+        return {
+            'action': 'EXECUTE',
+            'score': score,
+            'confidence': 'HIGH'
+        }
+    elif score >= 50:
+        return {'action': 'WAIT', 'score': score}
+    else:
+        return {'action': 'PASS', 'score': score}
+```
+
+MODULE 4: TELEGRAM ALERTS ──────
+```python
+# telegram_bot.py
+from telegram import Bot
+
+async def send_signal(bot, signal):
+    msg = f"""
+📊 OMNI BRAIN SIGNAL
+━━━━━━━━━━━━━━━━━
+Asset: {signal['symbol']}
+Action: {signal['action']}
+Direction: {signal['direction']}
+Entry: {signal['entry']}
+SL: {signal['sl']}
+TP: {signal['tp']}
+Confidence: {signal['score']}/100
+━━━━━━━━━━━━━━━━━
+    """
+    await bot.send_message(chat_id=CHAT_ID, text=msg)
+```
+
+MODULE 5: RISK MANAGER ─────────
+```python
+# risk_manager.py
+def calculate_position_size(account, risk_pct, sl_pips):
+    max_risk = account * (risk_pct / 100)
+    position = max_risk / (sl_pips * 10)
+    return round(position, 2)
+
+def check_circuit_breaker(daily_loss, consecutive_losses):
+    if daily_loss >= 5: return "HALT"
+    if consecutive_losses >= 3: return "COOLDOWN"
+    return "ACTIVE"
+```
+
+[SHOW: All 5 modules running]
+
+━━━ STEP 5: PM2 CONFIGURATION (7:30 - 8:30) ━━━
+
+[VISUAL: PM2 ecosystem file]
+
+```
+// ecosystem.config.js
+module.exports = {
+  apps: [
+    { name: 'data-poller',  script: 'data_poller.py',  cron: '*/15 * * * *' },
+    { name: 'ob-detector',  script: 'ob_detector.py',  cron: '*/15 * * * *' },
+    { name: 'fvg-detector', script: 'fvg_detector.py' },
+    { name: 'divergence',   script: 'divergence.py' },
+    { name: 'correlation',  script: 'correlation.py' },
+    { name: 'risk-mgmt',    script: 'risk_manager.py' },
+    { name: 'signal-gen',   script: 'signal_generator.py' },
+    { name: 'telegram-bot', script: 'telegram_bot.py' },
+    { name: 'logger',       script: 'logger.py' },
+    { name: 'health-check', script: 'health_check.py' },
+  ]
+}
+```
+
+```
+pm2 start ecosystem.config.js
+pm2 status
+
+┌─────┬──────────────┬─────────┬─────────┐
+│ id  │ name         │ status  │ uptime  │
+├─────┼──────────────┼─────────┼─────────┤
+│ 0   │ data-poller  │ online  │ 24h     │
+│ 1   │ ob-detector  │ online  │ 24h     │
+│ ... │ ...          │ online  │ ...     │
+│ 9   │ health-check │ online  │ 24h     │
+└─────┴──────────────┴─────────┴─────────┘
+```
+
+Sab online. Sab running. 24/7.
+
+━━━ STEP 6: TEST THE SYSTEM (8:30 - 9:30) ━━━
+
+[VISUAL: Live test]
+
+Manual test:
+```
+1. PM2 status → 10/10 online ✅
+2. Check data_poller logs → Data flowing ✅
+3. Check ob_detector → OBs detected ✅
+4. Calculate confidence score → 82 ✅
+5. Generate signal → EXECUTE ✅
+6. Telegram notification → Received ✅
+```
+
+[SHOW: Actual Telegram notification popping up]
+
+```
+📊 OMNI BRAIN SIGNAL
+━━━━━━━━━━━━━━━━━━━━
+XAUUSD BUY @ 2345.67
+SL: 2338.90 | TP: 2352.50
+Confidence: 82/100
+Pattern: Bullish OB + FVG
+━━━━━━━━━━━━━━━━━━━━
+```
+
+Aapka system abhi LIVE hai.
+Har 15 minute data aayega.
+Har cycle analysis hoga.
+Har signal Telegram pe aayega.
+
+24 hours × 7 days × 365 days.
+Aapke phone mein. Free. Working.
+
+━━━ WHAT'S NEXT (9:30 - 10:00) ━━━
+
+[VISUAL: All 10 video thumbnails in a grid]
+
+OMNI BRAIN V2 — Complete series:
+
+Video 1:  "Phone se hedge fund banaya" 🤯
+Video 2:  "SMC trading system Python mein" 🐍
+Video 3:  "72% win rate — weekly results" 📊
+Video 4:  "OrderBlock kya hota hai?" 🧱
+Video 5:  "Trading setup tour" 📱
+Video 6:  "Kelly Criterion — lot size" 📐
+Video 7:  "9 assets correlation" 🔗
+Video 8:  "Circuit breaker" ⚡
+Video 9:  "News events automation" 📰
+Video 10: "Complete build" 🏗️ [YOU ARE HERE]
+
+10 videos. 10 concepts. 1 trading system.
+
+━━━ CTA (10:00 - 11:00) ━━━
+
+[VISUAL: Subscribe + Telegram]
+
+Bhai, agar main bana sakta hoon — aap bhi bana sakte ho.
+Mere paas koi IIT degree nahi. Koi coding background nahi.
+Bas seekhne ka josh tha.
+
+Aapke paas bhi phone hai. Aapke paas bhi time hai.
+Bas sahi guidance chahiye.
+
+FREE Telegram channel join karein — main wahan regularly post karta hoon.
+VIP channel mein EXECUTE signals with complete analysis.
+
+Code repo link description mein hai.
+Fork karo, deploy karo, aur trading shuru karo.
+
+Yeh sirf ek trading system nahi hai.
+Yeh financial freedom ka tool hai.
+
+Like karo. Subscribe karo. Share karo.
+Agli series mein milte hain — OMNI BRAIN V3? 😉
+
+🚀 🚀 🚀
+
+━━━ B-ROLL SHOT LIST ━━━
+1. Fast montage of all previous 9 videos
+2. Phone showing UserLAnd installation
+3. Terminal: pip install running
+4. .env file configuration
+5. Code walkthrough (5 modules)
+6. PM2 ecosystem file + status
+7. Telegram notification popping up
+8. Dashboard with all live data
+9. Grid of all 10 video thumbnails
+10. Subscribe animation with celebration
+
+━━━ THUMBNAIL TEXT ━━━
+Main text: "COMPLETE BUILD 🏗️"
+Sub text: "Scratch Se Live Tak | 10 Min"
+Emoji overlay: 🏗️🤖🚀
+
+━━━ DESCRIPTION ━━━
+OMNI BRAIN V2 — Complete Build From Scratch. Is video mein main step-by-step dikhaunga ki kaise apne phone par ek poora algorithmic trading system banayein. UserLAnd se lekar PM2 deployment tak — sab kuch.
+
+Agar main bana sakta hoon, toh aap bhi bana sakte ho. Zero coding experience required. Sab free, sab phone mein.
+
+00:00 - Hook + Series recap
+00:45 - Prerequisites (UserLAnd, TwelveData, Telegram)
+01:30 - Step 1: UserLAnd setup
+02:30 - Step 2: Clone + install dependencies
+04:00 - Step 3: Configuration (.env)
+05:30 - Step 4: Core modules (Data, OB, Signals, Telegram, Risk)
+07:30 - Step 5: PM2 configuration
+08:30 - Step 6: Live system test
+09:30 - Entire series recap
+10:00 - CTA + Telegram
+
+Complete source code: [link]
+FREE Telegram: [link]
+VIP Telegram: [link]
+
+Technology: Python, TwelveData, PM2, Telegram API, SMC, Order Block, Kelly Criterion, Circuit Breaker, Fear & Greed Index
+
+Keywords: omni brain v2, complete build, trading system build, algorithmic trading tutorial, python trading system, forex bot build, phone trading system, trading system from scratch, smc trading bot, order block bot, fvg bot, kelly criterion, circuit breaker, news trading bot, complete trading solution, free trading system
+
+Watch the entire series:
+Video 1: Maine phone se hedge fund banaya
+Video 2: SMC trading system in Python
+Video 3: 72% win rate results
+Video 4: OrderBlock explained
+Video 5: Trading setup tour
+Video 6: Kelly Criterion lot size
+Video 7: 9 assets correlation
+Video 8: Circuit breaker
+Video 9: News automation
+Video 10: Complete build (this video)

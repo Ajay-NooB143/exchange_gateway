@@ -1,0 +1,22 @@
+Order Block kya hota hai? 5 minute mein samjho — complete Hinglish guide for Indian traders. Is video mein main Order Block concept ko itne simple tarike se samjhaunga ki aap kabhi nahi bhoolenge.
+
+Order Block institutional trading ka sabse important concept hai. Banks, hedge funds, aur market makers isi concept se market mein entry lete hain. Agar aap retail trader se institutional trader mein convert hona chahte hain, toh yeh video aapke liye hai.
+
+OMNI BRAIN V2 automatically detect karta hai Order Blocks ko — real-time mein, multiple timeframes pe. Aapko chart dekhne ki bhi zaroorat nahi.
+
+Topics covered in this video:
+00:00 - Hook: Order Block kya hai?
+00:30 - Order Block definition in simple Hindi
+02:00 - Why Order Blocks work (institutional logic)
+03:30 - 3 types of Order Blocks (Trending, Reversal, Inducement)
+06:00 - Live detection demo on OMNI BRAIN
+08:00 - Risk management with Order Blocks (TP/SL placement)
+09:00 - CTA: Join Telegram for signals
+
+FREE Telegram channel: [link]
+VIP channel with EXECUTE signals: [link]
+Source code: [link]
+
+Must watch for: Forex traders, stock market traders, SMC traders, algorithmic trading enthusiasts, Python trading system users.
+
+Keywords: order block, order block trading strategy, smart money concepts, smc trading, forex trading india, algorithmic trading, omni brain v2, trading bot, order block kya hota hai, institutional trading, forex, xauusd, python trading

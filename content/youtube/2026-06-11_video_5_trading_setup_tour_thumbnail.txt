@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "SETUP TOUR 📱"
+Sub Text: "Phone + VPS + AI"
+Visual: Phone showing terminal with code, cables around
+Emoji: 📱💻⚡
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "YE HAI MERA SETUP"
+Sub Text: "Zero Cost | 12 Processes"
+Visual: Split — phone on left, terminal output on right
+Emoji: 🤯📱
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "PHONE BAN GAYA TRADING SYSTEM"
+Sub Text: "Complete Tour Inside"
+Visual: Hand holding phone with chart on screen
+Emoji: 📱🏦🚀

@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "perplexity": {
+      "command": "uvx",
+      "args": ["perplexity-mcp"],
+      "env": {
+        "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
+      }
+    },
+    "firecrawl": {
+      "command": "uvx",
+      "args": ["firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}"
+      }
+    },
+    "tidb": {
+      "command": "uv",
+      "args": ["run", "--directory", "/opt/omni-brain/tidb-cloud-zero-mcp", "server.py", "--transport", "stdio"],
+      "env": {
+        "TIDB_HOST": "${TIDB_HOST}",
+        "TIDB_USERNAME": "${TIDB_USERNAME}",
+        "TIDB_PASSWORD": "${TIDB_PASSWORD}",
+        "TIDB_DATABASE": "omni_brain"
+      }
+    }
+  }
+}

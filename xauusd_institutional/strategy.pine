@@ -1,0 +1,311 @@
+// ══════════════════════════════════════════════════════════════════════════════
+// INSTITUTIONAL XAUUSD SCALPER — Pine Script v6
+// Liquidity Sweep + MSS + FVG + VRSI + Survival Risk Engine
+// Lookahead-bias free. Designed for 1-minute timeframes.
+// ══════════════════════════════════════════════════════════════════════════════
+//@version=6
+strategy("Institutional XAUUSD Scalper", 
+     overlay                = true, 
+     default_qty_type       = strategy.fixed,
+     default_qty_value      = 0,
+     initial_capital        = 10000,
+     commission_type        = strategy.commission.percent,
+     commission_value       = 0.02,
+     slippage               = 2,
+     calc_on_every_tick     = false,
+     max_bars_back          = 5000,
+     process_orders_on_close = false,
+     pyramiding             = 0)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// SETTINGS — Adjust these in the Strategy Settings menu
+// ══════════════════════════════════════════════════════════════════════════════
+
+// --- Risk Parameters ---
+RiskPct       = input.float(1.0,  "Risk % per Trade",        step=0.1,  group="Risk", tooltip="Max loss per trade as % of equity. Lower = safer.")
+AtrSlMult     = input.float(1.5,  "Stop Loss (ATR Multiple)", step=0.1,  group="Risk", tooltip="SL distance = ATR × this value. Higher = wider stop.")
+AtrLen        = input.int(14,     "ATR Period",              group="Risk")
+
+// --- Session Parameters ---
+SessionStart  = input.int(13,     "Session Start Hour (GMT)", minval=0, maxval=23, group="Session", tooltip="London/NY overlap begins here.")
+SessionEnd    = input.int(16,     "Session End Hour (GMT)",   minval=0, maxval=23, group="Session", tooltip="Session ends here. No trades after.")
+GmtOffset     = input.int(0,      "GMT Offset",              group="Session", tooltip="Set to your broker's offset from GMT.")
+
+// --- Market Structure ---
+SweepLookback = input.int(10,     "Sweep Lookback Bars",     minval=3,  maxval=50, group="Structure", tooltip="Bars to scan for swing high/low to sweep.")
+SwingLen      = input.int(5,      "Swing Point Length",       minval=2,  maxval=20, group="Structure", tooltip="Bars to confirm a swing point for MSS.")
+FvgMinSize    = input.float(0.0,  "Min FVG Size (points)",   step=0.1,  group="Structure", tooltip="Ignore FVGs smaller than this. 0 = accept all.")
+
+// --- Volume Filter ---
+VrsiLen       = input.int(14,     "VRSI Period",             group="Volume")
+VolMaLen      = input.int(20,     "Volume MA Period",        group="Volume")
+VolThresh     = input.float(1.5,  "Volume Threshold (x)",    step=0.1,  group="Volume", tooltip="Candle volume must be ≥ this × avg volume.")
+
+// --- Bias Control ---
+EnableLongs   = input.bool(true,  "Allow Longs",             group="Bias")
+EnableShorts  = input.bool(true,  "Allow Shorts",            group="Bias")
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 1 — INSTITUTIONAL MARKET STRUCTURE
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ── 1A: Liquidity Sweep Detection ───────────────────────────────────────────
+// Price takes out the previous N-bar high or low (stop hunt)
+
+float recentHigh = ta.highest(high[1], SweepLookback)
+float recentLow  = ta.lowest(low[1],   SweepLookback)
+
+bool sweepHigh = high > recentHigh and close < recentHigh  // swept buy-side, closed below
+bool sweepLow  = low  < recentLow  and close > recentLow   // swept sell-side, closed above
+
+// ── 1B: Market Structure Shift (MSS) ───────────────────────────────────────
+// After a sweep, price must close past the most recent swing point
+// in the opposite direction to confirm the shift.
+
+float swingHigh = ta.pivothigh(high, SwingLen, SwingLen)
+float swingLow  = ta.pivotlow(low,   SwingLen, SwingLen)
+
+// Persistent swing levels (carry forward until invalidated)
+var float lastSwingHigh = na
+var float lastSwingLow  = na
+
+if not na(swingHigh)
+    lastSwingHigh := swingHigh
+if not na(swingLow)
+    lastSwingLow  := swingLow
+
+// MSS confirmed: after sweeping highs, close below last swing low (bearish shift)
+//                after sweeping lows, close above last swing high (bullish shift)
+bool mssBullish = sweepLow  and not na(lastSwingHigh) and close > lastSwingHigh
+bool mssBearish = sweepHigh and not na(lastSwingLow)  and close < lastSwingLow
+
+// ── 1C: Fair Value Gap (FVG) Detection ─────────────────────────────────────
+// FVG = gap between candle[2].high and candle[0].low (bullish)
+//        or candle[2].low and candle[0].high (bearish)
+
+float fvgBullTop = low
+float fvgBullBot = high[2]
+float fvgBearTop = low[2]
+float fvgBearBot = high
+
+bool fvgBullish = fvgBullTop > fvgBullBot and (fvgBullTop - fvgBullBot) >= FvgMinSize
+bool fvgBearish = fvgBearBot < fvgBearTop and (fvgBearTop - fvgBearBot) >= FvgMinSize
+
+// ── Structure Output ────────────────────────────────────────────────────────
+// MSS + FVG must both align for a valid institutional setup
+bool structLong  = mssBullish and fvgBullish
+bool structShort = mssBearish and fvgBearish
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 2 — VOLUME CONFLUENCE (VRSI)
+// ══════════════════════════════════════════════════════════════════════════════
+
+f_volumeWeightedRSI(float src, int rsiLen, int volLen) =>
+    float rawRsi   = ta.rsi(src, rsiLen)
+    float volSma   = ta.sma(volume, volLen)
+    float volRatio = nz(volSma) > 0 ? volume / volSma : 0.0
+    float clamped  = math.min(volRatio, 3.0)
+    float weighted = rawRsi * (clamped / 3.0)
+    [weighted, volRatio]
+
+[vwrsi, volRatio] = f_volumeWeightedRSI(close, VrsiLen, VolMaLen)
+
+bool volumeConfirmed = volRatio >= VolThresh
+bool vrsiOversold    = vwrsi < 30
+bool vrsiOverbought  = vwrsi > 70
+
+bool volLong  = vrsiOversold   and volumeConfirmed
+bool volShort = vrsiOverbought and volumeConfirmed
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 3 — SURVIVAL RISK ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+float atrVal       = ta.atr(AtrLen)
+float stopDistance = atrVal * AtrSlMult
+
+// Position sizing: 1% risk, hard-capped at 20% of equity
+f_calcQty(float equity, float riskFrac, float slDist, float entryPx) =>
+    float riskAmt  = equity * riskFrac
+    float rawUnits = math.floor(riskAmt / slDist)
+    float maxAlloc = math.floor((equity * 0.20) / entryPx)
+    int   qty      = int(math.min(rawUnits, maxAlloc))
+    qty >= 1 ? qty : 0
+
+// Break-even state
+var float entryPrice     = na
+var float activeStopLoss = na
+var bool  beTriggered    = false
+var int   entryBar       = na
+
+// ══════════════════════════════════════════════════════════════════════════════
+// MODULE 4 — PROFESSIONAL GUARDRAILS
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ── Session Filter ──────────────────────────────────────────────────────────
+int gmtHour    = hour(time, "GMT" + str.tostring(GmtOffset))
+bool inSession = gmtHour >= SessionStart and gmtHour < SessionEnd
+
+// ── Repaint Protection ──────────────────────────────────────────────────────
+bool confirmed = barstate.isconfirmed
+
+// ── Error Guards ────────────────────────────────────────────────────────────
+bool validAtr    = not na(atrVal) and atrVal > 0
+bool validVolume = not na(volume) and volume > 0
+bool systemReady = validAtr and validVolume
+
+// ── Final Entry Gating ──────────────────────────────────────────────────────
+// All four modules must align: Structure + Volume + Session + Confirmation
+bool safeEntryLong  = structLong  and volLong  and inSession and confirmed and systemReady and EnableLongs
+bool safeEntryShort = structShort and volShort and inSession and confirmed and systemReady and EnableShorts
+
+// ══════════════════════════════════════════════════════════════════════════════
+// EXECUTION ENGINE
+// ══════════════════════════════════════════════════════════════════════════════
+
+int qty = 0
+if systemReady and confirmed
+    qty := f_calcQty(strategy.equity, RiskPct / 100.0, stopDistance, close)
+
+// ── Entries ─────────────────────────────────────────────────────────────────
+if safeEntryLong and strategy.position_size == 0 and qty > 0
+    entryPrice     := close
+    activeStopLoss := close - stopDistance
+    beTriggered    := false
+    entryBar       := bar_index
+    strategy.entry("LONG", strategy.long, qty=qty, comment="INST L")
+
+if safeEntryShort and strategy.position_size == 0 and qty > 0
+    entryPrice     := close
+    activeStopLoss := close + stopDistance
+    beTriggered    := false
+    entryBar       := bar_index
+    strategy.entry("SHORT", strategy.short, qty=qty, comment="INST S")
+
+// ── Break-Even + Exit Management ───────────────────────────────────────────
+if strategy.position_size > 0 and not na(entryPrice)
+    float reward = close - entryPrice
+    float risk   = entryPrice - activeStopLoss
+
+    // Move SL to break-even + buffer at 1:1 RR
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice + (atrVal * 0.1)
+        beTriggered    := true
+
+    strategy.exit("LONG EXIT", "LONG",
+         stop  = activeStopLoss,
+         trail_price  = entryPrice + (atrVal * 2.0),
+         trail_offset = int(atrVal * 0.5 / syminfo.mintick))
+
+if strategy.position_size < 0 and not na(entryPrice)
+    float reward = entryPrice - close
+    float risk   = activeStopLoss - entryPrice
+
+    if not beTriggered and reward >= risk and risk > 0
+        activeStopLoss := entryPrice - (atrVal * 0.1)
+        beTriggered    := true
+
+    strategy.exit("SHORT EXIT", "SHORT",
+         stop  = activeStopLoss,
+         trail_price  = entryPrice - (atrVal * 2.0),
+         trail_offset = int(atrVal * 0.5 / syminfo.mintick))
+
+// ── Reset on flat ──────────────────────────────────────────────────────────
+if strategy.position_size == 0
+    entryPrice     := na
+    activeStopLoss := na
+    beTriggered    := false
+    entryBar       := na
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VISUALIZATION
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Session background
+bgcolor(inSession ? color.new(color.blue, 93) : na, title="Session Active")
+
+// Sweep markers
+plotshape(sweepHigh, "Sweep High", shape.xcross, location.abovebar, color.new(color.red, 30), size=size.tiny)
+plotshape(sweepLow,  "Sweep Low",  shape.xcross, location.belowbar, color.new(color.lime, 30), size=size.tiny)
+
+// MSS markers
+plotshape(mssBullish, "MSS Bull", shape.diamond, location.belowbar, color.new(color.lime, 0), size=size.small)
+plotshape(mssBearish, "MSS Bear", shape.diamond, location.abovebar, color.new(color.red, 0),  size=size.small)
+
+// FVG boxes (last 5 only to avoid clutter)
+var box[] fvgBoxes = array.new_box(0)
+if array.size(fvgBoxes) >= 5
+    box.delete(array.shift(fvgBoxes))
+if fvgBullish and confirmed
+    array.push(fvgBoxes, box.new(bar_index - 2, fvgBullBot, bar_index, fvgBullTop, 
+         bgcolor=color.new(color.lime, 85), border_color=color.new(color.lime, 60)))
+if fvgBearish and confirmed
+    array.push(fvgBoxes, box.new(bar_index - 2, fvgBearTop, bar_index, fvgBearBot, 
+         bgcolor=color.new(color.red, 85), border_color=color.new(color.red, 60)))
+
+// Entry signals
+plotshape(safeEntryLong  and strategy.position_size == 0, "INST Long",  shape.labelup,   location.belowbar, color.new(color.lime, 0),  text="INST L", textcolor=color.white, size=size.small)
+plotshape(safeEntryShort and strategy.position_size == 0, "INST Short", shape.labeldown, location.abovebar, color.new(color.red, 0),   text="INST S", textcolor=color.white, size=size.small)
+
+// Break-even marker
+plotshape(beTriggered and not beTriggered[1], "BE Hit", shape.diamond, location.abovebar, color.new(color.aqua, 0), size=size.tiny)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// DASHBOARD — Win Rate, Net Profit, Session Status
+// ══════════════════════════════════════════════════════════════════════════════
+
+var table dash = table.new(position.top_right, 2, 6, 
+     bgcolor=color.new(color.black, 15), 
+     border_width=1, 
+     border_color=color.new(color.gray, 50))
+
+if barstate.islastconfirmedhistory
+    // Win Rate
+    int totalTrades  = strategy.closedtrades
+    int winningTrades = 0
+    if totalTrades > 0
+        for i = 0 to totalTrades - 1
+            if strategy.closedtrades.profit(i) > 0
+                winningTrades += 1
+    float winRate = totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0.0
+
+    // Net Profit
+    float netPnl = strategy.netprofit
+
+    // Session Status
+    string sessionStatus = inSession ? "ACTIVE" : "INACTIVE"
+    color  sessionColor  = inSession ? color.lime : color.gray
+
+    // Agent Status
+    string agentA = structLong ? "BULL MSS+FVG" : structShort ? "BEAR MSS+FVG" : "WAITING"
+    color  agentC = structLong ? color.lime : structShort ? color.red : color.gray
+
+    string agentB = volLong ? "VRSI OVERSOLD" : volShort ? "VRSI OVERBOUGHT" : "NEUTRAL"
+    color  volC   = volLong ? color.lime : volShort ? color.red : color.gray
+
+    // Populate table
+    table.cell(dash, 0, 0, "INSTITUTIONAL SCALPER", text_color=color.white, text_size=size.small, text_halign=text.align_left)
+    table.merge_cells(dash, 0, 0, 1, 0)
+
+    table.cell(dash, 0, 1, "WIN RATE",      text_color=color.gray,  text_size=size.tiny)
+    table.cell(dash, 1, 1, str.tostring(winRate, "#.#") + "%",     text_color=winRate >= 50 ? color.lime : color.red, text_size=size.tiny)
+
+    table.cell(dash, 0, 2, "NET P&L",       text_color=color.gray,  text_size=size.tiny)
+    table.cell(dash, 1, 2, "$" + str.tostring(netPnl, "#.##"),     text_color=netPnl >= 0 ? color.lime : color.red, text_size=size.tiny)
+
+    table.cell(dash, 0, 3, "SESSION",       text_color=color.gray,  text_size=size.tiny)
+    table.cell(dash, 1, 3, sessionStatus,                         text_color=sessionColor, text_size=size.tiny)
+
+    table.cell(dash, 0, 4, "STRUCTURE",     text_color=color.gray,  text_size=size.tiny)
+    table.cell(dash, 1, 4, agentA,                                text_color=agentC, text_size=size.tiny)
+
+    table.cell(dash, 0, 5, "VOLUME",        text_color=color.gray,  text_size=size.tiny)
+    table.cell(dash, 1, 5, agentB,                                text_color=volC, text_size=size.tiny)
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ALERTS
+// ══════════════════════════════════════════════════════════════════════════════
+
+alertcondition(safeEntryLong,  "Institutional Long",  "INST LONG — MSS+FVG+Bullish VRSI+Volume Confirmed")
+alertcondition(safeEntryShort, "Institutional Short", "INST SHORT — MSS+FVG+Bearish VRSI+Volume Confirmed")
+alertcondition(beTriggered and not beTriggered[1],     "Break-Even Hit",   "Position moved to break-even")

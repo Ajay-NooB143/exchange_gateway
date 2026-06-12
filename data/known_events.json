@@ -1,0 +1,866 @@
+[
+  {
+    "title": "FOMC",
+    "timestamp": "2024-01-31T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-03-20T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-05-01T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-06-12T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-07-31T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-09-18T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-11-07T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2024-12-18T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-01-29T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-03-19T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-05-07T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-06-18T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-07-30T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-09-17T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-11-05T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2025-12-17T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-01-28T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-03-18T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-05-06T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-06-17T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-07-29T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-09-16T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-11-04T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "FOMC",
+    "timestamp": "2026-12-16T18:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-01-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-02-02T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-03-01T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-04-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-05-03T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-06-07T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-07-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-08-02T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-09-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-10-04T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-11-01T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2024-12-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-01-03T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-02-07T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-03-07T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-04-04T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-05-02T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-06-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-07-04T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-08-01T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-09-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-10-03T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-11-07T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2025-12-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-01-02T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-02-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-03-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-04-03T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-05-01T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-06-05T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-07-03T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-08-07T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-09-04T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-10-02T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-11-06T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "NFP",
+    "timestamp": "2026-12-04T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-01-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-02-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-03-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-04-10T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-05-15T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-06-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-07-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-08-14T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-09-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-10-10T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-11-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2024-12-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-01-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-02-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-03-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-04-10T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-05-15T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-06-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-07-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-08-14T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-09-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-10-10T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-11-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2025-12-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-01-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-02-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-03-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-04-10T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-05-15T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-06-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-07-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-08-14T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-09-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-10-12T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-11-13T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "CPI",
+    "timestamp": "2026-12-11T13:30:00+00:00",
+    "impact": "HIGH",
+    "currency": "USD"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-01-25T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-03-07T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-04-11T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-06-06T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-07-18T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-09-12T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-10-17T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2024-12-12T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-01-30T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-03-06T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-04-17T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-06-05T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-07-24T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-09-11T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-10-16T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2025-12-11T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-01-29T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-03-05T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-04-16T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-06-04T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-07-23T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-09-10T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-10-15T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "ECB",
+    "timestamp": "2026-12-10T13:45:00+00:00",
+    "impact": "HIGH",
+    "currency": "EUR"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-02-01T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-03-21T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-05-09T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-06-20T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-08-01T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-09-19T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-11-07T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2024-12-19T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-02-06T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-03-20T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-05-08T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-06-19T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-07-31T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-09-18T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-11-06T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2025-12-18T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-02-05T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-03-19T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-05-07T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-06-18T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-07-30T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-09-17T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-11-05T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  },
+  {
+    "title": "BOE",
+    "timestamp": "2026-12-17T12:00:00+00:00",
+    "impact": "HIGH",
+    "currency": "GBP"
+  }
+]

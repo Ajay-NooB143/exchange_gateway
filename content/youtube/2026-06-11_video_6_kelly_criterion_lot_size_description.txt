@@ -1,0 +1,25 @@
+Kelly Criterion position sizing — kitna lot size lena chahiye? Is video mein main samjhaunga ki kaise position sizing aapki trading account bana sakti hai ya tod sakti hai. OMNI BRAIN V2 automatically calculate karta hai Kelly Criterion se optimal lot size.
+
+Most traders fail because of wrong position sizing, not wrong trade direction. Kelly Criterion ek mathematical formula hai jo exactly batata hai ki aapko apni trading capital ka kitna percentage risk karna chahiye.
+
+00:00 - Hook: Wrong lot size destroys accounts
+00:45 - The problem: Gambler vs Professional trader
+02:00 - Kelly formula simplified with example
+04:00 - Real calculation on OMNI BRAIN
+06:00 - Position sizing scenarios by account size
+07:30 - Circuit breaker + Kelly combo for safety
+08:30 - Backtest results (3 year, 1000 trades)
+09:30 - CTA + Telegram channel
+
+OMNI BRAIN V2 features shown:
+• Automatic Kelly calculation
+• Half Kelly conservative mode
+• Circuit breaker integration
+• Daily/weekly loss limits
+• Risk management dashboard
+
+Keywords: kelly criterion, position sizing, lot size, trading risk management, forex lots, kelly formula, optimal position size, trading money management, omni brain v2, algorithmic trading, python trading, forex trading india
+
+FREE Telegram: [link]
+VIP Telegram: [link]
+Source Code: [link]

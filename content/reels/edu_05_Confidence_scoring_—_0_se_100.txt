@@ -1,0 +1,27 @@
+─────────────────────────────────────
+EDUCATIONAL REEL #5: Confidence scoring — 0 se 100
+─────────────────────────────────────
+HOOK (0-3 sec):
+"Hamara system har signal ko 0 se 100 deta hai! Kaise? 🔢"
+
+VISUAL (3-8 sec):
+Show score bar filling up with component breakdown
+
+EXPLANATION (8-25 sec):
+Confidence Score 5 components se banta hai:
+✅ OrderBlock confirm = 20 points
+✅ FVG zone mila = 20 points
+✅ Liquidity Sweep fire = 30 points
+✅ VWAP ke upar/neeche = 15 points
+✅ Session active (London/NY) = 15 points
+Total 100 mein se kitne mile? Wo hai confidence score!
+
+EXAMPLE (25-30 sec):
+"XAUUSD score 85/100 — OB ✅ FVG ✅ Sweep ✅ VWAP ✅ Session ✅"
+
+CTA (30-35 sec):
+"Score dekhna seekho! Follow for daily signals!"
+
+HASHTAGS:
+#confidencescore #forex #trading #signal #analysis #forextrader
+─────────────────────────────────────

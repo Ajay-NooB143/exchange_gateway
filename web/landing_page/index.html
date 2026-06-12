@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>OMNI BRAIN V2 — Institutional-Grade Forex Signals, Free Forever</title>
+  <meta name="description" content="Institutional-grade forex signals built on an Android phone. 72%+ win rate. Free Telegram channel. VIP access with instant EXECUTE signals, full entry/SL/TP.">
+  <meta name="keywords" content="forex signals, algorithmic trading, SMC trading, python trading bot, free forex signals india, trading system, omni brain">
+  <meta name="author" content="Ajay">
+  <meta property="og:title" content="OMNI BRAIN V2 — Free Forex Trading Signals">
+  <meta property="og:description" content="Institutional-grade forex signals — built on a phone, free forever.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omnibrain.io">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #1a1a24;
+      --cyan: #00ffff;
+      --green: #00ff88;
+      --red: #ff3355;
+      --yellow: #ffaa00;
+      --purple: #8888ff;
+      --text: #c8c8d0;
+      --text-dim: #666680;
+      --border: #222233;
+      --font: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-size: 18px; font-weight: bold;
+      color: var(--cyan); letter-spacing: 2px;
+    }
+    .logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 20px; font-size: 13px; }
+    .nav-links a { color: var(--text-dim); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cyan); text-decoration: none; }
+    .btn-header {
+      padding: 8px 18px; border: 1px solid var(--cyan);
+      background: transparent; color: var(--cyan);
+      font-family: var(--font); font-size: 12px;
+      cursor: pointer; border-radius: 4px; transition: all 0.2s;
+    }
+    .btn-header:hover { background: rgba(0,255,255,0.1); }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px; text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      color: var(--cyan); letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--text-dim); max-width: 600px; margin: 0 auto 40px;
+    }
+    .stats-bar {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 24px 40px; padding: 24px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px;
+      max-width: 700px; margin: 0 auto 40px;
+    }
+    .stat-item { text-align: center; }
+    .stat-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+    .stat-value { font-size: 20px; font-weight: bold; color: var(--cyan); margin-top: 4px; }
+    .stat-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; margin-right: 6px;
+    }
+    .stat-dot.online { background: var(--green); box-shadow: 0 0 8px var(--green); }
+    .stat-dot.offline { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 14px 32px; background: var(--cyan); color: #000;
+      font-family: var(--font); font-size: 14px; font-weight: bold;
+      border: none; border-radius: 6px; cursor: pointer;
+      transition: all 0.2s; letter-spacing: 1px;
+    }
+    .btn-primary:hover { background: #00e5e5; transform: translateY(-1px); }
+    .btn-secondary {
+      padding: 14px 32px; background: transparent; color: var(--green);
+      font-family: var(--font); font-size: 14px; font-weight: bold;
+      border: 1px solid var(--green); border-radius: 6px; cursor: pointer;
+      transition: all 0.2s; letter-spacing: 1px;
+    }
+    .btn-secondary:hover { background: rgba(0,255,136,0.1); transform: translateY(-1px); }
+
+    /* Section */
+    .section {
+      padding: 60px 0; border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 20px; color: var(--cyan); letter-spacing: 2px;
+      margin-bottom: 32px; text-align: center;
+    }
+    .section-title::before { content: '// '; color: var(--text-dim); }
+
+    /* Signal Cards Mini */
+    .signal-cards { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+    .signal-card-mini {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; background: var(--bg3);
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 13px;
+    }
+    .sc-symbol { color: var(--cyan); font-weight: bold; }
+    .sc-dir { font-size: 11px; padding: 2px 6px; border-radius: 3px; }
+    .sc-dir.long { background: rgba(0,255,136,0.15); color: var(--green); }
+    .sc-dir.short { background: rgba(255,51,85,0.15); color: var(--red); }
+    .sc-score { color: var(--yellow); font-weight: bold; }
+
+    /* Pricing */
+    .pricing-grid {
+      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    }
+    .pricing-card {
+      flex: 1; min-width: 280px; max-width: 400px;
+      padding: 32px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .pricing-card.featured {
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0,255,255,0.08);
+    }
+    .pricing-card h3 { font-size: 16px; color: var(--cyan); margin-bottom: 8px; }
+    .pricing-card .price { font-size: 32px; color: #fff; font-weight: bold; margin-bottom: 20px; }
+    .pricing-card .price span { font-size: 14px; color: var(--text-dim); }
+    .pricing-card ul { list-style: none; margin-bottom: 24px; }
+    .pricing-card ul li { padding: 6px 0; font-size: 13px; }
+    .pricing-card ul li::before { content: '✓ '; color: var(--green); }
+
+    /* How it works */
+    .steps { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .step {
+      flex: 1; min-width: 180px; max-width: 220px;
+      padding: 24px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px;
+      text-align: center;
+    }
+    .step-num {
+      width: 36px; height: 36px; border: 1px solid var(--cyan);
+      border-radius: 50%; display: inline-flex; align-items: center;
+      justify-content: center; font-size: 14px; color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .step h4 { font-size: 13px; color: #fff; margin-bottom: 8px; }
+    .step p { font-size: 12px; color: var(--text-dim); }
+
+    /* Sample Signal */
+    .signal-sample {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 24px; max-width: 500px; margin: 0 auto;
+      font-size: 13px; line-height: 1.8;
+    }
+    .signal-sample .ss-header { color: var(--cyan); margin-bottom: 12px; }
+    .signal-sample .ss-line { display: flex; justify-content: space-between; padding: 4px 0; }
+    .signal-sample .ss-label { color: var(--text-dim); }
+    .signal-sample .ss-value { color: #fff; }
+    .signal-sample .ss-score-bar { height: 6px; background: var(--bg3); border-radius: 3px; margin: 8px 0; overflow: hidden; }
+    .signal-sample .ss-score-fill { height: 100%; background: var(--green); border-radius: 3px; }
+
+    /* About */
+    .about-card {
+      max-width: 600px; margin: 0 auto;
+      padding: 32px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 8px;
+      text-align: center;
+    }
+    .about-card p { font-size: 14px; color: var(--text-dim); margin-bottom: 16px; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0; text-align: center;
+      color: var(--text-dim); font-size: 12px;
+    }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 16px; }
+    .footer-links a { color: var(--text-dim); }
+    .footer-links a:hover { color: var(--cyan); }
+    .disclaimer {
+      max-width: 600px; margin: 20px auto 0;
+      font-size: 11px; color: var(--text-dim); opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 40px 0; }
+      .pricing-card { min-width: 100%; }
+      .step { min-width: 100%; }
+      .nav-links { display: none; }
+      .stats-bar { gap: 16px; }
+    }
+    .lang-switcher { position: relative; }
+    .lang-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text); padding: 6px 12px; border-radius: 4px;
+      cursor: pointer; font-family: var(--font); font-size: 14px;
+    }
+    .lang-menu {
+      display: none; position: absolute; top: 100%; right: 0;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px; min-width: 200px;
+      z-index: 200; max-height: 300px; overflow-y: auto;
+    }
+    .lang-menu.show { display: block; }
+    .lang-menu a {
+      display: block; padding: 6px 10px; color: var(--text);
+      text-decoration: none; font-size: 13px; border-radius: 4px;
+    }
+    .lang-menu a:hover { background: var(--bg3); color: var(--cyan); }
+  </style>
+  <script src="translations.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">OMNI <span>BRAIN</span> V2</div>
+    <div class="nav-links">
+      <a href="#stats" data-i18n="nav_stats">Stats</a>
+      <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="#how" data-i18n="nav_how">How It Works</a>
+      <a href="#signal" data-i18n="nav_sample">Sample</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="toggleLangMenu()">🌐 <span id="current-lang-flag">🇬🇧</span></button>
+      <div class="lang-menu" id="lang-menu">
+        <a href="javascript:void(0)" onclick="setLanguage('en')">🇬🇧 English</a>
+        <a href="javascript:void(0)" onclick="setLanguage('hi')">🇮🇳 हिंदी</a>
+        <a href="javascript:void(0)" onclick="setLanguage('te')">🇮🇳 తెలుగు</a>
+        <a href="javascript:void(0)" onclick="setLanguage('ta')">🇮🇳 தமிழ்</a>
+        <a href="javascript:void(0)" onclick="setLanguage('ar')">🇸🇦 العربية</a>
+        <a href="javascript:void(0)" onclick="setLanguage('id')">🇮🇩 Indonesia</a>
+        <a href="javascript:void(0)" onclick="setLanguage('tr')">🇹🇷 Türkçe</a>
+        <a href="javascript:void(0)" onclick="setLanguage('ru')">🇷🇺 Русский</a>
+        <a href="javascript:void(0)" onclick="setLanguage('es')">🇪🇸 Español</a>
+        <a href="javascript:void(0)" onclick="setLanguage('pt')">🇧🇷 Português</a>
+        <a href="javascript:void(0)" onclick="setLanguage('zh')">🇨🇳 中文</a>
+        <a href="javascript:void(0)" onclick="setLanguage('ja')">🇯🇵 日本語</a>
+      </div>
+    </div>
+    <a href="https://t.me/omnibrainsignals_vip" target="_blank" rel="noopener" class="btn-header" data-i18n="nav_join_vip">JOIN VIP</a>
+  </div>
+</header>
+
+<section class="hero" id="stats">
+  <div class="container">
+    <h1 data-i18n="headline">OMNI BRAIN V2</h1>
+    <p><span data-i18n="subhead_line1">Institutional-grade forex signals — built on a phone, free forever.</span><br><span data-i18n="subhead_line2">72%+ win rate. Real-time. No BS.</span></p>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-label" data-i18n="stat_system">System</div>
+        <div class="stat-value" id="system-status"><span class="stat-dot online"></span> ONLINE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label" data-i18n="stat_signals">Signals Today</div>
+        <div class="stat-value" id="signals-today">--</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label" data-i18n="stat_winrate">Win Rate 7d</div>
+        <div class="stat-value" id="win-rate-7d">--</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label" data-i18n="stat_lastsignal">Last Signal</div>
+        <div class="stat-value" id="last-signal">--</div>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <a href="https://t.me/omnibrainsignals_free" target="_blank" rel="noopener" class="btn-secondary" data-i18n="btn_free_channel">FREE CHANNEL</a>
+      <a href="https://t.me/omnibrainsignals_vip" target="_blank" rel="noopener" class="btn-primary" data-i18n="btn_vip_access">VIP ACCESS</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="social-proof">
+  <div class="container">
+    <h2 class="section-title" data-i18n="section_live">Live Track Record</h2>
+    <div class="signal-cards" id="signal-cards">
+      <div class="signal-card-mini"><span style="color:var(--text-dim)" data-i18n="connecting">Connecting to live feed...</span></div>
+    </div>
+    <p style="text-align:center;margin-top:16px;color:var(--text-dim);font-size:13px">
+      <span id="live-count">--</span> <span data-i18n="live_watching">traders watching live</span>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <h2 class="section-title" data-i18n="section_pricing">Pricing</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3 data-i18n="plan_free">FREE PLAN</h3>
+        <div class="price"><span data-i18n="price_free">Free</span></div>
+        <ul>
+          <li data-i18n="feature_free_1">Delayed WAIT signals (30min)</li>
+          <li data-i18n="feature_free_2">Daily market outlook</li>
+          <li data-i18n="feature_free_3">Educational content</li>
+          <li data-i18n="feature_free_4">@omnibrainsignals_free</li>
+        </ul>
+        <a href="https://t.me/omnibrainsignals_free" target="_blank" rel="noopener" class="btn-secondary" style="display:block;text-align:center;text-decoration:none;" data-i18n="btn_join_free">Join Free Channel</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3 data-i18n="plan_vip">VIP PLAN</h3>
+        <div class="price"><span class="regional-price">₹999/month</span></div>
+        <ul>
+          <li data-i18n="feature_vip_1">Instant EXECUTE signals</li>
+          <li data-i18n="feature_vip_2">Full entry / SL / TP details</li>
+          <li data-i18n="feature_vip_3">10-factor score breakdown</li>
+          <li data-i18n="feature_vip_4">Kelly position sizing</li>
+          <li data-i18n="feature_vip_5">News + yield context</li>
+          <li data-i18n="feature_vip_6">Bot commands (/status, /score, etc.)</li>
+          <li data-i18n="feature_vip_7">Daily P&L reports</li>
+          <li data-i18n="feature_vip_8">Direct support</li>
+        </ul>
+        <a href="https://t.me/omnibrainsignals_vip" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;text-decoration:none;" data-i18n="btn_join_vip">Join VIP</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <h2 class="section-title" data-i18n="section_how">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4 data-i18n="step1_title">Live Data Feed</h4>
+        <p data-i18n="step1_desc">TwelveData pushes real-time prices for 9 assets via WebSocket</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4 data-i18n="step2_title">AI Scoring Engine</h4>
+        <p data-i18n="step2_desc">10 confluence factors scored: trend, momentum, OB, FVG, sweep, volume, correlation, news, yields, sentiment</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4 data-i18n="step3_title">Signal Generation</h4>
+        <p data-i18n="step3_desc">Score ≥ 75/100 triggers EXECUTE signal with auto-calculated entry, SL, TP</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4 data-i18n="step4_title">Telegram Alert</h4>
+        <p data-i18n="step4_desc">Signal hits your Telegram instantly — VIP gets full details, Free gets delayed WAIT</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="signal">
+  <div class="container">
+    <h2 class="section-title" data-i18n="section_sample">Sample Signal</h2>
+    <div class="signal-sample">
+      <div class="ss-header" data-i18n="sample_header">// EXECUTE SIGNAL — What VIP members receive</div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_symbol_label">Symbol</span><span class="ss-value">XAUUSD</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_direction_label">Direction</span><span class="ss-value" style="color:var(--green)">BULLISH</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_score_label">Score</span><span class="ss-value" style="color:var(--yellow)">85/100</span></div>
+      <div class="ss-score-bar"><div class="ss-score-fill" style="width:85%"></div></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_entry_label">Entry</span><span class="ss-value">2337.50</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_sl_label">Stop Loss</span><span class="ss-value" style="color:var(--red)">2325.00</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_tp1_label">TP1</span><span class="ss-value" style="color:var(--green)">2350.00</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_tp2_label">TP2</span><span class="ss-value" style="color:var(--green)">2360.00</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_tp3_label">TP3</span><span class="ss-value" style="color:var(--green)">2380.00</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_lots_label">Lots</span><span class="ss-value">0.50 (Kelly)</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_rr_label">R:R</span><span class="ss-value">1:3.2</span></div>
+      <div class="ss-line"><span class="ss-label" data-i18n="sample_context_label">Context</span><span class="ss-value" style="font-size:11px;color:var(--text-dim)">London session · Treasury yield inversion · FVG detected</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-title" data-i18n="section_about">About</h2>
+    <div class="about-card">
+      <p data-i18n="about_text1">Built by a self-taught developer on an Android phone using open-source tools. Zero cost. Real results.</p>
+      <p data-i18n="about_text2">258+ tests passing. 14+ automated processes. 72% win rate paper trading.</p>
+      <p style="font-size:13px">
+        <a href="https://youtube.com/@omnibrain" target="_blank" rel="noopener" data-i18n="about_youtube">YouTube</a> ·
+        <a href="https://instagram.com/omnibrain" target="_blank" rel="noopener" data-i18n="about_instagram">Instagram</a> ·
+        <a href="https://t.me/omnibrainsignals_free" target="_blank" rel="noopener" data-i18n="about_telegram">Telegram</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://t.me/omnibrainsignals_free" target="_blank" rel="noopener" data-i18n="footer_telegram_free">Telegram Free</a>
+      <a href="https://t.me/omnibrainsignals_vip" target="_blank" rel="noopener" data-i18n="footer_telegram_vip">Telegram VIP</a>
+      <a href="https://youtube.com/@omnibrain" target="_blank" rel="noopener" data-i18n="footer_youtube">YouTube</a>
+      <a href="https://instagram.com/omnibrain" target="_blank" rel="noopener" data-i18n="footer_instagram">Instagram</a>
+    </div>
+    <p data-i18n="footer_copyright">OMNI BRAIN V2 © 2026</p>
+    <p class="disclaimer" data-i18n="disclaimer">
+      RISK DISCLAIMER: Trading forex, cryptocurrencies, and other leveraged products carries a high level of risk and may not be suitable for all investors. Signals are provided for educational purposes only. Past performance does not guarantee future results. Never trade with money you cannot afford to lose.
+    </p>
+  </div>
+</footer>
+
+<script src="api.js"></script>
+<script>
+function toggleLangMenu() {
+  document.getElementById('lang-menu').classList.toggle('show');
+}
+
+function setLanguage(code) {
+  localStorage.setItem('omni_lang', code);
+  applyLanguage(code);
+  document.getElementById('lang-menu').classList.remove('show');
+}
+
+function applyLanguage(code) {
+  const t = TRANSLATIONS[code] || TRANSLATIONS.en;
+  const p = REGIONAL_PRICING[code] || REGIONAL_PRICING.en;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key]) {
+      el.textContent = t[key];
+    }
+  });
+
+  const priceEls = document.querySelectorAll('.regional-price');
+  priceEls.forEach(el => {
+    el.textContent = p.symbol + p.amount + p.freq;
+  });
+
+  const flagMap = { en:'🇬🇧', hi:'🇮🇳', te:'🇮🇳', ta:'🇮🇳', ar:'🇸🇦', id:'🇮🇩', tr:'🇹🇷', ru:'🇷🇺', es:'🇪🇸', pt:'🇧🇷', zh:'🇨🇳', ja:'🇯🇵' };
+  document.getElementById('current-lang-flag').textContent = flagMap[code] || '🌐';
+
+  if (['ar', 'ur', 'fa'].includes(code)) {
+    document.documentElement.dir = 'rtl';
+  } else {
+    document.documentElement.dir = 'ltr';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('omni_lang') || 'en';
+  applyLanguage(saved);
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-switcher')) {
+    document.getElementById('lang-menu')?.classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>

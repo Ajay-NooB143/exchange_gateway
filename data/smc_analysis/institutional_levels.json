@@ -1,0 +1,659 @@
+{
+  "levels": [
+    {
+      "type": "OB_BEARISH",
+      "zone": "4508.43 - 4501.38",
+      "pivot": "4507.23 / 4503.14",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.6"
+    },
+    {
+      "type": "OB_BEARISH",
+      "zone": "4508.4 - 4500.0",
+      "pivot": "4506.67 / 4501.76",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.3"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4506.87 - 4500.0",
+      "pivot": "4506.64 / 4501.76",
+      "tf": "H1",
+      "state": "ACTIVE",
+      "strength": "0.5"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4508.96 - 4500.2",
+      "pivot": "4507.2 / 4501.76",
+      "tf": "H1",
+      "state": "ACTIVE",
+      "strength": "0.7"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4509.24 - 4501.27",
+      "pivot": "4507.48 / 4501.96",
+      "tf": "H1",
+      "state": "ACTIVE",
+      "strength": "0.4"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4510.72 - 4504.14",
+      "pivot": "4508.96 / 4505.9",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.4"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4513.12 - 4502.07",
+      "pivot": "4511.36 / 4503.83",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "1.0"
+    },
+    {
+      "type": "OB_BEARISH",
+      "zone": "4513.12 - 4504.7",
+      "pivot": "4511.36 / 4503.83",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.9"
+    },
+    {
+      "type": "OB_BULLISH",
+      "zone": "4514.04 - 4504.7",
+      "pivot": "4512.28 / 4506.46",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.7"
+    },
+    {
+      "type": "OB_BEARISH",
+      "zone": "4514.04 - 4505.76",
+      "pivot": "4512.28 / 4506.46",
+      "tf": "H1",
+      "state": "MITIGATED",
+      "strength": "0.5"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.81 - 4503.49",
+      "midpoint": "4505.65",
+      "tf": "H1",
+      "state": "5%",
+      "strength": "1.0"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4505.35 - 4503.25",
+      "midpoint": "4504.30",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.7"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4505.33 - 4502.7",
+      "midpoint": "4504.01",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.9"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4506.66 - 4504.29",
+      "midpoint": "4505.48",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.8"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4505.06 - 4502.7",
+      "midpoint": "4503.88",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.8"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.21 - 4504.29",
+      "midpoint": "4505.75",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "1.0"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4505.06 - 4504.58",
+      "midpoint": "4504.82",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.2"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.21 - 4505.42",
+      "midpoint": "4506.32",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.6"
+    },
+    {
+      "type": "FVG_BULLISH",
+      "zone": "4507.23 - 4505.36",
+      "midpoint": "4506.30",
+      "tf": "H1",
+      "state": "FILLED",
+      "strength": "0.6"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4506.67 - 4505.42",
+      "midpoint": "4506.05",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4506.64 - 4505.36",
+      "midpoint": "4506.00",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4505.11 - 4503.14",
+      "midpoint": "4504.12",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.7"
+    },
+    {
+      "type": "FVG_BULLISH",
+      "zone": "4504.23 - 4503.03",
+      "midpoint": "4503.63",
+      "tf": "H1",
+      "state": "FILLED",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.2 - 4505.9",
+      "midpoint": "4506.55",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BULLISH",
+      "zone": "4507.48 - 4506.15",
+      "midpoint": "4506.81",
+      "tf": "H1",
+      "state": "FILLED",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.23 - 4505.9",
+      "midpoint": "4506.56",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.42 - 4506.15",
+      "midpoint": "4506.78",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.4"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4507.42 - 4506.46",
+      "midpoint": "4506.94",
+      "tf": "H1",
+      "state": "0%",
+      "strength": "0.3"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4511.36 - 4508.6",
+      "midpoint": "4509.98",
+      "tf": "H1",
+      "state": "FILLED",
+      "strength": "0.9"
+    },
+    {
+      "type": "FVG_BEARISH",
+      "zone": "4509.48 - 4507.52",
+      "midpoint": "4508.50",
+      "tf": "H1",
+      "state": "96%",
+      "strength": "0.7"
+    },
+    {
+      "type": "SWING_LH",
+      "price": 4508.38,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_LL",
+      "price": 4502.69,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_LL",
+      "price": 4502.22,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_HL",
+      "price": 4502.7,
+      "tf": "H1",
+      "state": "BROKEN"
+    },
+    {
+      "type": "SWING_LL",
+      "price": 4501.63,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_LH",
+      "price": 4507.6,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_HH",
+      "price": 4508.44,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_HL",
+      "price": 4501.76,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_HL",
+      "price": 4501.96,
+      "tf": "H1",
+      "state": "ACTIVE"
+    },
+    {
+      "type": "SWING_HL",
+      "price": 4503.03,
+      "tf": "H1",
+      "state": "ACTIVE"
+    }
+  ],
+  "fvgs": [
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.81,
+      "bottom": 4503.49,
+      "midpoint": 4505.65,
+      "detected_at": "2026-06-12T16:50:07.793624+00:00",
+      "filled": false,
+      "fill_pct": 5.092592592597758,
+      "strength": 1.0
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4505.35,
+      "bottom": 4503.25,
+      "midpoint": 4504.3,
+      "detected_at": "2026-06-12T16:50:07.793713+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.7035175879398761
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4505.33,
+      "bottom": 4502.7,
+      "midpoint": 4504.014999999999,
+      "detected_at": "2026-06-12T16:50:07.793801+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.8810720268007763
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4506.66,
+      "bottom": 4504.29,
+      "midpoint": 4505.475,
+      "detected_at": "2026-06-12T16:50:07.793892+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.7939698492462575
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4505.06,
+      "bottom": 4502.7,
+      "midpoint": 4503.88,
+      "detected_at": "2026-06-12T16:50:07.793982+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.7906197654943949
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.21,
+      "bottom": 4504.29,
+      "midpoint": 4505.75,
+      "detected_at": "2026-06-12T16:50:07.794070+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.9782244556114921
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4505.06,
+      "bottom": 4504.58,
+      "midpoint": 4504.82,
+      "detected_at": "2026-06-12T16:50:07.794159+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.16080402010067368
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.21,
+      "bottom": 4505.42,
+      "midpoint": 4506.3150000000005,
+      "detected_at": "2026-06-12T16:50:07.794248+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.5996649916248259
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BULLISH",
+      "top": 4507.23,
+      "bottom": 4505.36,
+      "midpoint": 4506.295,
+      "detected_at": "2026-06-12T16:50:07.794347+00:00",
+      "filled": true,
+      "fill_pct": 100.0,
+      "strength": 0.626465661641554
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4506.67,
+      "bottom": 4505.42,
+      "midpoint": 4506.045,
+      "detected_at": "2026-06-12T16:50:07.794438+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.41876046901175845
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4506.64,
+      "bottom": 4505.36,
+      "midpoint": 4506.0,
+      "detected_at": "2026-06-12T16:50:07.794527+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.42881072026826006
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4505.11,
+      "bottom": 4503.14,
+      "midpoint": 4504.125,
+      "detected_at": "2026-06-12T16:50:07.794624+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.659966499162312
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BULLISH",
+      "top": 4504.23,
+      "bottom": 4503.03,
+      "midpoint": 4503.629999999999,
+      "detected_at": "2026-06-12T16:50:07.794711+00:00",
+      "filled": true,
+      "fill_pct": 100.0,
+      "strength": 0.40201005025122716
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.2,
+      "bottom": 4505.9,
+      "midpoint": 4506.549999999999,
+      "detected_at": "2026-06-12T16:50:07.794807+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.43551088777228975
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BULLISH",
+      "top": 4507.48,
+      "bottom": 4506.15,
+      "midpoint": 4506.815,
+      "detected_at": "2026-06-12T16:50:07.794894+00:00",
+      "filled": true,
+      "fill_pct": 100.0,
+      "strength": 0.4455611390284866
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.23,
+      "bottom": 4505.9,
+      "midpoint": 4506.565,
+      "detected_at": "2026-06-12T16:50:07.794981+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.4455611390284866
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.42,
+      "bottom": 4506.15,
+      "midpoint": 4506.785,
+      "detected_at": "2026-06-12T16:50:07.795071+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.42546063651609284
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4507.42,
+      "bottom": 4506.46,
+      "midpoint": 4506.9400000000005,
+      "detected_at": "2026-06-12T16:50:07.795166+00:00",
+      "filled": false,
+      "fill_pct": 0.0,
+      "strength": 0.32160804020104267
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4511.36,
+      "bottom": 4508.6,
+      "midpoint": 4509.98,
+      "detected_at": "2026-06-12T16:50:07.795407+00:00",
+      "filled": true,
+      "fill_pct": 100.0,
+      "strength": 0.9246231155777311
+    },
+    {
+      "tf": "H1",
+      "zone_type": "BEARISH",
+      "top": 4509.48,
+      "bottom": 4507.52,
+      "midpoint": 4508.5,
+      "detected_at": "2026-06-12T16:50:07.795515+00:00",
+      "filled": false,
+      "fill_pct": 96.42857142858469,
+      "strength": 0.6566164154101447
+    }
+  ],
+  "obs": [
+    {
+      "tf": "H1",
+      "direction": "BEARISH",
+      "premium_zone_top": 4508.43,
+      "premium_zone_bottom": 4506.67,
+      "discount_zone_top": 4503.14,
+      "discount_zone_bottom": 4501.38,
+      "pivot_high": 4507.23,
+      "pivot_low": 4503.14,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.816769+00:00",
+      "strength": 0.5960352422906137
+    },
+    {
+      "tf": "H1",
+      "direction": "BEARISH",
+      "premium_zone_top": 4508.4,
+      "premium_zone_bottom": 4506.64,
+      "discount_zone_top": 4501.76,
+      "discount_zone_bottom": 4500.0,
+      "pivot_high": 4506.67,
+      "pivot_low": 4501.76,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.816871+00:00",
+      "strength": 0.279574861367522
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4506.87,
+      "premium_zone_bottom": 4505.11,
+      "discount_zone_top": 4501.76,
+      "discount_zone_bottom": 4500.0,
+      "pivot_high": 4506.64,
+      "pivot_low": 4501.76,
+      "mitigated": false,
+      "detected_at": "2026-06-12T16:50:07.816972+00:00",
+      "strength": 0.5179119754347038
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4508.96,
+      "premium_zone_bottom": 4507.2,
+      "discount_zone_top": 4501.96,
+      "discount_zone_bottom": 4500.2,
+      "pivot_high": 4507.2,
+      "pivot_low": 4501.76,
+      "mitigated": false,
+      "detected_at": "2026-06-12T16:50:07.817087+00:00",
+      "strength": 0.7087326943559688
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4509.24,
+      "premium_zone_bottom": 4507.48,
+      "discount_zone_top": 4503.03,
+      "discount_zone_bottom": 4501.27,
+      "pivot_high": 4507.48,
+      "pivot_low": 4501.96,
+      "mitigated": false,
+      "detected_at": "2026-06-12T16:50:07.817188+00:00",
+      "strength": 0.35190918472657384
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4510.72,
+      "premium_zone_bottom": 4508.96,
+      "discount_zone_top": 4505.9,
+      "discount_zone_bottom": 4504.14,
+      "pivot_high": 4508.96,
+      "pivot_low": 4505.9,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.817317+00:00",
+      "strength": 0.3923976608186197
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4513.12,
+      "premium_zone_bottom": 4511.36,
+      "discount_zone_top": 4503.83,
+      "discount_zone_bottom": 4502.07,
+      "pivot_high": 4511.36,
+      "pivot_low": 4503.83,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.817474+00:00",
+      "strength": 1.0
+    },
+    {
+      "tf": "H1",
+      "direction": "BEARISH",
+      "premium_zone_top": 4513.12,
+      "premium_zone_bottom": 4511.36,
+      "discount_zone_top": 4506.46,
+      "discount_zone_bottom": 4504.7,
+      "pivot_high": 4511.36,
+      "pivot_low": 4503.83,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.817574+00:00",
+      "strength": 0.8586956521741143
+    },
+    {
+      "tf": "H1",
+      "direction": "BULLISH",
+      "premium_zone_top": 4514.04,
+      "premium_zone_bottom": 4512.28,
+      "discount_zone_top": 4506.46,
+      "discount_zone_bottom": 4504.7,
+      "pivot_high": 4512.28,
+      "pivot_low": 4506.46,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.817672+00:00",
+      "strength": 0.7250976562503396
+    },
+    {
+      "tf": "H1",
+      "direction": "BEARISH",
+      "premium_zone_top": 4514.04,
+      "premium_zone_bottom": 4512.28,
+      "discount_zone_top": 4507.52,
+      "discount_zone_bottom": 4505.76,
+      "pivot_high": 4512.28,
+      "pivot_low": 4506.46,
+      "mitigated": true,
+      "detected_at": "2026-06-12T16:50:07.817770+00:00",
+      "strength": 0.4674220963171654
+    }
+  ],
+  "updated": "2026-06-12T16:50:07.844448+00:00"
+}

@@ -1,0 +1,329 @@
+TITLE: News Events — Kaise automate karein? 📰🤖
+
+═══════════════════════════════════════════
+VIDEO 9: NEWS AUTOMATION
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:45) ━━━
+
+[VISUAL: News ticker showing NFP release → chart volatility]
+
+Bhai, kya aapke saath kabhi aisa hua hai?
+Aapne perfect entry li. Chart analysis kiya.
+Order Block bana. FVG bana. Sab perfect.
+
+Aur phir — NEWS aaya.
+NFP. FOMC. CPI.
+Aur aapki trade — 100 pips against.
+
+Aaj main sikhaunga — 
+kaise OMNI BRAIN automatically news events detect karta hai,
+aur kaise system pause ho jaata hai
+30 minute pehle high-impact news se.
+
+━━━ WHY NEWS MATTERS (0:45 - 2:30) ━━━
+
+[VISUAL: Calendar showing high-impact news events]
+
+Market 3 cheezon se move hota hai:
+1. Technical (SMC patterns, structure)
+2. Fundamental (Economic data)
+3. Sentiment (Fear & Greed, news)
+
+Technical analysis 70% time kaam karta hai.
+Lekin news ke time — technical breakdown ho jaata hai.
+Institutions apne orders cancel karte hain.
+Spread 10x ho jaata hai.
+Random whipsaw movements.
+
+[SHOW: Chart showing news event impact]
+
+Example: NFP (Non-Farm Payrolls)
+• Every first Friday of month
+• US employment data
+• 8:30 AM New York time
+• Average move: 150-200 pips on XAUUSD
+
+Agar aap NFP ke time trade karte ho —
+aap casino khel rahe ho, trading nahi.
+
+[SHOW: Bad trade example]
+
+Trader ne liya BUY XAUUSD 2 lot.
+NFP release — 5 minutes later.
+Price -80 pips.
+Loss: $1,600 in 5 minutes.
+
+Yeh kyun hua?
+Kyunki news ka control nahi tha.
+
+━━━ OMNI BRAIN NEWS SYSTEM (2:30 - 4:30) ━━━
+
+[VISUAL: OMNI BRAIN news module]
+
+OMNI BRAIN ka news system 4 layers ka hai:
+
+LAYER 1: NEWS CALENDAR ────────────
+Automatic fetch from economic calendar.
+Detects all high-impact events.
+Updates every hour.
+
+```
+NEWS CALENDAR (Next 24h)
+────────────────────────────
+Today 14:30 | USD CPI          | HIGH ⚠️
+Today 20:00 | FOMC Minutes     | HIGH ⚠️
+Tomorrow 08:30| EUR GDP         | MEDIUM
+Tomorrow 14:30| USD Jobless Claims| MEDIUM
+────────────────────────────
+```
+
+LAYER 2: BLACKOUT SYSTEM ──────────
+30 minutes before high-impact news:
+• System stops taking new trades
+• Closes marginal positions
+• Switches to READ-ONLY mode
+
+LAYER 3: AUTO-RESUME ─────────────
+30 minutes after news:
+• Checks volatility returned to normal
+• Checks spread normalized
+• Resumes normal trading
+
+LAYER 4: FEAR & GREED INTEGRATION ──
+Fear & Greed Index monitor:
+• Extreme Fear → reduce position size
+• Extreme Greed → tighten stops
+• Neutral → normal trading
+
+[SHOW: All 4 layers in dashboard]
+
+---
+News Blackout Configuration:
+
+```
+NEWS BLACKOUT SETTINGS
+─────────────────────────
+Pre-News Halt:    30 min  [ACTIVE]
+Post-News Resume:  30 min  [ACTIVE]
+High Impact Only:  YES     [ACTIVE]
+Medium Impact:     WARN    [ACTIVE]
+Low Impact:        IGNORE  [ACTIVE]
+
+Fear & Greed Threshold:
+  Extreme Fear (<25):  Kelly × 0.5
+  Extreme Greed (>75): Tighten SL × 0.7
+─────────────────────────
+```
+---
+
+━━━ LIVE DEMO: NEWS BLACKOUT (4:30 - 6:00) ━━━
+
+[VISUAL: Screen recording during actual news event]
+
+[SHOW: Terminal output during NFP]
+
+```
+═══════════════════════════════════
+ OMNI BRAIN V2 — News Blackout
+═══════════════════════════════════
+⏰ 13:55 | NFP in 30 min
+⚠️ HIGH IMPACT NEWS DETECTED
+→ Pre-blackout initiated
+
+13:56 | Closing marginal positions
+13:57 | Position XAUUSD BUY → CLOSED (+0.3%)
+13:58 | Signal generation: PAUSED
+13:59 | System: READ-ONLY MODE
+
+14:00 | ⚠️ NFP DATA RELEASED ⚠️
+      | Actual: 312K | Forecast: 250K
+      | Impact: HIGH (beat expectations)
+      | USD strengthening...
+
+14:15 | Volatility: HIGH
+14:20 | Volatility: HIGH
+14:25 | Volatility: MODERATE
+14:30 | Post-blackout check...
+      | Spread normalized ✅
+      | Volatility stable ✅
+      | Resuming normal trading
+═══════════════════════════════════
+```
+
+Dekha? System automatically:
+• Pause hua 30 min pehle
+• Close kiya open positions (profit book kiya)
+• Wait kiya news ke liye
+• Check kiya volatility normalize hui
+• Fir resume kiya
+
+Aapko kuch nahi karna.
+
+━━━ FEAR & GREED INDEX INTEGRATION (6:00 - 7:30) ━━━
+
+[VISUAL: Fear & Greed Index dashboard]
+
+Fear & Greed Index — CNN Money ka index hai jo market sentiment batata hai.
+
+Range:
+• 0-25: Extreme Fear → Market oversold
+• 25-45: Fear → Caution zone
+• 45-55: Neutral → Normal trading
+• 55-75: Greed → Optimism
+• 75-100: Extreme Greed → Market overbought
+
+[SHOW: OMNI BRAIN Fear & Greed panel]
+
+```
+FEAR & GREED INDEX
+─────────────────────
+Current: 32 (FEAR) 😨
+24h Change: -8 points
+─────────────────────
+OMNI BRAIN Action:
+→ Position size: Kelly × 0.75
+→ Tightened stops: 1.5 ATR
+→ Bias: Defensive
+─────────────────────
+```
+
+OMNI BRAIN automatically adjusts based on sentiment:
+• Extreme Fear: Reduce position size 50%
+• Fear: Normal with caution
+• Neutral: Full strategy
+• Greed: Tighter TP
+• Extreme Greed: Reduce position size 50%
+
+━━━ SUPPORTED NEWS EVENTS (7:30 - 8:30) ━━━
+
+[VISUAL: News event categories]
+
+OMNI BRAIN tracks 50+ economic events:
+
+━━ US EVENTS ━━━━
+• NFP (Non-Farm Payrolls) — First Friday
+• FOMC Rate Decision — 8 times/year
+• CPI (Inflation) — Monthly
+• GDP — Quarterly
+• Jobless Claims — Weekly
+
+━━ EUROPE EVENTS ━━━━
+• ECB Rate Decision
+• German GDP
+• Eurozone CPI
+• UK Inflation
+
+━━ OTHER ━━━━
+• BOJ Rate Decision (Japan)
+• RBA Rate Decision (Australia)
+• SNB Rate Decision (Switzerland)
+• OPEC Meetings (Oil)
+• Fed Chair Speeches
+
+Har event ka impact level assigned hai.
+Sirf HIGH impact events trigger blackout.
+MEDIUM events trigger warning.
+LOW events ignored.
+
+[SHOW: Event configuration panel]
+
+```
+EVENT CONFIG
+────────────────────────────
+NFP          → HIGH → BLACKOUT
+FOMC         → HIGH → BLACKOUT
+CPI          → HIGH → BLACKOUT
+GDP          → MED → WARNING
+Jobless      → MED → WARNING
+Retail Sales → LOW → IGNORE
+Housing Data → LOW → IGNORE
+────────────────────────────
+```
+
+━━━ BACKTEST: WITH VS WITHOUT NEWS BLACKOUT (8:30 - 9:30) ━━━
+
+[VISUAL: Comparison charts]
+
+WITHOUT news blackout:
+• 23 trades during news events
+• 8 winners (35% win rate)
+• 15 losers (65% loss rate)
+• Average loss: -$320
+• Total news P&L: -$2,840
+
+WITH news blackout (OMNI BRAIN):
+• 0 trades during news events
+• 0 losses from news
+• Profit retained: +$2,840
+• Reduced overall drawdown by 12%
+
+[SHOW: Equity curve comparison]
+
+Itna simple change — news events avoid karo.
+Aur aapki profitability dramatically improve ho jayegi.
+
+━━━ CTA (9:30 - 10:30) ━━━
+
+[VISUAL: Telegram channel]
+
+News events — most dangerous time for retail traders.
+Lekin agar aap automate kar lo — safe ho.
+
+OMNI BRAIN automatically:
+• Detects upcoming news
+• Halts trading before high-impact events
+• Resumes after volatility normalizes
+• Integrates Fear & Greed for additional edge
+
+FREE Telegram channel mein WAIT signals.
+VIP channel mein EXECUTE signals with news protection.
+
+System build karna seekhna hai?
+Main sikha dunga — news blackout Python mein.
+
+Like karo. Subscribe karo. Share karo.
+Agli video: OMNI BRAIN V2 — COMPLETE BUILD FROM SCRATCH. 🏗️
+
+━━━ B-ROLL SHOT LIST ━━━
+1. News ticker animation showing NFP/FOMC
+2. Chart showing news volatility impact
+3. OMNI BRAIN news calendar dashboard
+4. Blackout configuration panel
+5. Terminal showing pre-blackout sequence
+6. Fear & Greed Index panel
+7. Event configuration screen
+8. Backtest comparison charts
+9. Telegram notification during blackout
+10. Resume notification after volatility normalizes
+
+━━━ THUMBNAIL TEXT ━━━
+Main text: "NEWS TRADING 📰"
+Sub text: "NFP / FOMC Auto-Pause"
+Emoji overlay: 📰🤖⏸️
+
+━━━ DESCRIPTION ━━━
+News events ko kaise automate karein? OMNI BRAIN V2 automatically detects high-impact news events (NFP, FOMC, CPI) and pauses trading 30 minutes before. Fear & Greed Index integration for additional market sentiment analysis.
+
+Topics:
+• Why news destroys technical analysis
+• OMNI BRAIN 4-layer news system
+• News blackout (30 min before high-impact)
+• Fear & Greed Index integration
+• 50+ supported economic events
+• Backtest: With vs without news blackout
+
+Timestamps:
+00:00 - Hook: News destroyed my perfect trade
+00:45 - Why news matters for traders
+02:30 - OMNI BRAIN news system (4 layers)
+04:30 - Live news blackout demo
+06:00 - Fear & Greed Index integration
+07:30 - Supported news events
+08:30 - Backtest comparison
+09:30 - CTA + Telegram
+
+Keywords: news trading, nfp trading, fomc trading, cpi trading, economic calendar, forex news, news blackout, automated news trading, fear and greed index, market sentiment, omni brain v2, algorithmic trading, risk management, forex events
+
+FREE Telegram: [link]
+VIP Telegram: [link]

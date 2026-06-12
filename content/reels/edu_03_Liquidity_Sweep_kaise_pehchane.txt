@@ -1,0 +1,24 @@
+─────────────────────────────────────
+EDUCATIONAL REEL #3: Liquidity Sweep kaise pehchane?
+─────────────────────────────────────
+HOOK (0-3 sec):
+"Liquidity Sweep kaise pehchane jo fakeout nahi hai! 🎯"
+
+VISUAL (3-8 sec):
+Show chart with sweep event marked, previous high/low taken out
+
+EXPLANATION (8-25 sec):
+Liquidity Sweep tab hota hai jab price previous high ya low todta hai aur phir turant reverse hota hai.
+✅ Institutions ne retailers ke stop-loss hunt kiye
+✅ Sweep ke baad real move aata hai
+✅ Hamara system sweep detect karta hai aur signal deta hai
+
+EXAMPLE (25-30 sec):
+"GBPUSD H4 — Previous low 1.2680 sweep hua, price 1.2720 tak gaya!"
+
+CTA (30-35 sec):
+"Sweep detect karna seekho! Link in bio!"
+
+HASHTAGS:
+#liquiditysweep #forex #trading #SMC #smartmoney #forexsignals
+─────────────────────────────────────

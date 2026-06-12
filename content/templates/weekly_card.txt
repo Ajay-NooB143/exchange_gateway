@@ -1,0 +1,8 @@
+┌─────────────────────────────────┐
+│ 📊 WEEKLY RESULTS               │
+│ Signals: {total}                │
+│ Win Rate: {win_rate}%           │
+│ Best: {best_asset}              │
+│ Avg RR: {avg_rr}                │
+│ @forextrader_9                 │
+└─────────────────────────────────┘

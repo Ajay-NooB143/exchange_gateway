@@ -1,0 +1,265 @@
+TITLE: Mera Trading Setup Tour — Phone + VPS + AI 📱💻🤖
+
+═══════════════════════════════════════════
+VIDEO 5: SETUP TOUR
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:40) ━━━
+
+[VISUAL: Phone screen showing terminal with PM2 running]
+
+Bhai, log crores kharch karte hain trading setup pe.
+$500 Windows VPS. $3000 ka monitor. $200 ka software.
+
+Mera setup dekho —
+Ek phone. Free software. Zero cost.
+
+Aur yeh setup 9 instruments simultaneously track karta hai,
+Order Block detect karta hai,
+Aur Telegram pe alerts bhejta hai.
+
+Aaj poora tour dunga — 
+kaisa hai, kaise kaam karta hai, kya kya hai.
+
+━━━ COMPONENT 1: USERLAND + LINUX (0:40 - 2:30) ━━━
+
+[VISUAL: Opening UserLAnd app on phone]
+
+Component 1: UserLAnd.
+Yeh ek app hai jo Android pe Linux chalaati hai.
+
+[SHOW: App installation and setup]
+
+Steps:
+1. Play Store se UserLAnd install karo (free)
+2. Ubuntu distribution select karo
+3. Login karo — terminal dikhega
+4. Python install karo: apt install python3
+
+Bas — ab aapke phone mein Linux server hai.
+
+Mera pura OMNI BRAIN isi mein chal raha hai.
+12 processes. Real-time analysis. Zero lag.
+
+[SHOW: Running python3 --version and listing directory]
+
+Yeh theoretical nahi hai.
+Yeh live prod environment hai.
+
+━━━ COMPONENT 2: TWELVEDATA API (2:30 - 4:00) ━━━
+
+[VISUAL: TwelveData dashboard on browser]
+
+Data kahan se aa raha hai?
+TwelveData.
+
+Free tier mein 800 API calls/day milte hain.
+Mere 9 instruments ke liye enough hai.
+
+[SHOW: API response in terminal]
+
+```python
+import requests
+url = "https://api.twelvedata.com/time_series"
+params = {
+    "symbol": "XAUUSD",
+    "interval": "15min",
+    "apikey": "YOUR_KEY",
+    "outputsize": 100
+}
+data = requests.get(url, params=params).json()
+```
+
+Har 15 minute mein naya data aata hai.
+Pipeline automatically process karti hai.
+
+Kya milta hai:
+• Real-time candlestick data
+• Multiple timeframes (M15, H1, H4, D1)
+• All major forex pairs + indices + crypto
+• Historical data for backtesting
+
+━━━ COMPONENT 3: PM2 PROCESS MANAGER (4:00 - 5:30) ━━━
+
+[VISUAL: PM2 status screen]
+
+PM2 process manager — yeh mera favorite tool hai.
+
+[SHOW: pm2 status]
+
+```
+┌─────┬──────────────┬──────┬───────────┐
+│ id  │ name         │ mode │ status    │
+├─────┼──────────────┼──────┼───────────┤
+│ 0   │ data-poller  │ fork │ online    │
+│ 1   │ ob-detector  │ fork │ online    │
+│ 2   │ fvg-detector │ fork │ online    │
+│ 3   │ divergence   │ fork │ online    │
+│ 4   │ correlation  │ fork │ online    │
+│ 5   │ news-poller  │ fork │ online    │
+│ 6   │ risk-mgmt    │ fork │ online    │
+│ 7   │ signal-gen   │ fork │ online    │
+│ 8   │ telegram-bot │ fork │ online    │
+│ 9   │ logger       │ fork │ online    │
+│ 10  │ health-check │ fork │ online    │
+│ 11  │ backup       │ fork │ online    │
+└─────┴──────────────┴──────┴───────────┘
+```
+
+12 processes — sab online.
+Agar koi crash hota hai — PM2 auto-restart karega.
+Self-healing system.
+
+────────────────────────────────────────
+KAISE KAAM KARTA HAI:
+────────────────────────────────────────
+data-poller → TwelveData se data fetch kare
+  → ob-detector → Order Block scan kare
+    → fvg-detector → Fair Value Gap detect kare
+      → divergence → RSI divergence check kare
+        → correlation → 9 asset correlation kare
+          → news-poller → News events check kare
+            → risk-mgmt → Kelly Criterion calculate kare
+              → signal-gen → Confidence score calculate kare
+                → telegram-bot → Alert bheje
+────────────────────────────────────────
+
+━━━ COMPONENT 4: TELEGRAM BOT (5:30 - 6:30) ━━━
+
+[VISUAL: Telegram notification popping up]
+
+Signal generate hua — turant notification.
+
+[SHOW: Telegram chat]
+
+```
+📊 OMNI BRAIN SIGNAL
+━━━━━━━━━━━━━━━━━━━━
+Asset: XAUUSD
+Direction: BUY
+Entry: 2345.67
+SL: 2338.90
+TP1: 2352.00
+TP2: 2358.50
+Confidence: 82/100
+Pattern: Bullish OB + FVG
+━━━━━━━━━━━━━━━━━━━━
+```
+
+Aur bhi features:
+• Daily performance report
+• Weekly analysis
+• Error alerts
+• P&L tracking
+
+━━━ COMPONENT 5: DASHBOARD (6:30 - 7:30) ━━━
+
+[VISUAL: Web dashboard showing charts]
+
+Terminal ke alawa — ek web dashboard bhi hai.
+
+[SHOW: Dashboard walkthrough]
+
+Dashboard dikhata hai:
+• Active signals with confidence scores
+• Correlation matrix (9 assets)
+• Fear & Greed Index
+• Treasury yield curve
+• Daily P&L
+• Open positions
+
+Sab ek hi jagah.
+
+━━━ FULL TOUR (7:30 - 9:00) ━━━
+
+[VISUAL: Complete walkthrough from phone]
+
+Abhi poora system dikhata hu step by step:
+
+1. Phone unlock → UserLAnd open
+2. Terminal → cd omni-brain-v2
+3. pm2 status — 12/12 online ✅
+4. TwelveData API check — data flowing ✅
+5. Order Block detector — scanning ✅
+6. Telegram bot — connected ✅
+7. Dashboard — live ✅
+
+[SHOW: Each step on actual phone]
+
+Sab kuch mere phone mein.
+Mere haath mein.
+Zero cost. Zero VPS.
+
+━━━ WHY THIS SETUP ROCKS (9:00 - 10:00) ━━━
+
+[VISUAL: Comparison: Laptop setup vs Phone setup]
+
+Laptop setup:
+• Cost: ₹50,000+
+• Downtime: Agar laptop band kiya toh system band
+• Maintenance: High
+
+Phone setup (OMNI BRAIN):
+• Cost: ₹0
+• Downtime: 24/7 chalega (phone on hote hi)
+• Maintenance: Auto-restart, auto-heal
+• Portability: Pocket mein trading system
+
+Aur sabse best part —
+aap bhi bana sakte ho. Same setup. Free.
+
+━━━ CTA (10:00 - 11:00) ━━━
+
+[VISUAL: Telegram channel QR + Subscribe button]
+
+Maine 6 months mein banaya.
+Aap 1 week mein bana sakte ho — agar sahi guidance ho.
+
+Telegram channel join karo — main wahan regularly post karta hoon.
+Code repo link description mein hai.
+FREE channel mein WAIT signals.
+VIP channel mein EXECUTE signals.
+
+Setup build karna seekhna hai?
+Agli video: KELLY CRITERION — kitna lot size lena chahiye.
+
+Like karo. Subscribe karo. Share karo. 🚀
+
+━━━ B-ROLL SHOT LIST ━━━
+1. Phone opening UserLAnd app
+2. Terminal with Python running
+3. PM2 status screen (12 processes online)
+4. TwelveData API response in terminal
+5. Telegram notification on phone
+6. Web dashboard scrolling
+7. Each system component walkthrough
+8. Phone in pocket — "pocket mein trading system"
+9. Split screen: phone vs laptop
+10. Code editor showing pipeline orchestration
+
+━━━ THUMBNAIL TEXT ━━━
+Main text: "TRADING SETUP TOUR 📱"
+Sub text: "Phone + VPS + AI | Zero Cost"
+Emoji overlay: 📱💻🤖
+
+━━━ DESCRIPTION ━━━
+Mera poora trading setup tour — OMNI BRAIN V2. Phone par chal raha hai, zero cost mein. UserLAnd, Python, TwelveData, PM2, Telegram — sab kuch dikhata hoon exactly kaise kaam karta hai. Agar aap bina kisi investment ke apna trading system banana chahte ho, toh yeh video dekho.
+
+Timestamps:
+00:00 - Hook: Phone par trading system?
+00:40 - UserLAnd + Linux setup
+02:30 - TwelveData API integration
+04:00 - PM2 process manager (12 processes)
+05:30 - Telegram bot integration
+06:30 - Web dashboard tour
+07:30 - Full live system walkthrough
+09:00 - Why phone setup beats laptop
+10:00 - CTA + Telegram join
+
+Technology stack: Python, TwelveData, PM2, Telegram API, UserLAnd, Android, SMC Patterns, Order Block Detection, Kelly Criterion
+
+Keywords: trading setup, phone trading, android trading setup, termux trading, userland trading, python trading bot, pm2 process manager, twelvedata api, telegram trading bot, algorithmic trading setup, forex automation, smc trading, omni brain
+
+FREE Telegram: [link]
+VIP Telegram: [link]
+Source Code: [link]

@@ -1,0 +1,24 @@
+─────────────────────────────────────
+EDUCATIONAL REEL #2: FVG — Fair Value Gap explain
+─────────────────────────────────────
+HOOK (0-3 sec):
+"FVG kya hai jo har trader dekhna chahta hai? 📊"
+
+VISUAL (3-8 sec):
+Show chart with FVG zone highlighted, price filling the gap
+
+EXPLANATION (8-25 sec):
+Fair Value Gap tab banta hai jab price ek direction mein bahut tez jaata hai. Beech ka jo gap hota hai — wo FVG hai.
+✅ Bullish FVG — 3 candles ka gap upar ki taraf
+✅ Bearish FVG — 3 candles ka gap neeche ki taraf
+✅ Price aksar gap fill karne wapas aata hai
+
+EXAMPLE (25-30 sec):
+"EURUSD M15 — FVG 1.0845 pe tha, price 1.0848 tak aaya aur fill kiya!"
+
+CTA (30-35 sec):
+"FVG ka full course chahiye? Link in bio!"
+
+HASHTAGS:
+#FVG #fairvaluegap #forextrader #forex #SMC #liquidity
+─────────────────────────────────────

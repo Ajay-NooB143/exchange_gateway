@@ -1,0 +1,96 @@
+TITLE: 72% win rate — weekly results 📊 ($+848)
+
+═══════════════════════════════════════════
+VIDEO 3: WEEKLY RESULTS
+═══════════════════════════════════════════
+
+━━━ HOOK (0:00 - 0:20) ━━━
+
+Week 1 complete.
+72% win rate.
+$+848 profit.
+
+Zero emotional trading.
+Pure automation.
+
+━━━ RESULTS (0:20 - 5:00) ━━━
+
+[SHOW: Weekly performance card]
+
+Week 1 breakdown:
+• Total signals: 36
+• Wins: 26 (72%)
+• Losses: 10 (28%)
+• P&L: $+847.50
+• ROI: +8.47%
+• Best trade: XAUUSD +$312
+
+[SHOW: Signal-by-signal breakdown]
+
+Best setups:
+• High conviction trades (score 80+) — 100% win rate
+• London session — most profitable
+• XAUUSD — best performing asset
+
+━━━ ANALYSIS (5:00 - 8:00) ━━━
+
+What worked:
+1. Multi-TF confirmation filtered out bad setups
+2. Circuit breaker prevented over-trading
+3. Correlation analysis added edge
+4. Treasury yield signals confirmed direction
+
+What didn't:
+1. News events caused 2 false signals
+2. Low volatility sessions gave tight ranges
+3. Spread filter missed some entries
+
+Improvements for next week:
+• Tighten news blackout window
+• Increase threshold in Asian session
+• Add volume profile filter
+
+━━━ NEXT WEEK PREVIEW (8:00 - 9:30) ━━━
+
+Week 2 targets:
+• Maintain 72%+ win rate
+• Increase trade frequency in London
+• Launch VIP Telegram channel
+
+━━━ CTA (9:30 - 10:00) ━━━
+
+Results speak for themselves.
+System built on Android. Zero cost.
+
+FREE Telegram channel mein WAIT signals.
+VIP channel mein EXECUTE signals.
+
+Join karein — link in description.
+Agli week milte hain! 🚀
+
+━━━ B-ROLL SHOT LIST ━━━
+1. Weekly P&L graph animation
+2. Individual trade breakdowns
+3. Side-by-side: prediction vs outcome
+4. Telegram alert screenshots
+5. Paper trading dashboard
+6. Upcoming week market preview
+
+━━━ THUMBNAIL TEXT ━━━
+"72% WIN RATE 📊"
+"₹848 Profit in Week 1"
+Arrows up + Money + Chart
+
+━━━ DESCRIPTION ━━━
+Weekly performance review of OMNI BRAIN V2 automated trading system. 72% win rate with $+848 profit in Week 1. Complete breakdown of all trades, what worked, and improvements for next week.
+
+Automated trading system built with Python, deployed on Android. Real-time SMC pattern detection, multi-timeframe confirmation, and Telegram alerts.
+
+Keywords: weekly trading results, automated trading, trading bot results, forex signals, smc trading results, python trading system
+
+━━━ TAGS ━━━
+trading results, weekly review, trading bot, forex signals, smc trading,
+automated trading, algorithmic trading, paper trading, trading journal,
+forex results, day trading results, swing trading, position trading,
+trading system, omni brain, python trading, ai trading, bot trading,
+signal accuracy, win rate, profit loss, trading performance

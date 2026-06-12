@@ -1,0 +1,88 @@
+═══════════════════════════════════════════
+  OMNI BRAIN VIP — WELCOME AUTO-SEQUENCE
+═══════════════════════════════════════════
+Sent automatically after admin runs /verify {chat_id}
+
+--- MESSAGE 1: IMMEDIATE (triggered by /verify) ---
+Function: format_welcome_message() in subscription_manager.py
+
+🎉 OMNI BRAIN VIP — WELCOME
+─────────────────────────────
+You now have access to:
+✅ Live EXECUTE signals
+✅ Full entry/SL/TP details
+✅ 10-factor scoring breakdown
+✅ Kelly position sizing
+✅ News blackout alerts
+✅ Treasury yield context
+✅ Daily P&L reports
+─────────────────────────────
+Your access: 30 days
+Expires: {date}
+─────────────────────────────
+Bot commands:
+/status  → live scores
+/score XAUUSD → breakdown
+/cb      → circuit breaker
+/report  → daily report
+/help    → all commands
+/referral → get your referral code
+─────────────────────────────
+Risk disclaimer: Signals are educational only.
+Always manage your own risk.
+Never risk more than 1-2%.
+
+--- MESSAGE 2: +1 HOUR ---
+📌 FIRST SIGNAL INCOMING
+
+Abhi tak koi signal nahi aaya hai — kyunki
+system real-time hai. Market move karega tab signal aayega.
+
+Is beech mein:
+1. Check /status — live scores dekho
+2. Telegram channel pe pichle signals scroll karo
+3. YouTube pe tutorial dekho (link in channel)
+
+Jab bhi score ≥ 75 hoga — EXECUTE alert turant aayega.
+
+--- MESSAGE 3: +24 HOURS ---
+📊 DAY 1 COMPLETE — Aapka pehla din
+
+Aapne dekha — signals kaise aate hain.
+Score breakdown, entry, SL, TP, sab kuch.
+
+Feedback chahiye? Kuch change karna hai?
+Mujhe DM karo. Main khud yeh system banata hoon —
+aapki suggestions matter karti hain.
+
+Kal phir milte hain. 🚀
+
+--- MESSAGE 4: +7 DAYS ---
+📆 7 DAYS COMPLETE — Review
+
+Aap ek hafte se VIP ho.
+Kya lagta hai? Signals useful hain?
+
+Jaroorat hai toh /extend ya /referral use karo.
+Har referral se aapko 7 FREE days milte hain.
+
+Yeh system evolve karta hai.
+Har week improvement aati hai.
+Aap saath ho toh growth fast hai.
+
+--- REFERRAL AUTO-MESSAGE ---
+Sent when /referral is used for the first time:
+
+🔗 YOUR REFERRAL CODE: {CODE}
+
+Share this code with friends:
+{LANDING_PAGE}?ref={CODE}
+
+Jab bhi koi aapke code se join karega:
+✅ Aapko 7 FREE days
+✅ Unhein 7 FREE days
+
+Jitne zyada refer, utna zyada free access.
+
+Current referrals: {count}
+Free days earned: {days}

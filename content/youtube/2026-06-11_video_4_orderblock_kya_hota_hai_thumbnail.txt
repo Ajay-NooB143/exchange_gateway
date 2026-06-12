@@ -1,0 +1,17 @@
+━━━ THUMBNAIL OPTION 1 ━━━
+Main Text: "ORDER BLOCK 🤯"
+Sub Text: "5 Min Mein Seekho"
+Visual: Chart with colored OB zones + code overlay
+Emoji: 🧱📉📈
+
+━━━ THUMBNAIL OPTION 2 ━━━
+Main Text: "YEH KYA HAI?" 
+Sub Text: "Order Block Explained"
+Visual: Split screen — chart on top, Python code on bottom
+Emoji: 🔍🧱
+
+━━━ THUMBNAIL OPTION 3 ━━━
+Main Text: "ORDER BLOCK"
+Sub Text: "Institutions Yeh Use Karte Hain"
+Visual: Large candle with OB zone highlighted, arrow pointing
+Emoji: 🏦📊⚡

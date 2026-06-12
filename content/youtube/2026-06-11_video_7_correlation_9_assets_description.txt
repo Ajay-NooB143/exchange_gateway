@@ -1,0 +1,23 @@
+9 assets ka correlation — kaise ek doosre ko affect karta hai? Is video mein main OMNI BRAIN V2 ka live correlation matrix dikhaunga. Samjhega ki Gold, Dollar, Euro, GBP, SP500, Bitcoin, aur Treasury Yields ek doosre se kaise related hain.
+
+Correlation samajhna is crucial for risk management. Agar aap ek hi direction mein correlated assets ki trades le rahe ho, toh aapka risk double ho sakta hai. Pairs trading aur hedging strategies bhi seekhenge.
+
+00:00 - Hook: Gold vs Dollar relationship
+00:45 - Correlation types (positive, negative, zero)
+02:00 - 9 assets correlation matrix breakdown
+04:00 - Why correlation matters (bad trade example)
+05:30 - Pairs trading strategy explained
+07:00 - Hedging with correlation
+08:00 - Live OMNI BRAIN correlation dashboard
+09:00 - CTA + Telegram channel
+
+OMNI BRAIN V2 automatically:
+• Calculates correlation matrix in real-time
+• Alerts on correlation changes
+• Suggests pairs trading opportunities
+• Recommends hedges for open positions
+
+Keywords: correlation, forex correlation, pairs trading, hedging, gold, dollar, sp500, bitcoin, treasury yield, omni brain v2, algorithmic trading, python trading, smc trading, market analysis, trading strategy
+
+FREE Telegram: [link]
+VIP Telegram: [link]
