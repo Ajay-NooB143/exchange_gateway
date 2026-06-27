@@ -214,10 +214,10 @@ Reports:        logs/reports/
 
 ```bash
 # Copy to VPS
-scp -r /home/userland/api_workspace/* root@172.105.252.194:/opt/trading-bridge/
+scp -r /home/userland/api_workspace/* root@<your-vps-ip>:/opt/trading-bridge/
 
 # SSH and start
-ssh root@172.105.252.194
+ssh root@<your-vps-ip>
 cd /opt/trading-bridge
 cp .env.example .env  # Edit with secrets
 pm2 start ecosystem.config.js
@@ -229,7 +229,7 @@ pm2 logs omni-scanner
 
 ## VPS INFO
 
-- **IP:** 172.105.252.194
+- **IP:** <your-vps-ip>
 - **Port:** 3000 (TCP must be open in cloud security group)
 - **OS:** Ubuntu 26.04
 - **PM2:** Cluster mode, auto-restart

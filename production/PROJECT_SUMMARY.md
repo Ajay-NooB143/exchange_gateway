@@ -64,7 +64,7 @@ api_workspace/
 
 ## VPS Deployment Status
 
-**IP**: 172.105.252.194
+**IP**: <your-vps-ip>
 **Port**: 3000
 **Process**: PM2 cluster (2 instances)
 
@@ -105,7 +105,7 @@ api_workspace/
 
 ```bash
 # Quick check
-ssh root@172.105.252.194
+ssh root@<your-vps-ip>
 pm2 status
 curl http://localhost:3000/health
 
@@ -120,7 +120,7 @@ pm2 logs trading-bridge
 
 ```bash
 # Via API
-curl -X POST http://172.105.252.194:3000/kill
+curl -X POST http://<your-vps-ip>:3000/kill
 
 # Via PM2
 pm2 stop trading-bridge

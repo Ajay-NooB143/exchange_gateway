@@ -8,7 +8,7 @@
 # ══════════════════════════════════════════════════════════════════════════════
 set -euo pipefail
 
-REMOTE_HOST="${DEPLOY_HOST:-root@172.105.252.194}"
+REMOTE_HOST="${DEPLOY_HOST:?DEPLOY_HOST is required (e.g. root@your-vps-ip)}"
 REMOTE_DIR="/opt/trading-bridge"
 LOCAL_DIR="$(cd "$(dirname "$0")" && pwd)"
 DRY_RUN=""

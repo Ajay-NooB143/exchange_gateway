@@ -4,7 +4,7 @@ Last updated: auto-update each session
 ## PROJECT
 Name: OMNI BRAIN V2 (OmniSignalApexV35)
 Workspace: /home/userland/api_workspace
-VPS: root@172.105.252.194:/opt/trading-bridge
+VPS: root@<your-vps-ip>:/opt/trading-bridge
 Tests: 258/258 passing
 PM2: 13+ processes online
 

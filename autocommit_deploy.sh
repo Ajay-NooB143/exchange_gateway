@@ -10,7 +10,7 @@
 set -euo pipefail
 
 # ── Configuration ───────────────────────────────────────────────────────
-REMOTE_HOST="${DEPLOY_HOST:-root@172.105.252.194}"
+REMOTE_HOST="${DEPLOY_HOST:?DEPLOY_HOST is required (e.g. root@your-vps-ip)}"
 REMOTE_DIR="/opt/trading-bridge"
 GITHUB_REMOTE="origin"
 GITHUB_BRANCH="main"

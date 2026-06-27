@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VPS_IP="${VPS_IP:-172.105.252.194}"
+VPS_IP="${VPS_IP:?VPS_IP is required}"
 VPS_PATH="${VPS_PATH:-/opt/trading-bridge}"
 LOCAL_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 

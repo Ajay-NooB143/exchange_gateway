@@ -48,8 +48,8 @@ bash /opt/trading-bridge/verify_deployment.sh
 
 Or copy the file from workspace:
 ```bash
-scp verify_deployment.sh root@172.105.252.194:/opt/trading-bridge/
-ssh root@172.105.252.194
+scp verify_deployment.sh root@<your-vps-ip>:/opt/trading-bridge/
+ssh root@<your-vps-ip>
 bash /opt/trading-bridge/verify_deployment.sh
 ```
 
@@ -60,7 +60,7 @@ In TradingView:
 2. Add alert on your Pine Script
 3. Set **Webhook URL**:
    ```
-   http://172.105.252.194:3000/webhook?secret=YOUR_SECRET_HERE
+   http://<your-vps-ip>:3000/webhook?secret=YOUR_SECRET_HERE
    ```
 4. Set **Message** (JSON):
    ```json

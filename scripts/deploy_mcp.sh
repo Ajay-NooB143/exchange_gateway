@@ -10,7 +10,7 @@
 #   5. All PM2 services
 #
 # Usage:
-#   bash scripts/deploy_mcp.sh --vps 172.105.252.194
+#   bash scripts/deploy_mcp.sh --vps <your-vps-ip>
 #   bash scripts/deploy_mcp.sh --local
 # ══════════════════════════════════════════════════════════════════════════════
 
