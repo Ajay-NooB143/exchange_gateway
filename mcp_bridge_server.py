@@ -241,11 +241,31 @@ except ImportError:
     log.warning("FastAPI not installed. Run: pip install fastapi uvicorn")
 
 if FASTAPI_AVAILABLE:
+    from starlette.middleware.base import BaseHTTPMiddleware
+    from starlette.requests import Request
+
+    PIPELINE_API_KEY = os.getenv('PIPELINE_API_KEY', '')
+
+    class APIKeyAuthMiddleware(BaseHTTPMiddleware):
+        """Require X-API-Key header on all /api/ endpoints."""
+        async def dispatch(self, request: Request, call_next):
+            # Allow health check and WebSocket without auth
+            if request.url.path in ('/health', '/docs', '/openapi.json') or request.url.path.startswith('/ws/'):
+                return await call_next(request)
+            # Require API key on /api/ routes
+            if request.url.path.startswith('/api/'):
+                key = request.headers.get('X-API-Key', '')
+                if not PIPELINE_API_KEY or key != PIPELINE_API_KEY:
+                    return JSONResponse(status_code=401, content={'error': 'Unauthorized — set X-API-Key header'})
+            return await call_next(request)
+
     app = FastAPI(
         title="OMNI BRAIN V2 - MCP Bridge",
         description="FastAPI bridge between MT5 trading logic and OpenStock dashboard",
         version="2.0.0"
     )
+
+    app.add_middleware(APIKeyAuthMiddleware)
 
     app.add_middleware(
         CORSMiddleware,
