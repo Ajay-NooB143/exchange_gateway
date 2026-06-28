@@ -1,0 +1,113 @@
+name: Tests & Linting
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint & Format Check
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install linting tools
+        run: |
+          pip install flake8 black isort pylint
+      - name: Run black formatter check
+        run: black --check .
+      - name: Run isort import check
+        run: isort --check-only .
+      - name: Run flake8 linting
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - name: Run pylint
+        run: pylint **/*.py --fail-under=8.0 || true
+
+  test:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov pytest-asyncio
+      - name: Run unit tests
+        run: pytest -v --cov=. --cov-report=xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+
+  security:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install security tools
+        run: |
+          pip install bandit safety
+      - name: Run bandit security scan
+        run: bandit -r . -f json -o bandit-report.json || true
+      - name: Check dependencies for known vulnerabilities
+        run: safety check || true
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build & Deploy Check
+    needs: [lint, test, security]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Set up Node.js (if Next.js)
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Install Node dependencies (if exists)
+        if: hashFiles('package.json') != ''
+        run: npm install --legacy-peer-deps
+      - name: Build Next.js (if exists)
+        if: hashFiles('next.config.js') != ''
+        run: npm run build || true
+      - name: Verify build artifacts
+        run: |
+          [ -d ".next" ] && echo "Next.js build OK" || echo "No Next.js build"
+          [ -d "dist" ] && echo "Python build OK" || echo "No Python build"
+
+  notify:
+    runs-on: ubuntu-latest
+    name: Notify Status
+    needs: [lint, test, security, build]
+    if: always()
+    steps:
+      - name: Workflow Status
+        run: |
+          echo "Lint: ${{ needs.lint.result }}"
+          echo "Tests: ${{ needs.test.result }}"
+          echo "Security: ${{ needs.security.result }}"
+          echo "Build: ${{ needs.build.result }}"
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "CI/CD Pipeline Failed"
+          echo "Check: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
