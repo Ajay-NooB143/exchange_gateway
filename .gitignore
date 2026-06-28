@@ -1,19 +1,224 @@
-# Secrets
+# ═══════════════════════════════════════════════════════════════════════════
+# OMNI BRAIN V2 .gitignore
+# Prevents committing secrets, dependencies, build artifacts
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────────
+# ENVIRONMENT & SECRETS (CRITICAL)
+# ─────────────────────────────────────────────────────────────────────────
 .env
 .env.local
-.env.encrypted
-.secrets.key
+.env.*.local
+.env.production
+*.pem
+*.key
+*.p8
+secret_*
+credentials.json
+config.secret.json
 
-# Virtual environments
+# ─────────────────────────────────────────────────────────────────────────
+# PYTHON VIRTUAL ENVIRONMENTS
+# ─────────────────────────────────────────────────────────────────────────
 venv/
-.venv/
+env/
+ENV/
+.venv
+.env
+pip-log.txt
+pip-delete-this-directory.txt
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Logs
-logs/
-__pycache__/
-*.pyc
+# ─────────────────────────────────────────────────────────────────────────
+# NODE / NEXT.JS
+# ─────────────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log
+yarn-error.log
+.next/
+out/
+.cache/
+.vercel
+.turbo
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ─────────────────────────────────────────────────────────────────────────
+# TESTING & COVERAGE
+# ─────────────────────────────────────────────────────────────────────────
 .pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.nox/
+pytest.ini
 
-# OS
+# ─────────────────────────────────────────────────────────────────────────
+# IDE & EDITOR
+# ─────────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.swp
+*.sublime-workspace
+*.sublime-project
+.vs/
+.fleet/
+
+# ─────────────────────────────────────────────────────────────────────────
+# PM2 & PROCESS MANAGEMENT
+# ─────────────────────────────────────────────────────────────────────────
+pm2.json
+pm2-error.log
+pm2-out.log
+logs/*.log
+ecosystem.json
+
+# ─────────────────────────────────────────────────────────────────────────
+# DATABASE & CACHE
+# ─────────────────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+redis/
+redis_dump.rdb
+dump.rdb
+
+# ─────────────────────────────────────────────────────────────────────────
+# OS FILES
+# ─────────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ─────────────────────────────────────────────────────────────────────────
+# GIT & VERSION CONTROL
+# ─────────────────────────────────────────────────────────────────────────
+.git/
+.gitattributes
+.gitkeep
+*.patch
+*.diff
+
+# ─────────────────────────────────────────────────────────────────────────
+# TEMPORARY & BUILD FILES
+# ─────────────────────────────────────────────────────────────────────────
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+.tox/
+dist/
+build/
+*.egg-info/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ─────────────────────────────────────────────────────────────────────────
+# LOCAL CONFIGURATION
+# ─────────────────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/workspace.xml
+.idea/vcs.xml
+*.local
+local_*
+private/
+
+# ─────────────────────────────────────────────────────────────────────────
+# BACKUP & ARCHIVE
+# ─────────────────────────────────────────────────────────────────────────
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.bak
+*-backup/
+
+# ─────────────────────────────────────────────────────────────────────────
+# TRADING / FINANCIAL DATA (DO NOT COMMIT)
+# ─────────────────────────────────────────────────────────────────────────
+data/datasets/*.csv
+trades.json
+signals.json
+backtest_results/
+historical_data/
+
+# ─────────────────────────────────────────────────────────────────────────
+# MT5 / BROKER SPECIFIC
+# ─────────────────────────────────────────────────────────────────────────
+mt5_cache/
+*.fxt
+*.hst
+*.raw
+account_info.json
+broker_credentials.json
+
+# ─────────────────────────────────────────────────────────────────────────
+# DOCKER
+# ─────────────────────────────────────────────────────────────────────────
+.dockerignore
+docker-compose.override.yml
+*.dockerfile
+
+# ─────────────────────────────────────────────────────────────────────────
+# CI/CD ARTIFACTS
+# ─────────────────────────────────────────────────────────────────────────
+.github/workflows/generated/
+.travis/
+.circleci/
+artifacts/
+reports/
+
+# ─────────────────────────────────────────────────────────────────────────
+# PROJECT SPECIFIC
+# ─────────────────────────────────────────────────────────────────────────
+# OMNI BRAIN V2
+bridge_server_logs/
+worker_logs/
+health_check_reports/
+
+# OpenCode / Remotion
+.opencode/
+.remotion/
+
+# Keep tracking these important files
+.github/
+!.github/workflows/
+!README.md
+!LICENSE
+!requirements.txt
+!package.json
