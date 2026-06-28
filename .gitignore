@@ -1,7 +1,12 @@
 # Secrets
 .env
+.env.local
 .env.encrypted
 .secrets.key
+
+# Virtual environments
+venv/
+.venv/
 
 # Logs
 logs/
