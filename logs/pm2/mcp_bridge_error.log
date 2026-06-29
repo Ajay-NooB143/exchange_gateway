@@ -86,3 +86,26 @@
 2026-06-29T12:33:27: FastAPI not installed. Run: pip install fastapi uvicorn
 2026-06-29T12:33:44: FastAPI not installed. Run: pip install fastapi uvicorn
 2026-06-29T12:34:01: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:34:18: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:34:36: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:34:52: Traceback (most recent call last):
+2026-06-29T12:34:52:   File "/root/exchange_gateway/mcp_bridge_server.py", line 30, in <module>
+2026-06-29T12:34:52:     import json
+2026-06-29T12:34:52:   File "/usr/lib/python3.14/json/__init__.py", line 106, in <module>
+2026-06-29T12:34:52:     from .decoder import JSONDecoder, JSONDecodeError
+2026-06-29T12:34:52:   File "/usr/lib/python3.14/json/decoder.py", line 3, in <module>
+2026-06-29T12:34:52:     import re
+2026-06-29T12:34:52:   File "/usr/lib/python3.14/re/__init__.py", line 126, in <module>
+2026-06-29T12:34:52:     from . import _compiler, _parser
+2026-06-29T12:34:52:   File "/usr/lib/python3.14/re/_compiler.py", line 14, in <module>
+2026-06-29T12:34:52:     from . import _parser
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap>", line 1333, in _find_and_load_unlocked
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap>", line 1267, in _find_spec
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 1292, in find_spec
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 1266, in _get_spec
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 1398, in find_spec
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 166, in _path_isfile
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 158, in _path_is_mode_type
+2026-06-29T12:34:52:   File "<frozen importlib._bootstrap_external>", line 152, in _path_stat
+2026-06-29T12:34:52: KeyboardInterrupt
