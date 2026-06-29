@@ -319,3 +319,11 @@
 2026-06-29T12:58:09: 2026-06-29 12:58:09,809 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
 2026-06-29T12:58:26: 2026-06-29 12:58:26,567 [MCPBridge] [INFO] WS server ready on port 3002
 2026-06-29T12:58:26: 2026-06-29 12:58:26,612 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
+2026-06-29T12:58:43: 2026-06-29 12:58:43,443 [MCPBridge] [INFO] WS server ready on port 3002
+2026-06-29T12:58:43: 2026-06-29 12:58:43,470 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
+2026-06-29T12:59:00: 2026-06-29 12:59:00,592 [MCPBridge] [INFO] WS server ready on port 3002
+2026-06-29T12:59:00: 2026-06-29 12:59:00,653 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
+2026-06-29T12:59:18: 2026-06-29 12:59:18,535 [MCPBridge] [INFO] WS server ready on port 3002
+2026-06-29T12:59:18: 2026-06-29 12:59:18,545 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
+2026-06-29T12:59:35: 2026-06-29 12:59:35,239 [MCPBridge] [INFO] WS server ready on port 3002
+2026-06-29T12:59:35: 2026-06-29 12:59:35,265 [MCPBridge] [ERROR] WS server error: No module named 'websockets'
