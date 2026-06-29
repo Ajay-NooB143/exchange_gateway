@@ -1,0 +1,19 @@
+
+============================================================
+AUDIT REPORT — 2026-06-29T10:28:35.877028+00:00
+============================================================
+Trades:      0
+Win Rate:    0.00%
+Profit Factor: 0.00
+Avg R:R:     0.00
+Total P&L:   0.00 pips
+
+Current Parameters:
+  volume_multiplier:     1.50
+  trail_activation_pips: 50.0
+
+No issues detected.
+
+No adjustments needed.
+============================================================
+
