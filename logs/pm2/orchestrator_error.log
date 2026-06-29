@@ -1017,3 +1017,14 @@
 2026-06-29T12:39:04: 2026-06-29 12:39:04,688 [INFO] PositionManager — Position opened: GBPUSD BULLISH @ 1.24865 SL=-6.25 TP1=6.25 TP2=11.25 TP3=16.25 qty=10.0
 2026-06-29T12:39:04: 2026-06-29 12:39:04,692 [INFO] PipelineOrchestrator — [PIPELINE] GBPUSD step1_cb:0.0ms step2_scan:5.9ms step2b_regime:1.5ms step2c_ai:84.1ms step3_mtf:0.0ms step4_session:0.3ms step5_news:0.1ms step6_correlation:5.1ms step7_yield:0.0ms step8_sentiment:1000.1ms step9_pattern:0.4ms step10_divergence:1.7ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms step14_execute:1311.1ms step15_execution_quality:0.4ms total:2411.2ms decision:EXECUTE
 2026-06-29T12:39:04: 2026-06-29 12:39:04,712 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 4472.44
+2026-06-29T12:39:07: 2026-06-29 12:39:07,433 [INFO] ExchangeGateway — [GW][PAPER] binance buy limit qty=0.450000 price=4478.69 (no exchange configured)
+2026-06-29T12:39:07: 2026-06-29 12:39:07,434 [INFO] PipelineOrchestrator — [EXEC] binance BUY SP500 qty=0.450000 @ 4478.69 → PAPER_binance_1782725947 (FILLED)
+2026-06-29T12:39:07: 2026-06-29 12:39:07,457 [INFO] PaperTrader — PAPER TRADE OPENED: SP500 BULLISH @ 4478.69 x0.45
+2026-06-29T12:39:07: 2026-06-29 12:39:07,467 [INFO] PositionManager — Position opened: SP500 BULLISH @ 4478.69 SL=4471.19 TP1=4483.69 TP2=4488.69 TP3=4493.69 qty=0.45
+2026-06-29T12:39:07: 2026-06-29 12:39:07,469 [INFO] PipelineOrchestrator — [PIPELINE] SP500 step1_cb:0.0ms step2_scan:12.9ms step2b_regime:2.1ms step2c_ai:105.4ms step3_mtf:0.0ms step4_session:0.2ms step5_news:0.1ms step6_correlation:4.8ms step7_yield:0.0ms step8_sentiment:1110.1ms step9_pattern:0.4ms step10_divergence:2.0ms step11_risk:0.2ms step12_score:0.2ms step13_threshold:0.0ms step14_execute:1528.2ms step15_execution_quality:0.4ms total:2767.0ms decision:EXECUTE
+2026-06-29T12:39:07: 2026-06-29 12:39:07,479 [INFO] LiveFeedScanner — [SCAN] #9 Complete: 4 EXECUTE, 0 WAIT, 0 BLOCK, 0 ERR (16539ms)
+2026-06-29T12:39:07: 2026-06-29 12:39:07,480 [INFO] AppWiring — Scan #9 complete: exec=4 wait=0 block=0 err=0
+2026-06-29T12:40:07: 2026-06-29 12:40:07,501 [INFO] AppWiring — ── scan #10 ──
+2026-06-29T12:40:09: 2026-06-29 12:40:09,635 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:40:10: 2026-06-29 12:40:10,956 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:40:11: 2026-06-29 12:40:11,006 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 2201.52
