@@ -42,3 +42,28 @@
 2026-06-29T12:27:11: FastAPI not installed. Run: pip install fastapi uvicorn
 2026-06-29T12:27:28: FastAPI not installed. Run: pip install fastapi uvicorn
 2026-06-29T12:27:45: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:02: Traceback (most recent call last):
+2026-06-29T12:28:02:   File "/root/exchange_gateway/mcp_bridge_server.py", line 33, in <module>
+2026-06-29T12:28:02:     import asyncio
+2026-06-29T12:28:02:   File "/usr/lib/python3.14/asyncio/__init__.py", line 8, in <module>
+2026-06-29T12:28:02:     from .base_events import *
+2026-06-29T12:28:02:   File "/usr/lib/python3.14/asyncio/base_events.py", line 45, in <module>
+2026-06-29T12:28:02:     from . import staggered
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap_external>", line 755, in exec_module
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap_external>", line 851, in get_code
+2026-06-29T12:28:02:   File "<frozen importlib._bootstrap_external>", line 950, in get_data
+2026-06-29T12:28:02: KeyboardInterrupt
+2026-06-29T12:28:04: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:06: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:09: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:11: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:14: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:17: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:20: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:24: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:29: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:35: FastAPI not installed. Run: pip install fastapi uvicorn
+2026-06-29T12:28:42: FastAPI not installed. Run: pip install fastapi uvicorn

@@ -656,3 +656,91 @@
 2026-06-29T12:27:53: 2026-06-29 12:27:53,479 [INFO] PipelineOrchestrator — [PIPELINE] GBPUSD step1_cb:0.0ms step2_scan:13.4ms step2b_regime:0.7ms step2c_ai:82.4ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:3.2ms step7_yield:0.0ms step8_sentiment:5899.6ms step9_pattern:0.3ms step10_divergence:1.7ms step11_risk:0.0ms step12_score:0.3ms step13_threshold:0.1ms total:7692.5ms decision:ERROR
 2026-06-29T12:27:53: 2026-06-29 12:27:53,510 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 4525.30
 2026-06-29T12:27:53: 2026-06-29 12:27:53,513 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 4521.86
+2026-06-29T12:27:56: 2026-06-29 12:27:56,312 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:27:56: Traceback (most recent call last):
+2026-06-29T12:27:56:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:27:56:     self._execute_decision(result, payload)
+2026-06-29T12:27:56:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:27:56:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:27:56:     self.alert_sender.send_signal(
+2026-06-29T12:27:56:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-29T12:27:56:     ...<4 lines>...
+2026-06-29T12:27:56:         components=components if 'components' in dir() else {},
+2026-06-29T12:27:56:     
+2026-06-29T12:27:56: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:27:56: 2026-06-29 12:27:56,332 [INFO] PipelineOrchestrator — [PIPELINE] SP500 step1_cb:0.0ms step2_scan:21.2ms step2b_regime:1.0ms step2c_ai:138.6ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.1ms step6_correlation:8.3ms step7_yield:0.0ms step8_sentiment:1058.5ms step9_pattern:0.2ms step10_divergence:0.7ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:2835.0ms decision:ERROR
+2026-06-29T12:27:56: 2026-06-29 12:27:56,344 [INFO] LiveFeedScanner — [SCAN] #8 Complete: 0 EXECUTE, 0 WAIT, 4 BLOCK, 0 ERR (19064ms)
+2026-06-29T12:27:56: 2026-06-29 12:27:56,349 [INFO] AppWiring — Scan #8 complete: exec=0 wait=0 block=4 err=0
+2026-06-29T12:28:01: 2026-06-29 12:28:00,996 [INFO] AppWiring — Received SIGINT — initiating graceful shutdown
+2026-06-29T12:28:01: 2026-06-29 12:28:01,353 [INFO] AppWiring — Shutting down orchestrator …
+2026-06-29T12:28:01: 2026-06-29 12:28:01,354 [INFO] LiveFeedScanner — [SCANNER] Stopped
+2026-06-29T12:28:01: 2026-06-29 12:28:01,356 [INFO] ExchangeGateway — [GW-SYNC] Gateway thread stopped
+2026-06-29T12:28:01: 2026-06-29 12:28:01,357 [INFO] AsyncWSScanner — [WS] Scanner stopped
+2026-06-29T12:28:01: 2026-06-29 12:28:01,359 [INFO] TelegramSignals — Telegram signal service stopped
+2026-06-29T12:28:01: 2026-06-29 12:28:01,360 [INFO] AppWiring — Orchestrator stopped cleanly
+2026-06-29T12:28:04: 2026-06-29 12:28:04,144 [INFO] AppWiring — ============================================================
+2026-06-29T12:28:04: 2026-06-29 12:28:04,148 [INFO] AppWiring — OMNI BRAIN V2 — COMPOSITION ROOT (Layer 4)
+2026-06-29T12:28:04: 2026-06-29 12:28:04,152 [INFO] AppWiring — ============================================================
+2026-06-29T12:28:04: 2026-06-29 12:28:04,153 [INFO] AppWiring — [1/6] Creating AlertSender …
+2026-06-29T12:28:04: 2026-06-29 12:28:04,302 [INFO] AppWiring — AlertSender (TelegramSignalService) created
+2026-06-29T12:28:04: 2026-06-29 12:28:04,303 [INFO] AppWiring — [1/6] ✓ AlertSender ready (TelegramSignalService)
+2026-06-29T12:28:04: 2026-06-29 12:28:04,304 [INFO] AppWiring — [2/6] Creating PipelineEngine …
+2026-06-29T12:28:05: 2026-06-29 12:28:05,206 [WARNING] PipelineOrchestrator — Missing required env var: LIVE_DATA_API_KEY — set in .env to enable full functionality
+2026-06-29T12:28:05: 2026-06-29 12:28:05,207 [WARNING] PipelineOrchestrator — Missing required env var: TELEGRAM_BOT_TOKEN — set in .env to enable full functionality
+2026-06-29T12:28:05: 2026-06-29 12:28:05,208 [WARNING] PipelineOrchestrator — Missing required env var: TELEGRAM_CHAT_ID — set in .env to enable full functionality
+2026-06-29T12:28:05: 2026-06-29 12:28:05,218 [INFO] AppWiring — PipelineEngine created (alert_sender=TelegramSignalService)
+2026-06-29T12:28:05: 2026-06-29 12:28:05,219 [INFO] AppWiring — [2/6] ✓ PipelineEngine ready
+2026-06-29T12:28:05: 2026-06-29 12:28:05,219 [INFO] AppWiring — [3/6] Creating LiveFeedScanner …
+2026-06-29T12:28:05: 2026-06-29 12:28:05,274 [INFO] LiveFeedScanner — [SCANNER] MOCK MODE — using synthetic data for testing
+2026-06-29T12:28:05: 2026-06-29 12:28:05,276 [INFO] AppWiring — LiveFeedScanner created (mock=True, pipeline=PipelineEngine)
+2026-06-29T12:28:05: 2026-06-29 12:28:05,278 [INFO] AppWiring — [3/6] ✓ LiveFeedScanner ready (mock=True)
+2026-06-29T12:28:05: 2026-06-29 12:28:05,278 [INFO] AppWiring — [4/6] Creating ExchangeGateway …
+2026-06-29T12:28:05: Exception in thread Thread-1 (_run_loop):
+2026-06-29T12:28:05: Traceback (most recent call last):
+2026-06-29T12:28:05:   File "/usr/lib/python3.14/threading.py", line 1082, in _bootstrap_inner
+2026-06-29T12:28:05:     self._context.run(self.run)
+2026-06-29T12:28:05:     ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+2026-06-29T12:28:05:   File "/usr/lib/python3.14/threading.py", line 1024, in run
+2026-06-29T12:28:05:     self._target(*self._args, **self._kwargs)
+2026-06-29T12:28:05:     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-29T12:28:05:   File "/root/exchange_gateway/production/exchange_gateway.py", line 452, in _run_loop
+2026-06-29T12:28:05:     self._loop.run_until_complete(self._gateway.initialize())
+2026-06-29T12:28:05:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-29T12:28:05:   File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+2026-06-29T12:28:05:     return future.result()
+2026-06-29T12:28:05:            ~~~~~~~~~~~~~^^
+2026-06-29T12:28:05:   File "/root/exchange_gateway/production/exchange_gateway.py", line 134, in initialize
+2026-06-29T12:28:05:     import ccxt.async_support as ccxt
+2026-06-29T12:28:05: ModuleNotFoundError: No module named 'ccxt'
+2026-06-29T12:28:35: 2026-06-29 12:28:35,794 [INFO] ExchangeGateway — [GW-SYNC] Gateway thread started (paper=True)
+2026-06-29T12:28:35: 2026-06-29 12:28:35,795 [INFO] AppWiring — ExchangeGateway created (paper=True, exchanges=[])
+2026-06-29T12:28:35: 2026-06-29 12:28:35,798 [INFO] AppWiring — [4/6] ✓ ExchangeGateway ready (exchanges=[])
+2026-06-29T12:28:35: 2026-06-29 12:28:35,798 [INFO] AppWiring — [5/6] Creating AsyncWSScanner …
+2026-06-29T12:28:35: 2026-06-29 12:28:35,824 [INFO] AsyncWSScanner — [WS] Scanner thread started (exchange=binance, symbols=['BTCUSD', 'ETHUSD', 'XAUUSD'])
+2026-06-29T12:28:35: 2026-06-29 12:28:35,824 [INFO] AppWiring — AsyncWSScanner created (exchange=binance)
+2026-06-29T12:28:35: 2026-06-29 12:28:35,825 [INFO] AppWiring — [5/6] ✓ AsyncWSScanner ready (exchange=binance)
+2026-06-29T12:28:35: 2026-06-29 12:28:35,825 [INFO] AppWiring — [6/6] Starting scanner …
+2026-06-29T12:28:35: 2026-06-29 12:28:35,825 [INFO] LiveFeedScanner — ============================================================
+2026-06-29T12:28:35: 2026-06-29 12:28:35,826 [INFO] LiveFeedScanner — OMNI BRAIN V2 - LIVE FEED SCANNER
+2026-06-29T12:28:35: 2026-06-29 12:28:35,826 [INFO] LiveFeedScanner — ============================================================
+2026-06-29T12:28:35: 2026-06-29 12:28:35,826 [INFO] LiveFeedScanner — Assets: XAUUSD, EURUSD, GBPUSD, SP500, BTCUSD, ETHUSD, BNBUSD, SOLUSD, XRPUSD
+2026-06-29T12:28:35: 2026-06-29 12:28:35,833 [INFO] LiveFeedScanner — Timeframes: M15, H1, H4, D1
+2026-06-29T12:28:35: 2026-06-29 12:28:35,834 [INFO] LiveFeedScanner — Interval: 60s
+2026-06-29T12:28:35: 2026-06-29 12:28:35,836 [INFO] LiveFeedScanner — Rate Limit: 8/min, 800/day
+2026-06-29T12:28:35: 2026-06-29 12:28:35,836 [INFO] LiveFeedScanner — ============================================================
+2026-06-29T12:28:35: 2026-06-29 12:28:35,836 [INFO] LiveFeedScanner — [SCANNER] Mock mode — skipping API key verification
+2026-06-29T12:28:35: 2026-06-29 12:28:35,854 [ERROR] AsyncWSScanner — [WS-BINANCE] websockets not installed: pip install websockets
+2026-06-29T12:28:35: 2026-06-29 12:28:35,855 [WARNING] LiveFeedScanner — [WS] websocket-client not installed. Install: pip install websocket-client
+2026-06-29T12:28:35: 2026-06-29 12:28:35,856 [INFO] AppWiring — ============================================================
+2026-06-29T12:28:35: 2026-06-29 12:28:35,857 [INFO] AppWiring — OMNI BRAIN V2 — ORCHESTRATOR ONLINE
+2026-06-29T12:28:35: 2026-06-29 12:28:35,857 [INFO] AppWiring — ============================================================
+2026-06-29T12:28:35: 2026-06-29 12:28:35,870 [INFO] AppWiring — AutoAuditAgent created
+2026-06-29T12:28:35: 2026-06-29 12:28:35,874 [INFO] AppWiring — Background audit thread started (interval=3600s)
+2026-06-29T12:28:35: 2026-06-29 12:28:35,875 [INFO] AppWiring — Scan interval: 60s
+2026-06-29T12:28:35: 2026-06-29 12:28:35,875 [INFO] AppWiring — ── scan #1 ──
+2026-06-29T12:28:47: 2026-06-29 12:28:47,719 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:28:48: 2026-06-29 12:28:48,473 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:28:48: 2026-06-29 12:28:48,479 [INFO] LiveFeedScanner — ✅ First candle: XAUUSD O:2186.05 H:2186.18 L:2185.77 C:2185.16 V:310
+2026-06-29T12:28:49: 2026-06-29 12:28:49,585 [INFO] AIDecisionEngine — AI Decision Engine: All 22 modules loaded
+2026-06-29T12:28:51: 2026-06-29 12:28:51,008 [INFO] ForexFactoryNews — Forex Factory: fetched 3 events
+2026-06-29T12:28:51: 2026-06-29 12:28:51,974 [INFO] ForexFactoryNews — Forex Factory: fetched 3 events

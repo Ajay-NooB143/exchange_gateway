@@ -1,0 +1,12 @@
+2026-06-29T12:28:01: [FEED] Mode: REST_POLLING ✓ - latency
+2026-06-29T12:28:01: [FEED] Rate: 0/8 per min | 0/800 today
+2026-06-29T12:28:01: [FEED] XAUUSD   last: never
+2026-06-29T12:28:01: [FEED] EURUSD   last: never
+2026-06-29T12:28:01: [FEED] GBPUSD   last: never
+2026-06-29T12:28:01: [FEED] SP500    last: never
+2026-06-29T12:28:01: [FEED] BTCUSD   last: never
+2026-06-29T12:28:01: [FEED] ETHUSD   last: never
+2026-06-29T12:28:01: [FEED] BNBUSD   last: never
+2026-06-29T12:28:01: [FEED] SOLUSD   last: never
+2026-06-29T12:28:01: [FEED] XRPUSD   last: never
+2026-06-29T12:28:01: [FEED] ⚠️ FALLBACK ACTIVE: REST polling (WS disconnected)
