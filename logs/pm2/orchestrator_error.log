@@ -627,3 +627,17 @@
 2026-06-29T12:27:42: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
 2026-06-29T12:27:42: 2026-06-29 12:27:42,364 [INFO] PipelineOrchestrator — [PIPELINE] XAUUSD step1_cb:0.0ms step2_scan:10.5ms step2b_regime:0.9ms step2c_ai:120.9ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.1ms step6_correlation:5.8ms step7_yield:0.0ms step8_sentiment:1101.7ms step9_pattern:0.3ms step10_divergence:1.7ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:2649.8ms decision:ERROR
 2026-06-29T12:27:42: 2026-06-29 12:27:42,404 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.10
+2026-06-29T12:27:45: 2026-06-29 12:27:45,724 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:27:45: Traceback (most recent call last):
+2026-06-29T12:27:45:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:27:45:     self._execute_decision(result, payload)
+2026-06-29T12:27:45:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:27:45:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:27:45:     self.alert_sender.send_signal(
+2026-06-29T12:27:45:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-29T12:27:45:     ...<4 lines>...
+2026-06-29T12:27:45:         components=components if 'components' in dir() else {},
+2026-06-29T12:27:45:     
+2026-06-29T12:27:45: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:27:45: 2026-06-29 12:27:45,753 [INFO] PipelineOrchestrator — [PIPELINE] EURUSD step1_cb:0.0ms step2_scan:20.4ms step2b_regime:2.2ms step2c_ai:108.2ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:3.4ms step7_yield:0.0ms step8_sentiment:1568.6ms step9_pattern:0.3ms step10_divergence:1.6ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:3361.7ms decision:ERROR
+2026-06-29T12:27:45: 2026-06-29 12:27:45,794 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.25
