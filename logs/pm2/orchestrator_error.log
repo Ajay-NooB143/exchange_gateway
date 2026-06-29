@@ -85,3 +85,21 @@
 2026-06-29T12:18:55: 2026-06-29 12:18:55,923 [INFO] PipelineOrchestrator — [CHASER] Order XAUUSD_SELL_1782724735 initiated: SELL @ 2188.49 (conf=0.70)
 2026-06-29T12:18:55: 2026-06-29 12:18:55,923 [INFO] PipelineOrchestrator — [SNIPER] SELL XAUUSD conf=0.70 → chaser initiated
 2026-06-29T12:18:55: 2026-06-29 12:18:55,928 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 2188.96
+2026-06-29T12:18:59: 2026-06-29 12:18:59,833 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:18:59: Traceback (most recent call last):
+2026-06-29T12:18:59:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:18:59:     self._execute_decision(result, payload)
+2026-06-29T12:18:59:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:18:59:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:18:59:     self.alert_sender.send_signal(
+2026-06-29T12:18:59:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-29T12:18:59:         symbol=symbol,
+2026-06-29T12:18:59:         ^^^^^^^^^^^^^^
+2026-06-29T12:18:59:     ...<2 lines>...
+2026-06-29T12:18:59:         details=details,
+2026-06-29T12:18:59:         ^^^^^^^^^^^^^^^^
+2026-06-29T12:18:59:     )
+2026-06-29T12:18:59:     ^
+2026-06-29T12:18:59: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:18:59: 2026-06-29 12:18:59,847 [INFO] PipelineOrchestrator — [PIPELINE] XAUUSD step1_cb:0.0ms step2_scan:46.4ms step2b_regime:10.4ms step2c_ai:200.1ms step3_mtf:0.0ms step4_session:0.0ms step5_news:0.0ms step6_correlation:4.6ms step7_yield:0.0ms step8_sentiment:1967.8ms step9_pattern:0.4ms step10_divergence:1.7ms step11_risk:0.1ms step12_score:0.2ms step13_threshold:0.0ms total:3921.4ms decision:ERROR
+2026-06-29T12:18:59: 2026-06-29 12:18:59,881 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.10
