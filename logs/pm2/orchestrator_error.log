@@ -1557,3 +1557,10 @@
 2026-06-29T13:00:45: 2026-06-29 13:00:45,634 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
 2026-06-29T13:00:47: 2026-06-29 13:00:47,192 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
 2026-06-29T13:00:47: 2026-06-29 13:00:47,216 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 2201.52
+2026-06-29T13:00:50: 2026-06-29 13:00:50,520 [INFO] ExchangeGateway — [GW][PAPER] binance buy limit qty=0.910000 price=2208.5 (no exchange configured)
+2026-06-29T13:00:50: 2026-06-29 13:00:50,520 [INFO] PipelineOrchestrator — [EXEC] binance BUY XAUUSD qty=0.910000 @ 2208.50 → PAPER_binance_1782727250 (FILLED)
+2026-06-29T13:00:50: 2026-06-29 13:00:50,584 [INFO] PaperTrader — PAPER TRADE OPENED: XAUUSD BULLISH @ 2208.5 x0.91
+2026-06-29T13:00:50: 2026-06-29 13:00:50,591 [INFO] PositionManager — Position opened: XAUUSD BULLISH @ 2208.5 SL=2201.0 TP1=2213.5 TP2=2218.5 TP3=2223.5 qty=0.91
+2026-06-29T13:00:50: 2026-06-29 13:00:50,597 [INFO] PipelineOrchestrator — [PIPELINE] XAUUSD step1_cb:0.0ms step2_scan:5.2ms step2b_regime:0.3ms step2c_ai:130.4ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:11.5ms step7_yield:0.0ms step8_sentiment:996.2ms step9_pattern:0.4ms step10_divergence:1.4ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms step14_execute:2234.2ms step15_execution_quality:1.5ms total:3381.5ms decision:EXECUTE
+2026-06-29T13:00:50: 2026-06-29 13:00:50,631 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.10
+2026-06-29T13:00:50: 2026-06-29 13:00:50,632 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 1.10
