@@ -220,3 +220,28 @@
 2026-06-29T12:20:21: 2026-06-29 12:20:20,999 [INFO] PipelineOrchestrator — [PIPELINE] GBPUSD step1_cb:0.0ms step2_scan:25.2ms step2b_regime:0.9ms step2c_ai:101.2ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:7.7ms step7_yield:0.0ms step8_sentiment:956.7ms step9_pattern:0.4ms step10_divergence:1.6ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:2252.4ms decision:ERROR
 2026-06-29T12:20:21: 2026-06-29 12:20:21,037 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 4525.30
 2026-06-29T12:20:21: 2026-06-29 12:20:21,039 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 4521.86
+2026-06-29T12:20:23: 2026-06-29 12:20:23,754 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:20:23: Traceback (most recent call last):
+2026-06-29T12:20:23:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:20:23:     self._execute_decision(result, payload)
+2026-06-29T12:20:23:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:20:23:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:20:23:     self.alert_sender.send_signal(
+2026-06-29T12:20:23:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-29T12:20:23:         symbol=symbol,
+2026-06-29T12:20:23:         ^^^^^^^^^^^^^^
+2026-06-29T12:20:23:     ...<2 lines>...
+2026-06-29T12:20:23:         details=details,
+2026-06-29T12:20:23:         ^^^^^^^^^^^^^^^^
+2026-06-29T12:20:23:     )
+2026-06-29T12:20:23:     ^
+2026-06-29T12:20:23: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:20:23: 2026-06-29 12:20:23,769 [INFO] PipelineOrchestrator — [PIPELINE] SP500 step1_cb:0.0ms step2_scan:13.8ms step2b_regime:0.9ms step2c_ai:122.6ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.1ms step6_correlation:12.6ms step7_yield:0.0ms step8_sentiment:1022.6ms step9_pattern:0.4ms step10_divergence:2.0ms step11_risk:0.0ms step12_score:0.2ms step13_threshold:0.0ms total:2737.1ms decision:ERROR
+2026-06-29T12:20:23: 2026-06-29 12:20:23,778 [INFO] LiveFeedScanner — [SCAN] #2 Complete: 0 EXECUTE, 0 WAIT, 4 BLOCK, 0 ERR (15530ms)
+2026-06-29T12:20:23: 2026-06-29 12:20:23,779 [INFO] AppWiring — Scan #2 complete: exec=0 wait=0 block=4 err=0
+2026-06-29T12:21:23: 2026-06-29 12:21:23,805 [INFO] AppWiring — ── scan #3 ──
+2026-06-29T12:21:24: 2026-06-29 12:21:24,476 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:21:25: 2026-06-29 12:21:25,270 [ERROR] LiveFeedScanner — [REST] API key invalid or unauthorized
+2026-06-29T12:21:25: 2026-06-29 12:21:25,278 [INFO] PipelineOrchestrator — [CHASER] Order XAUUSD_SELL_1782724885 initiated: SELL @ 2188.49 (conf=0.70)
+2026-06-29T12:21:25: 2026-06-29 12:21:25,279 [INFO] PipelineOrchestrator — [SNIPER] SELL XAUUSD conf=0.70 → chaser initiated
+2026-06-29T12:21:25: 2026-06-29 12:21:25,289 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 2188.96
