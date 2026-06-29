@@ -201,3 +201,22 @@
 2026-06-29T12:20:18: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
 2026-06-29T12:20:18: 2026-06-29 12:20:18,717 [INFO] PipelineOrchestrator — [PIPELINE] EURUSD step1_cb:0.0ms step2_scan:9.2ms step2b_regime:1.2ms step2c_ai:131.3ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.1ms step6_correlation:14.1ms step7_yield:0.0ms step8_sentiment:2171.2ms step9_pattern:0.3ms step10_divergence:0.6ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:3577.3ms decision:ERROR
 2026-06-29T12:20:18: 2026-06-29 12:20:18,761 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.25
+2026-06-29T12:20:20: 2026-06-29 12:20:20,983 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:20:20: Traceback (most recent call last):
+2026-06-29T12:20:20:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:20:20:     self._execute_decision(result, payload)
+2026-06-29T12:20:20:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:20:20:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:20:20:     self.alert_sender.send_signal(
+2026-06-29T12:20:20:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-29T12:20:20:         symbol=symbol,
+2026-06-29T12:20:20:         ^^^^^^^^^^^^^^
+2026-06-29T12:20:20:     ...<2 lines>...
+2026-06-29T12:20:20:         details=details,
+2026-06-29T12:20:20:         ^^^^^^^^^^^^^^^^
+2026-06-29T12:20:20:     )
+2026-06-29T12:20:20:     ^
+2026-06-29T12:20:20: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:20:21: 2026-06-29 12:20:20,999 [INFO] PipelineOrchestrator — [PIPELINE] GBPUSD step1_cb:0.0ms step2_scan:25.2ms step2b_regime:0.9ms step2c_ai:101.2ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:7.7ms step7_yield:0.0ms step8_sentiment:956.7ms step9_pattern:0.4ms step10_divergence:1.6ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms total:2252.4ms decision:ERROR
+2026-06-29T12:20:21: 2026-06-29 12:20:21,037 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 4525.30
+2026-06-29T12:20:21: 2026-06-29 12:20:21,039 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 4521.86
