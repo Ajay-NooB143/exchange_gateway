@@ -39,3 +39,8 @@
 2026-06-29T12:33:24: 2026-06-29 12:33:24,273 [WARNING] [CRYPTO] Price fetch failed for BNBUSD: HTTP Error 401: Unauthorized
 2026-06-29T12:33:25: 2026-06-29 12:33:25,706 [WARNING] [CRYPTO] Price fetch failed for SOLUSD: HTTP Error 401: Unauthorized
 2026-06-29T12:33:26: 2026-06-29 12:33:26,512 [WARNING] [CRYPTO] Price fetch failed for XRPUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:35:28: 2026-06-29 12:35:28,745 [WARNING] [CRYPTO] Price fetch failed for BTCUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:35:30: 2026-06-29 12:35:30,505 [WARNING] [CRYPTO] Price fetch failed for ETHUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:35:32: 2026-06-29 12:35:32,427 [WARNING] [CRYPTO] Price fetch failed for BNBUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:35:33: 2026-06-29 12:35:33,256 [WARNING] [CRYPTO] Price fetch failed for SOLUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:35:34: 2026-06-29 12:35:34,518 [WARNING] [CRYPTO] Price fetch failed for XRPUSD: HTTP Error 401: Unauthorized
