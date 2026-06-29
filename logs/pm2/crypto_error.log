@@ -1,0 +1,6 @@
+2026-06-29T12:18:03: 2026-06-29 12:18:03,160 [INFO] [CRYPTO] Scanner started. Assets: BTCUSD, ETHUSD, BNBUSD, SOLUSD, XRPUSD
+2026-06-29T12:18:10: 2026-06-29 12:18:10,583 [WARNING] [CRYPTO] Price fetch failed for BTCUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:18:16: 2026-06-29 12:18:16,408 [WARNING] [CRYPTO] Price fetch failed for ETHUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:18:22: 2026-06-29 12:18:22,586 [WARNING] [CRYPTO] Price fetch failed for BNBUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:18:23: 2026-06-29 12:18:23,287 [WARNING] [CRYPTO] Price fetch failed for SOLUSD: HTTP Error 401: Unauthorized
+2026-06-29T12:18:24: 2026-06-29 12:18:24,318 [WARNING] [CRYPTO] Price fetch failed for XRPUSD: HTTP Error 401: Unauthorized

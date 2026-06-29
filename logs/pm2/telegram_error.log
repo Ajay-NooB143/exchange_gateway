@@ -1,0 +1,2 @@
+2026-06-29T12:18:03: 2026-06-29 12:18:03,169 [WARNING] Telegram not configured (missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID)
+2026-06-29T12:18:03: 2026-06-29 12:18:03,170 [INFO] Telegram service started successfully

@@ -1,0 +1,36 @@
+2026-06-29T12:18:04: 2026-06-29 12:18:04,920 [WARNING] Missing required env var: LIVE_DATA_API_KEY — set in .env to enable full functionality
+2026-06-29T12:18:04: 2026-06-29 12:18:04,921 [WARNING] Missing required env var: TELEGRAM_BOT_TOKEN — set in .env to enable full functionality
+2026-06-29T12:18:04: 2026-06-29 12:18:04,921 [WARNING] Missing required env var: TELEGRAM_CHAT_ID — set in .env to enable full functionality
+2026-06-29T12:18:05: 2026-06-29 12:18:05,170 [INFO] ============================================================
+2026-06-29T12:18:05: 2026-06-29 12:18:05,171 [INFO] OMNI BRAIN V2 - SCANNER API SERVER
+2026-06-29T12:18:05: 2026-06-29 12:18:05,171 [INFO] ============================================================
+2026-06-29T12:18:05: 2026-06-29 12:18:05,171 [INFO] Port: 3000
+2026-06-29T12:18:05: 2026-06-29 12:18:05,171 [INFO] Pipeline: Full OMNI BRAIN V2
+2026-06-29T12:18:05: 2026-06-29 12:18:05,172 [INFO] API Key: 96fb6508...a347
+2026-06-29T12:18:05: 2026-06-29 12:18:05,172 [INFO] Auth: Required for all endpoints except /health
+2026-06-29T12:18:05: 2026-06-29 12:18:05,172 [INFO] Rate Limit: 60 req/min per IP, 10 trigger-scan/min
+2026-06-29T12:18:05: 2026-06-29 12:18:05,172 [INFO] Endpoints:
+2026-06-29T12:18:05: 2026-06-29 12:18:05,172 [INFO]   GET  /health (public)
+2026-06-29T12:18:05: 2026-06-29 12:18:05,173 [INFO]   GET  /api/omni-status
+2026-06-29T12:18:05: 2026-06-29 12:18:05,173 [INFO]   GET  /api/last-scan
+2026-06-29T12:18:05: 2026-06-29 12:18:05,173 [INFO]   GET  /api/feed-status
+2026-06-29T12:18:05: 2026-06-29 12:18:05,173 [INFO]   GET  /api/backtest-results
+2026-06-29T12:18:05: 2026-06-29 12:18:05,174 [INFO]   GET  /api/correlation
+2026-06-29T12:18:05: 2026-06-29 12:18:05,174 [INFO]   GET  /api/news
+2026-06-29T12:18:05: 2026-06-29 12:18:05,174 [INFO]   GET  /api/yields
+2026-06-29T12:18:05: 2026-06-29 12:18:05,174 [INFO]   GET  /api/sentiment
+2026-06-29T12:18:05: 2026-06-29 12:18:05,176 [INFO]   GET  /api/evolution-status
+2026-06-29T12:18:05: 2026-06-29 12:18:05,179 [INFO]   GET  /api/evolution-fitness
+2026-06-29T12:18:05: 2026-06-29 12:18:05,179 [INFO]   GET  /api/calibration
+2026-06-29T12:18:05: 2026-06-29 12:18:05,180 [INFO]   GET  /api/regime
+2026-06-29T12:18:05: 2026-06-29 12:18:05,180 [INFO]   GET  /api/ai-decision
+2026-06-29T12:18:05: 2026-06-29 12:18:05,180 [INFO]   GET  /api/ai-final
+2026-06-29T12:18:05: 2026-06-29 12:18:05,183 [INFO]   GET  /api/dashboard
+2026-06-29T12:18:05: 2026-06-29 12:18:05,185 [INFO]   POST /api/trigger-scan
+2026-06-29T12:18:05: 2026-06-29 12:18:05,186 [INFO]   POST /api/test-full-scan
+2026-06-29T12:18:05: 2026-06-29 12:18:05,186 [INFO]   POST /api/pause/{symbol}
+2026-06-29T12:18:05: 2026-06-29 12:18:05,187 [INFO] Auth log: /root/exchange_gateway/logs/api_auth.log
+2026-06-29T12:18:05: 2026-06-29 12:18:05,187 [INFO] Blocked IPs: /root/exchange_gateway/logs/blocked_ips.json
+2026-06-29T12:18:05: 2026-06-29 12:18:05,187 [INFO] Set PIPELINE_API_KEY in .env to persist across restarts
+2026-06-29T12:18:05: 2026-06-29 12:18:05,189 [INFO] ============================================================
+2026-06-29T12:18:38: 2026-06-29 12:18:38,193 [INFO] HTTP GET /api/omni-status -> 401 from 127.0.0.1
