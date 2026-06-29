@@ -64,3 +64,24 @@
 2026-06-29T12:18:49: 2026-06-29 12:18:49,009 [INFO] AIDecisionEngine — AI Decision Engine: All 22 modules loaded
 2026-06-29T12:18:50: 2026-06-29 12:18:50,400 [INFO] ForexFactoryNews — Forex Factory: fetched 3 events
 2026-06-29T12:18:51: 2026-06-29 12:18:51,377 [INFO] ForexFactoryNews — Forex Factory: fetched 3 events
+2026-06-29T12:18:55: 2026-06-29 12:18:55,903 [ERROR] PipelineOrchestrator — Pipeline error: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:18:55: Traceback (most recent call last):
+2026-06-29T12:18:55:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 740, in run_pipeline
+2026-06-29T12:18:55:     self._execute_decision(result, payload)
+2026-06-29T12:18:55:     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+2026-06-29T12:18:55:   File "/root/exchange_gateway/pipeline_orchestrator.py", line 829, in _execute_decision
+2026-06-29T12:18:55:     self.alert_sender.send_signal(
+2026-06-29T12:18:55:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-29T12:18:55:         symbol=symbol,
+2026-06-29T12:18:55:         ^^^^^^^^^^^^^^
+2026-06-29T12:18:55:     ...<2 lines>...
+2026-06-29T12:18:55:         details=details,
+2026-06-29T12:18:55:         ^^^^^^^^^^^^^^^^
+2026-06-29T12:18:55:     )
+2026-06-29T12:18:55:     ^
+2026-06-29T12:18:55: TypeError: TelegramSignalService.send_signal() got an unexpected keyword argument 'action'
+2026-06-29T12:18:55: 2026-06-29 12:18:55,910 [INFO] PipelineOrchestrator — [PIPELINE] XAUUSD step1_cb:0.1ms step2_scan:0.2ms step2b_regime:0.1ms step2c_ai:2636.4ms step3_mtf:0.0ms step4_session:0.1ms step5_news:963.6ms step6_correlation:2.2ms step7_yield:0.0ms step8_sentiment:996.9ms step9_pattern:0.1ms step10_divergence:0.1ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:1.1ms total:8129.2ms decision:ERROR
+2026-06-29T12:18:55: 2026-06-29 12:18:55,912 [INFO] LiveFeedScanner — [SCANNER] Startup pipeline complete: XAUUSD score=50 ERROR
+2026-06-29T12:18:55: 2026-06-29 12:18:55,923 [INFO] PipelineOrchestrator — [CHASER] Order XAUUSD_SELL_1782724735 initiated: SELL @ 2188.49 (conf=0.70)
+2026-06-29T12:18:55: 2026-06-29 12:18:55,923 [INFO] PipelineOrchestrator — [SNIPER] SELL XAUUSD conf=0.70 → chaser initiated
+2026-06-29T12:18:55: 2026-06-29 12:18:55,928 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 2188.96
