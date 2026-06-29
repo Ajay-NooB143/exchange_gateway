@@ -1533,3 +1533,10 @@
 2026-06-29T12:59:37: 2026-06-29 12:59:37,765 [INFO] PipelineOrchestrator — [PIPELINE] XAUUSD step1_cb:0.0ms step2_scan:6.7ms step2b_regime:0.4ms step2c_ai:906.1ms step3_mtf:0.0ms step4_session:0.1ms step5_news:890.3ms step6_correlation:4.7ms step7_yield:0.0ms step8_sentiment:1051.0ms step9_pattern:0.3ms step10_divergence:1.6ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms step14_execute:1326.9ms step15_execution_quality:1.5ms total:4189.8ms decision:EXECUTE
 2026-06-29T12:59:37: 2026-06-29 12:59:37,786 [INFO] SmartMoneyMatrix — LiquiditySweep: BEARISH @ 1.10
 2026-06-29T12:59:37: 2026-06-29 12:59:37,788 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 1.10
+2026-06-29T12:59:40: 2026-06-29 12:59:40,106 [INFO] ExchangeGateway — [GW][PAPER] binance buy limit qty=10.000000 price=1.10172 (no exchange configured)
+2026-06-29T12:59:40: 2026-06-29 12:59:40,107 [INFO] PipelineOrchestrator — [EXEC] binance BUY EURUSD qty=10.000000 @ 1.10 → PAPER_binance_1782727180 (FILLED)
+2026-06-29T12:59:40: 2026-06-29 12:59:40,133 [INFO] PaperTrader — PAPER TRADE OPENED: EURUSD BULLISH @ 1.10172 x10.0
+2026-06-29T12:59:40: 2026-06-29 12:59:40,137 [INFO] PositionManager — Position opened: EURUSD BULLISH @ 1.10172 SL=-6.4 TP1=6.1 TP2=11.1 TP3=16.1 qty=10.0
+2026-06-29T12:59:40: 2026-06-29 12:59:40,154 [INFO] PipelineOrchestrator — [PIPELINE] EURUSD step1_cb:0.0ms step2_scan:8.1ms step2b_regime:0.7ms step2c_ai:82.9ms step3_mtf:0.0ms step4_session:0.1ms step5_news:0.0ms step6_correlation:3.9ms step7_yield:0.0ms step8_sentiment:963.2ms step9_pattern:0.3ms step10_divergence:1.7ms step11_risk:0.0ms step12_score:0.1ms step13_threshold:0.0ms step14_execute:1295.9ms step15_execution_quality:1.7ms total:2358.8ms decision:EXECUTE
+2026-06-29T12:59:40: 2026-06-29 12:59:40,205 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 1.25
+2026-06-29T12:59:40: 2026-06-29 12:59:40,209 [INFO] SmartMoneyMatrix — LiquiditySweep: BULLISH @ 1.25
