@@ -828,9 +828,16 @@ class PipelineEngine:
             }
             self.alert_sender.send_signal(
                 symbol=symbol,
-                action=decision,
-                confidence=float(score),
-                details=details,
+                tf='M15',
+                decision=decision,
+                score=int(score),
+                components=components if 'components' in dir() else {},
+                mtf_data=mtf_data if 'mtf_data' in dir() else {},
+                threshold=75,
+                cb_state=cb_state if 'cb_state' in dir() else 'NORMAL',
+                price=float(price),
+                atr=5.0,
+                candles=[],
             )
 
         if decision == 'EXECUTE':
@@ -1021,13 +1028,16 @@ class PipelineEngine:
             try:
                 self.alert_sender.send_signal(
                     symbol=symbol,
-                    action=f"EXIT_{side}",
-                    confidence=abs(pnl_pips),
-                    details={
-                        'entry_price': entry,
-                        'pnl_pips': pnl_pips,
-                        'reason': directive.get('reason', ''),
-                    },
+                    tf='M15',
+                    decision=f'EXIT_{side}',
+                    score=0,
+                    components={},
+                    mtf_data={},
+                    threshold=75,
+                    cb_state='NORMAL',
+                    price=float(entry),
+                    atr=5.0,
+                    candles=[],
                 )
             except Exception as e:
                 log.warning(f"[ALPHA] Telegram alert failed: {e}")
@@ -1057,14 +1067,16 @@ class PipelineEngine:
             try:
                 self.alert_sender.send_signal(
                     symbol=symbol,
-                    action=f"TRAIL_SL_{side}",
-                    confidence=abs(pnl_pips),
-                    details={
-                        'old_sl': old_sl,
-                        'new_sl': new_sl,
-                        'pnl_pips': pnl_pips,
-                        'reason': directive.get('reason', ''),
-                    },
+                    tf='M15',
+                    decision=f'TRAIL_SL_{side}',
+                    score=0,
+                    components={},
+                    mtf_data={},
+                    threshold=75,
+                    cb_state='NORMAL',
+                    price=float(new_sl),
+                    atr=5.0,
+                    candles=[],
                 )
             except Exception as e:
                 log.warning(f"[ALPHA] Telegram alert failed: {e}")
